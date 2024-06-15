@@ -28,10 +28,6 @@ def limpiar_Pantalla():
     else:
        os.system("clear")
 
-    
-
-
-
 
 def menu():
     """
@@ -46,11 +42,13 @@ def menu():
     """
     limpiar_Pantalla()
     print(colorama.Fore.CYAN)
-    print("="*70)
-    print("\t 1. Agregar Paciente")
-    print("\t 2. Listar")
-    print("\t 3. Salir")
-    op = int(input("Ingresa la Opción:  "))
+    print(" SYS PETS ".center(50,"*").center(100))
+    print(("="*70).center(100))
+    print("\t\t 1. Agregar Paciente")
+    print("\t\t 2. Listar")
+    print("\t\t 3. Salir")
+    print(("="*70).center(100))
+    op = int(input("\t\t Ingresa la Opción:  "))
     limpiar_Pantalla()
     return op
 
@@ -65,7 +63,7 @@ def listar(lista):
     AUTOR: Marina Toledo, Ale Ante, Leo Rios, Brenda Sztryk
     COLABORADORES:
     """
-    print("-"*70)
+    print(("-"*70).center(100))
     #como es una lista veo primero que tiene adentro
     for paciente in lista:
     #como veo que tiene diccionarios, itero a los diccionarios con paciente.items()
@@ -73,17 +71,25 @@ def listar(lista):
             #como no me gusta que se vea Mascotas: []entre corchetes uso continue
             if dato == "Mascotas":
                 continue
-            print(f'{dato}: {info}')
+            print(f'\t\t{dato}: {info}')
         #Luego itero solamente la lista que da como resultado "Mascotas" y lo itero con
         #end="" para que quede mas prolijo
         for dato in paciente:
             if dato == "Mascotas":
-                print("Mascotas: ", end="")
+                print("\t\tMascotas: ", end="")
                 for info in info:
                     print(f' {info}', end="")
                 print()
+        print(("-"*70).center(100))
     return
 
+'''def presentar():
+    """ funcion de bienvenida al programa
+    no recibe parametro, retorna nombre del programa
+    AUTOR: Brenda Sztryk
+    COLABORADORES: """
+    print (" SYS PETS ".center(50,"*").center(100)) # ESTA FRASE PENSE SE ESCRIBA CON ASTERISCOS O X LO MENOS "PETS" :)
+    return'''
 
 def agregar(paci):
     """
@@ -96,16 +102,16 @@ def agregar(paci):
     """
 
     masco = []
-    print("-"*70)
-    nomPaci = input("Ingrese el nombre:  ")
-    apellPaci = input("Ingrese el apellido:  ")
-    dniPaci = input("Ingrese el DNI:  ")
-    direPaci = input("Ingrese la dirección:  ")
-    respuesta = input("Ingrese el nombre de la mascota:  ")
+    print(("-"*70).center(100))
+    nomPaci = input("\t\tIngrese el nombre:  ")
+    apellPaci = input("\t\tIngrese el apellido:  ")
+    dniPaci = input("\t\tIngrese el DNI:  ")
+    direPaci = input("\t\tIngrese la dirección:  ")
+    respuesta = input("\t\tIngrese el nombre de la mascota:  ")
     masco.append(respuesta)
-    respo = input("Quiere ingresar otra mascota? s/n:  ")
+    respo = input("\t\tQuiere ingresar otra mascota? s/n:  ")
     while respo == "s":
-        respuesta = input("Ingrese la otra mascota:  ")
+        respuesta = input("\t\tIngrese la otra mascota:  ")
         masco.append(respuesta)
         respo = input("Quiere ingresar otra mascota? s/n:  ")
     paci = {
@@ -125,19 +131,19 @@ while op != 4:
     match op:
         case 1:
             print()
-            print("Usted seleccionó Agregar")
+            print("\t\tUsted seleccionó Agregar")
             agregar(pacientes)
-            input("Presione enter para continuar")
+            input("\t\tPresione enter para continuar")
         case 2:
             print()
-            print("Usted seleccionó Listar")
+            print("\t\tUsted seleccionó Listar")
             listar(nombre)
-            input("Presione enter para continuar")
+            input("\t\tPresione enter para continuar")
         case 3:
             print()
-            print("SALDRA DEL PROGRAMA")
+            print("\t\tSALDRA DEL PROGRAMA")
             break
         case _:
-            print("Valor invalido")
+            print("\t\tValor invalido")
     op = menu()
-print("Hasta Luego! ")
+print("\t\tHasta Luego! ")
