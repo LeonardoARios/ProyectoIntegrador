@@ -107,7 +107,8 @@ def modificarD(lista):
                                             num = num +1
                                             print(f'{num}:{info}, ', end="")
                                         print()
-                                nuModifico = int(input(colorama.Fore.YELLOW + "\t\tIngrese el número que desea modificar".upper())+colorama.Fore.RESET)
+                                nuModifico = int(input(colorama.Fore.YELLOW + "\t\tIngrese el número que desea modificar:  " + colorama.Fore.RESET))
+                                nuModifico = nuModifico - 1
                                 nueMascota = input(colorama.Fore.YELLOW + "\t\tIngrese la nueva mascota:  ".upper() + colorama.Fore.RESET)
                                 deDic[dato][nuModifico]=nueMascota
                                 bande = False
@@ -156,6 +157,7 @@ def agregar(paci):
         "Mascotas": masco
         }
     nombre.append(paci)
+    return paci, masco
 
 def menu():
     """
