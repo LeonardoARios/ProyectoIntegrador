@@ -196,7 +196,7 @@ while bande == True:
     match op:
         case "a": #Nuevo Paciente
             print(colorama.Fore.GREEN + "\t\tUsted seleccionó Agregar" + colorama.Fore.RESET)
-            agregar(pacientes)
+            listaPacientes, listaMascotas = agregar(pacientes)
             print(("-"*70).center(100))
             print(colorama.Fore.RESET)
             input("\t\tPresione enter para continuar")
