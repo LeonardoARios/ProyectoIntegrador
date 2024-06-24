@@ -60,42 +60,7 @@ def listar(lista):
     AUTOR: Leonardo Rios
     COLABORADORES: Marina Toledo, Ale Ante, Brenda Sztryk
     """
-    carti = 1
-    print(colorama.Fore.BLUE)
-    print(f'{"-"*35}{carti}{"-"*35}'.center(100))
-    for paciente in lista:
-        for dato, info in paciente.items():
-            if dato == "Mascotas":
-                continue
-            print(f'\t\t{dato}: {info}')
-        for dato in paciente:
-            if dato == "Mascotas":
-                print("\t\tMascotas: ", end="")
-                for info in info:
-                    print(f' {info}', end="")
-                print()
-        if carti < len(lista):
-            carti = carti +1
-            print(f'{"-"*35}{carti}{"-"*35}'.center(100))
-    print(("-"*70).center(100))
-    input("\t\tPresione Enter para continuar")
-    limpiar_Pantalla()
-    return lista
-
-def modificarD(lista):
-    '''
-    Función que muestra la cantidad de datos guardados, enumera las cartillas y da la opción de 
-    que items se quiere cambiar. 
-    Parametros: 
-    Espera una lista e itera diccionario
-    Retorna: 
-    Lista modificada para la opcion "Listar"
-    Autor: Leonardo RIos
-    colaboradores: Marina Toledo, Ale Ante, Leo Rios, Brenda Sztryk
-    '''
-    bucaDNI = int(input("\t\tIngrese el número de de DNI a buscar:  "))
-    if bucaDNI in lista: 
-        for idDueño, datosDueño in lista.items():
+    for idDueño, datosDueño in lista.items():
             nombreDueño = datosDueño['Dueño']['Nombre']
             apellDueño = datosDueño['Dueño']['Apellido']
             print()
@@ -116,31 +81,79 @@ def modificarD(lista):
                 print(f'\t\tTipo: {tipoMascota}')
                 print(f'\t\tRaza: {razaMascota}')
                 print(f'\t\tSexo: {sexoMascota}')
-                print(f'\t\tSexo: {edadMascota}años')
-                print(f'\t\tPeso: {pesoMascota}kg')
+                print(f'\t\tSexo: {edadMascota} años')
+                print(f'\t\tPeso: {pesoMascota} kg')
+    return lista
+
+def modificarD(lista):
+    '''
+    Función que muestra la cantidad de datos guardados, enumera las cartillas y da la opción de 
+    que items se quiere cambiar. 
+    Parametros: 
+    Espera una lista e itera diccionario
+    Retorna: 
+    Lista modificada para la opcion "Listar"
+    Autor: Leonardo RIos
+    colaboradores: Marina Toledo, Ale Ante, Leo Rios, Brenda Sztryk
+    '''
+    print(lista)
+    bucaDNI = int(input("\t\tIngrese el número de de DNI a buscar:  "))
+    buscaMascota = input("Ingrese el nombre de la mascota:  ").upper()
+    if bucaDNI in lista:
+        print(f"\t\t1.Nombre: {lista[bucaDNI]['Dueño']['Nombre']}")
+        print(f"\t\t  Apellido: {lista[bucaDNI]['Dueño']['Apellido']}")
+        print(("="*70).center(100))
+        print(f"\t\t2.Mascota: {lista[bucaDNI]['Mascotas'][buscaMascota]['Nombre']}")
+        print(f"\t\tTipo: {lista[bucaDNI]['Mascotas'][buscaMascota]['Tipo']}")
+        print(f"\t\tRaza: {lista[bucaDNI]['Mascotas'][buscaMascota]['Raza']}")
+        print(f"\t\tSexo: {lista[bucaDNI]['Mascotas'][buscaMascota]['Sexo']}")
+        print(f"\t\tEdad: {lista[bucaDNI]['Mascotas'][buscaMascota]['Edad']} año")
+        print(f"\t\tPeso: {lista[bucaDNI]['Mascotas'][buscaMascota]['Peso']}kg")
+        numero = int(input("\t\tIngrese el número de items que desea modificar:  "))
+        match numero: 
+            case 1:
+                nombreDueño = input("\t\tIngrese nuevo Nombre del dueño:  ")
+                apelliDueño = input("\t\tIngrese nuevo Apellido del deuño:  ")
+                lista[bucaDNI]['Dueño']['Nombre']= nombreDueño
+                lista[bucaDNI]['Dueño']['Nombre']= apelliDueño
+            case 2:
+                nombreMascota = input("\t\tIngrese el nuevo nombre de la mascota:  ")
+                tipoMascota = input("\t\tIngrese el nuevo tipo de la mascota:  ")
+                razaMascota = input("\t\tIngrese la nueva raza de la mascota:  ")
+                sexoMascota = input("\t\tIngrese el sexo de la mascota:  ")
+                edadMascota = input("\t\tIngrese la edad de la mascota:  ")
+                pesoMascota = input("\t\tIngrese el nuevo peso de la mascota:  ")
+
+                lista[bucaDNI]['Mascotas'][buscaMascota]['Nombre']=nombreMascota
+                lista[bucaDNI]['Mascotas'][buscaMascota]['Tipo']=tipoMascota
+                lista[bucaDNI]['Mascotas'][buscaMascota]['Raza']=razaMascota
+                lista[bucaDNI]['Mascotas'][buscaMascota]['Sexo']=sexoMascota
+                lista[bucaDNI]['Mascotas'][buscaMascota]['Edad']=edadMascota
+                lista[bucaDNI]['Mascotas'][buscaMascota]['Peso']=pesoMascota
     else: 
         print("\t\tEL DNI no se encuentra en la lista")
+    
     return lista
 
 def agregar_Pac(pacientes):
     dueñoMascota = {}
 
     #Datos del dueño.
-    nomDueño = input("Ingrese el nombre del dueño:  ".capitalize())
-    apellDueño = input("Ingrese su apellido:  ".capitalize())
-    dniDueño = int(input("Ingrese el dni:  "))
+    nomDueño = input("\t\tIngrese el nombre del dueño:  ".capitalize())
+    apellDueño = input("\t\tIngrese su apellido:  ".capitalize())
+    dniDueño = int(input("\t\tIngrese el dni:  "))
 
     #Datos de las mascotas: 
     while True:
-        nomMascota = input("Ingrese el nombre de la mascota:  ").upper()
-        tipo = input("Ingrese el tipo de mascota:  ").upper()
-        raza = input("Ingrese la raza de la macota:  ").upper()
-        sexo = input("Ingrese el sexo de la mascota H/M:  ").upper()
+        nomMascota = input("\t\tIngrese el nombre de la mascota:  ").upper()
+        tipo = input("\t\tIngrese el tipo de mascota:  ").upper()
+        raza = input("\t\tIngrese la raza de la macota:  ").upper()
+        sexo = input("\t\ttIngrese el sexo de la mascota H/M:  ").upper()
         while sexo != "H" and sexo != "M":
-            print("Error debe ingresar H o M")
-            sexo = input("Ingrese el sexo de la mascota H/M:  ").upper()
-        edad = int(input("Ingrese la edad de la mascota:  "))
-        peso = float(input("Ingrese el peso de la mascota:  "))
+            print("\t\tError debe ingresar H o M")
+            sexo = input("\t\tIngrese el sexo de la mascota H/M:  ").upper()
+        edad = int(input("\t\tIngrese la edad de la mascota:  "))
+        peso = float(input("\t\tIngrese el peso de la mascota:  "))
         #Creo un diccionario que va guardar los datos. 
         mascota = {
             "Nombre": nomMascota, 
@@ -153,11 +166,11 @@ def agregar_Pac(pacientes):
         #Guardo el diccionario pero que aparezca la variable nomMascota como clave del dict macotas
         dueñoMascota[nomMascota] = mascota
         #Creo una pregunta para salir del bucle: 
-        pregunta = input("Quiere agregar otra mascota?S/N:  ").upper()
+        pregunta = input("\t\tQuiere agregar otra mascota?S/N:  ").upper()
         if pregunta != "S":
             break
     pacientes[dniDueño] = {"Dueño":{"Nombre": nomDueño, "Apellido": apellDueño}, "Mascotas":dueñoMascota }
-    guardar_Pacientes()
+    #guardar_Pacientes()
 
     return pacientes
     
@@ -195,49 +208,49 @@ bande = True
 op = menu()
 while bande:
     match op:
-            case "a": #Nuevo Paciente
-                print(colorama.Fore.GREEN + "\t\tUsted seleccionó Agregar" + colorama.Fore.RESET)
-                agregar_Pac(pacientes)
-                print(("-"*70).center(100))
-                print(colorama.Fore.RESET)
-                input("\t\tPresione enter para continuar")
+        case "a": #Nuevo Paciente
+            print(colorama.Fore.GREEN + "\t\tUsted seleccionó Agregar" + colorama.Fore.RESET)
+            modificar = agregar_Pac(pacientes)
+            print(("-"*70).center(100))
+            print(colorama.Fore.RESET)
+            input("\t\tPresione enter para continuar")
                 
-            case "b": #Buscar Paciente
-                print()
-                print()
-                print("\t\tUsted seleccionó Buscar Paciente")
-                #En Espera
-                input("\t\tPresione enter para continuar")
+        case "b": #Buscar Paciente
+            print()
+            print()
+            print("\t\tUsted seleccionó Buscar Paciente")
+            #En Espera
+            input("\t\tPresione enter para continuar")
 
-            case "c": #Eliminar Paciente
-                print()
-                print("\t\tUsted seleccionó Eliminar Paciente")
-                #En Espera
-                input("\t\tPresione enter para continuar")
+        case "c": #Eliminar Paciente
+            print()
+            print("\t\tUsted seleccionó Eliminar Paciente")
+            #En Espera
+            input("\t\tPresione enter para continuar")
             
-            case "d": #Modificar Dato
-                print(colorama.Fore.YELLOW + "\t\tUsted seleccionó Modificar" + colorama.Fore.RESET)
-                modificarD(pacientes)
-                print(("-"*70).center(100))
-                print(colorama.Fore.RESET)
-                input("\t\tPresione enter para continuar")
+        case "d": #Modificar Dato
+            print(colorama.Fore.YELLOW + "\t\tUsted seleccionó Modificar" + colorama.Fore.RESET)
+            modificarD(modificar)
+            print(("-"*70).center(100))
+            print(colorama.Fore.RESET)
+            input("\t\tPresione enter para continuar")
 
-            case "e": #Listar Paciente
-                print(colorama.Fore.BLUE + "\t\tUsted seleccionó Listar" + colorama.Fore.RESET)
-                listar(pacientes)
-                print(colorama.Fore.RESET)
+        case "e": #Listar Paciente
+            print(colorama.Fore.BLUE + "\t\tUsted seleccionó Listar" + colorama.Fore.RESET)
+            listar(modificar)
+            print(colorama.Fore.RESET)
             
-            case "f":#Presupuestar
-                print()
-                print("\t\tUsted seleccionó Presupuestar")
-                #En Espera
-                input("\t\tPresione enter para continuar")
+        case "f":#Presupuestar
+            print()
+            print("\t\tUsted seleccionó Presupuestar")
+            #En Espera
+            input("\t\tPresione enter para continuar")
 
-            case "g": #Salir
-                print(("-"*70).center(100))
-                print("\t\tUsted seleccionó Salir")
-                break
-            case _:
-                print("\t\tValor invalido")
+        case "g": #Salir
+            print(("-"*70).center(100))
+            print("\t\tUsted seleccionó Salir")
+            break
+        case _:
+            print("\t\tValor invalido")
     op = menu()
 print("\t\tHasta Luego! ")
