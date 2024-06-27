@@ -28,7 +28,7 @@ def guardar_Pacientes(): #esto deberia guardar lo que se incorporó al dicc
     AUTOR:
     COLABORADORES:
     """
-    with open("pacientes.jason","w") as archivo:
+    with open("pacientes.json","w") as archivo:
         json.dump(pacientes,archivo,ident=4) #dump es volcar
         return
 
