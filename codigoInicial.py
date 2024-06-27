@@ -142,6 +142,11 @@ def agregar_Pac(pacientes):
     nomDueño = input("\t\tIngrese el nombre del dueño:  ".capitalize())
     apellDueño = input("\t\tIngrese su apellido:  ".capitalize())
     dniDueño = int(input("\t\tIngrese el dni:  "))
+    for numDni in pacientes:
+        if numDni == dni:
+            print(f"error!!, el dni {dni} ya se encuentra registrado")
+            return 
+    pacientes[dni] = {"nombre":nomDueño, "Apellido":apellDueño, "mascotas":[]}
 
     #Datos de las mascotas: 
     while True:
@@ -156,23 +161,31 @@ def agregar_Pac(pacientes):
         peso = float(input("\t\tIngrese el peso de la mascota:  "))
         #Creo un diccionario que va guardar los datos. 
         mascota = {
-            "Nombre": nomMascota, 
+            "Nombre Mascota": nomMascota, 
             "Tipo": tipo,
             "Raza": raza,
             "Sexo": sexo, 
             "Edad": edad,
             "Peso": peso,
         }
+        pacientes[dni]["mascotas"].append(mascota)
+        guardar_Pacientes()
+        print(f"{pacientes[dni]["mascotas"]}")
+
+        resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
+        if resp == "N":
+            return
+        
         #Guardo el diccionario pero que aparezca la variable nomMascota como clave del dict macotas
         dueñoMascota[nomMascota] = mascota
         #Creo una pregunta para salir del bucle: 
-        pregunta = input("\t\tQuiere agregar otra mascota?S/N:  ").upper()
-        if pregunta != "S":
-            break
+        #pregunta = input("\t\tQuiere agregar otra mascota?S/N:  ").upper()
+        #if pregunta != "S":
+            #break
     pacientes[dniDueño] = {"Dueño":{"Nombre": nomDueño, "Apellido": apellDueño}, "Mascotas":dueñoMascota }
     #guardar_Pacientes()
 
-    return pacientes
+    #return pacientes
     
 def menu():
     """
