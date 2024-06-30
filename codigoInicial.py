@@ -135,6 +135,40 @@ def modificarD(lista):
     
     return lista
 
+def buscar_Pac (pacientes):
+    """ 
+    Función que filtra la busqueda de mascotas a través del dni del dueño.
+    Recibe un argumento en formato diccionario compuesto con otros elementos
+    y lista de mascotas x dueño. No retorna valor
+    AUTOR: Brenda Sztryk
+    COLABORADORES:
+    """
+
+    dni = (input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)) # si convierto a entero no me funciona en la busqueda !!!
+    if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
+        pacientes = pacientes[dni]
+        print()
+        print("="*30)
+        print(f"DNI: {dni}\n{pacientes['nombre']} {pacientes['Apellido']}")
+        print("="*30)
+        
+         # MASCOTAS
+        cont=1
+        while True: 
+            for elem in pacientes["mascotas"]: # elem son los diccionarios de la lista
+                print (f"{"Mascota"} {cont}")
+                cont = cont + 1
+                for c,v in elem.items():
+                    print (f"\t{c}: {v}")
+            return 
+    else:
+        print(f"DNI: {dni} no se encuentra registrado. \nDesea registrarlo ahora? " )
+        resp= input("responda: S / N ").upper()
+        if resp == "S":
+            agregar_Pac(pacientes)
+        else:    
+            return
+
 def agregar_Pac(pacientes):
     dueñoMascota = {}
 
