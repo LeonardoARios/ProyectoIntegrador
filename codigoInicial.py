@@ -235,16 +235,25 @@ def buscar_Pac (pacientes):
             return
     
 def agregar_Pac(pacientes):
-       
+    """ Función que recibe un argumento (dicc. pacientes), 
+    la base de datos global de la aplicacion ,  no retorna valor.
+    AUTOR: Brenda Sztryk
+    COLABORADORES: Leo Rios
+    """
+     
     nomDueño = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre dueño mascota: " + Fore.RESET).upper()
     apellDueño = input(Fore.LIGHTMAGENTA_EX +"Ingrese el apellido: "+ Fore.RESET).upper()
-    dni = int(input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI: "+ Fore.RESET))
-   
-    pacientes[dni] = {"nombre":nomDueño, "Apellido":apellDueño, "mascotas":[]} #me lo tomó con lista pero no con diccionario
-   
-    op = input (Fore.LIGHTMAGENTA_EX +"Desea registrar mascota?: S /N: "+ Fore.RESET).upper()
+    dni = int(input(Fore.LIGHTMAGENTA_EX +"Ingrese numero de DNI: "+ Fore.RESET))
+    for numDni in pacientes:
+        if numDni == dni:
+            print(f"error!!, el dni {dni} ya se encuentra registrado")
+            return 
+    pacientes[dni] = {"nombre":nomDueño,
+                      "Apellido":apellDueño,
+                      "mascotas":[]  # me funcionó con lista pero no con diccionario
+                      }
+    op = input (Fore.LIGHTMAGENTA_EX +"Desea registrar mascota?: S /N: " + Fore.RESET).upper()
     while op == "S".upper():
-           
         nomMascota = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre de la mascota 🐱: " + Fore.RESET).upper()
         tipo = input (Fore.LIGHTMAGENTA_EX + "Ingrese tipo de mascota: " + Fore.RESET).upper()
         raza = input (Fore.LIGHTMAGENTA_EX + "Ingrese raza de la mascota: " + Fore.RESET).upper()
@@ -253,21 +262,21 @@ def agregar_Pac(pacientes):
             print (Fore.LIGHTMAGENTA_EX + "error, debe ingresar M o H" + Fore.RESET)
             sexo = input (Fore.LIGHTMAGENTA_EX + "ingrese sexo de la mascota: M > macho / H > hembra " + Fore.RESET)
             break
-        edad = int (input (Fore.LIGHTMAGENTA_EX +"Ingrese edad de la mascota: " + Fore.RESET))
-        peso = float (input(Fore.LIGHTMAGENTA_EX +"Ingrese peso de la mascota: " + Fore.RESET))
-
-
-        mascota = {"nombre Mascota": nomMascota, "tipo":tipo, "raza": raza,"sexo": sexo, "edad": edad,"peso":peso}
+        edad = int (input (Fore.LIGHTMAGENTA_EX + "Ingrese edad de la mascota: " + Fore.RESET))
+        peso = float (input(Fore.LIGHTMAGENTA_EX + "Ingrese peso de la mascota en Kg: " + Fore.RESET))
+        mascota = {"nombre Mascota": nomMascota,
+                   "tipo":tipo,
+                   "raza": raza,
+                   "sexo": sexo,
+                   "edad": edad,
+                   "peso":peso}
         pacientes[dni]["mascotas"].append(mascota)
-       
         guardar_Pacientes()
-        print(f"{pacientes[dni]["mascotas"]}")
-
-
+        #print(f"{pacientes[dni]["mascotas"]}") #solo para corroborar
+        print(Style.BRIGHT + "La mascota se registró exitosamente" + Style.RESET_ALL)
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
         if resp == "N":
             return
-    return
 
     
 def menu():
