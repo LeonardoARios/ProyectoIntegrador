@@ -53,14 +53,14 @@ def cargar_Pacientes(): # lo que hace es leer el archivo y ponerlo en el dicc.
 
 
 def guardar_Pacientes(): #esto deberia guardar lo que se incorporó al dicc
-    """
+    '''
     Función que guarda datos recolectados en la funcion agregar, no recibe argumentos,
     no retorna valor
     AUTOR:
     COLABORADORES:
-    """
+    '''
     with open("pacientes.json","w") as archivo:
-        json.dump(pacientes,archivo,ident=4) #dump es volcar
+        json.dump(pacientes,archivo,indent=4) #dump es volcar
         return
 
 def limpiar_Pantalla():
@@ -93,8 +93,8 @@ def listar(lista):
     while True:
         try:
             bucaId = int(input("\t\tIngrese el DNI a buscar: "))
-            if bucaId in lista.keys():
-                for nombre, valor in lista.items():
+            for nombre, valor in lista.items():
+                if bucaId == nombre:
                     print()
                     print("\t\tDatos del Paciente:".upper())
                     print(("=" * 70).center(100))
@@ -121,8 +121,6 @@ def listar(lista):
                                 carti += 1
                 print(("=" * 70).center(100))
                 break
-            else: 
-                print("Dato Invalido!")
         except:
             print("Dato Invalido!")
     
@@ -177,12 +175,14 @@ def modificarD(lista):
                                             nuevaEdad = int(input("\t\tIngrese la nueva edad de la mascota\n\t\t> "))
                                             valorPaci[num]["edad"] = nuevaEdad
                                             print("\t\tCambio realizado!")
+                                            guardar_Pacientes()
                                             break
                                         case "b":
                                             print("\t\tDecidió cambiar Peso")
                                             nuevoPeso = float(input("\t\tIngrese el nuevo peso de la mascota\n\t\t> "))
                                             valorPaci[num]["peso"] = nuevoPeso
                                             print("\t\tCambio realizado!")
+                                            guardar_Pacientes()
                                             break
                                         case _:
                                             print(colorama.Fore.RED + "\t\tValor no válido!" + colorama.Fore.RESET)
@@ -256,25 +256,19 @@ def agregar_Pac(pacientes):
         edad = int (input (Fore.LIGHTMAGENTA_EX +"Ingrese edad de la mascota: " + Fore.RESET))
         peso = float (input(Fore.LIGHTMAGENTA_EX +"Ingrese peso de la mascota: " + Fore.RESET))
 
+
         mascota = {"nombre Mascota": nomMascota, "tipo":tipo, "raza": raza,"sexo": sexo, "edad": edad,"peso":peso}
         pacientes[dni]["mascotas"].append(mascota)
+       
+        guardar_Pacientes()
         print(f"{pacientes[dni]["mascotas"]}")
+
 
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
         if resp == "N":
             return
-        
-        #Guardo el diccionario pero que aparezca la variable nomMascota como clave del dict macotas
-        dueñoMascota[nomMascota] = mascota
-        #Creo una pregunta para salir del bucle: 
-        #pregunta = input("\t\tQuiere agregar otra mascota?S/N:  ").upper()
-        #if pregunta != "S":
-            #break
-    pacientes[dniDueño] = {"Dueño":{"Nombre": nomDueño, "Apellido": apellDueño}, "Mascotas":dueñoMascota }
-    #guardar_Pacientes()
-
-    #return pacientes
     return
+
     
 def menu():
     """
