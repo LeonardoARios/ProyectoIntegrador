@@ -274,7 +274,7 @@ def menu():
     return op_elegida
 
 #Programa Principal
-pacientes = {}
+pacientes = cargar_Pacientes()
 bande = True
 op = menu()
 while bande:
