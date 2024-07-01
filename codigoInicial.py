@@ -6,6 +6,7 @@ import json
 import os
 import colorama
 from colorama import Back,Fore,Style #dejo agregado esto x si usamos los estilos
+<<<<<<< HEAD
 def cargar_Pacientes(): # lo que hace es leer el archivo y ponerlo en el dicc.
     """
     Función que lee un archivo y lo coloca en el diccionario base,
@@ -32,6 +33,8 @@ def guardar_Pacientes(): #esto deberia guardar lo que se incorporó al dicc
         json.dump(pacientes,archivo,ident=4) #dump es volcar
         return
 
+=======
+>>>>>>> 8f90888 (Se actualiza el proyecto)
 
 def limpiar_Pantalla():
     """ 
@@ -60,32 +63,45 @@ def listar(lista):
     AUTOR: Leonardo Rios
     COLABORADORES: Marina Toledo, Ale Ante, Brenda Sztryk
     """
-    for idDueño, datosDueño in lista.items():
-            nombreDueño = datosDueño['Dueño']['Nombre']
-            apellDueño = datosDueño['Dueño']['Apellido']
-            print()
-            print("\t\tDatos del dueño".upper())
-            print(("="*70).center(100))
-            print(f'\t\tNombre: {nombreDueño}\n\t\tApellido: {apellDueño} ')
-            print()
-            print("\t\tDatos de la Mascotas:".upper())
-            for nombreMascota, datosMascota in datosDueño['Mascotas'].items():
-                nombreMascota = datosMascota['Nombre']
-                print(("="*70).center(100))
-                tipoMascota = datosMascota['Tipo']
-                razaMascota = datosMascota['Raza']
-                sexoMascota = datosMascota['Sexo']
-                edadMascota = datosMascota['Edad']
-                pesoMascota = datosMascota['Peso']
-                print(f'\t\t{nombreMascota}:')
-                print(f'\t\tTipo: {tipoMascota}')
-                print(f'\t\tRaza: {razaMascota}')
-                print(f'\t\tSexo: {sexoMascota}')
-                print(f'\t\tSexo: {edadMascota} años')
-                print(f'\t\tPeso: {pesoMascota} kg')
-    return lista
+    while True:
+        try:
+            bucaId = int(input("\t\tIngrese el DNI a buscar: "))
+            if bucaId in lista.keys():
+                for nombre, valor in lista.items():
+                    print()
+                    print("\t\tDatos del Paciente:".upper())
+                    print(("=" * 70).center(100))
+                    for itemPaci, valorPaci in valor.items():
+                        if itemPaci == "mascotas":
+                            continue
+                        print(f'\t\t{itemPaci}: {valorPaci}'.capitalize())
+                    print()
+                    print("\t\tMascotas:".upper())
+                    print(("=" * 70).center(100))
+                    for itemPaci, valorPaci in valor.items():
+                        if itemPaci == "mascotas":
+                            num = len(valorPaci)
+                            carti = 1
+                            while num > 0:
+                                num -= 1
+                                print(f'{("-" * 35)}{carti}{"-" * 35}'.center(100))
+                                print(f'\t\ta.Nombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
+                                print(f'\t\tb.Tipo de Mascota: {valorPaci[num]["tipo"]}')
+                                print(f'\t\tc.Raza de Mascota: {valorPaci[num]["raza"]}')
+                                print(f'\t\td.Sexo de la Masota: {valorPaci[num]["sexo"]}')
+                                print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
+                                print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
+                                carti += 1
+                print(("=" * 70).center(100))
+                break
+            else: 
+                print("Dato Invalido!")
+        except:
+            print("Dato Invalido!")
+    
 
 def modificarD(lista):
+<<<<<<< HEAD
     '''
     Función que muestra la cantidad de datos guardados, enumera las cartillas y da la opción de 
     que items se quiere cambiar. 
@@ -204,11 +220,112 @@ def agregar_Pac(pacientes):
         }
         pacientes[dni]["mascotas"].append(mascota)
         guardar_Pacientes()
+=======
+    while True:
+        try:
+            bucaId = int(input("\t\tIngrese el DNI a buscar: "))
+            if bucaId in lista.keys():
+                for nombre, valor in lista.items():
+                    print()
+                    print("\t\tDatos del Paciente:".upper())
+                    print(("=" * 70).center(100))
+                    for itemPaci, valorPaci in valor.items():
+                        if itemPaci == "mascotas":
+                            continue
+                        print(f'\t\t{itemPaci}: {valorPaci}'.capitalize())
+                    print()
+                    print("\t\tMascotas:".upper())
+                    print(("=" * 70).center(100))
+                    for itemPaci, valorPaci in valor.items():
+                        if itemPaci == "mascotas":
+                            num = len(valorPaci)
+                            carti = 1
+                            while num > 0:
+                                num -= 1
+                                print(f'{("-" * 35)}{carti}{"-" * 35}'.center(100))
+                                print(f'\t\ta.Nombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
+                                print(f'\t\tb.Tipo de Mascota: {valorPaci[num]["tipo"]}')
+                                print(f'\t\tc.Raza de Mascota: {valorPaci[num]["raza"]}')
+                                print(f'\t\td.Sexo de la Masota: {valorPaci[num]["sexo"]}')
+                                print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
+                                print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
+                                carti += 1
+                print(("=" * 70).center(100))
+        
+    
+                while True:
+                    try:
+                        catillaCambiar = int(input("\t\tIngrese la cartilla que desea cambiar\n\t\t> ")) - 1
+                        limpiar_Pantalla()
+                        num = len(valorPaci)
+                        if catillaCambiar in range(0, len(valorPaci) + 1):
+                            num -= 1
+                            print(f'\t\tUsted decidió cambiar {valorPaci[num]["nombre Mascota"]}')
+                            while True:
+                                try:
+                                    datoACambiar = input("\t\tIngrese la letra referida al dato que desea cambiar\n\t\t>a.Edad\n\t\t>b.Peso?\n\t\t: ").lower()
+                                    match datoACambiar:
+                                        case "a":
+                                            print("\t\tDecidió cambiar Edad:")
+                                            nuevaEdad = int(input("\t\tIngrese la nueva edad de la mascota\n\t\t> "))
+                                            valorPaci[num]["edad"] = nuevaEdad
+                                            print("\t\tCambio realizado!")
+                                            break
+                                        case "b":
+                                            print("\t\tDecidió cambiar Peso")
+                                            nuevoPeso = float(input("\t\tIngrese el nuevo peso de la mascota\n\t\t> "))
+                                            valorPaci[num]["peso"] = nuevoPeso
+                                            print("\t\tCambio realizado!")
+                                            break
+                                        case _:
+                                            print(colorama.Fore.RED + "\t\tValor no válido!" + colorama.Fore.RESET)
+                                except ValueError:
+                                    print(colorama.Fore.RED + "\t\tDato Inválido!" + colorama.Fore.RESET)
+                            break
+                    except ValueError:
+                        print(colorama.Fore.RED + "\t\tDato Inválido!" + colorama.Fore.RESET)
+                break
+            else: 
+                print("\t\tDato Invalido")
+
+        except ValueError:
+            print(colorama.Fore.RED + "\t\tDato Invalido!" + colorama.Fore.RESET)
+        return lista
+
+    
+
+    
+def agregar_Pac(pacientes):
+       
+    nomDueño = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre dueño mascota: " + Fore.RESET).upper()
+    apellDueño = input(Fore.LIGHTMAGENTA_EX +"Ingrese el apellido: "+ Fore.RESET).upper()
+    dni = int(input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI: "+ Fore.RESET))
+   
+    pacientes[dni] = {"nombre":nomDueño, "Apellido":apellDueño, "mascotas":[]} #me lo tomó con lista pero no con diccionario
+   
+    op = input (Fore.LIGHTMAGENTA_EX +"Desea registrar mascota?: S /N: "+ Fore.RESET).upper()
+    while op == "S".upper():
+           
+        nomMascota = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre de la mascota 🐱: " + Fore.RESET).upper()
+        tipo = input (Fore.LIGHTMAGENTA_EX + "Ingrese tipo de mascota: " + Fore.RESET).upper()
+        raza = input (Fore.LIGHTMAGENTA_EX + "Ingrese raza de la mascota: " + Fore.RESET).upper()
+        sexo = input (Fore.LIGHTMAGENTA_EX + "Ingrese sexo de la mascota: M > macho / H > hembra " + Fore.RESET).upper()
+        while sexo != "M".upper() and sexo != "H".upper(): #este while es por si tipea otra letra que no sea H o M
+            print (Fore.LIGHTMAGENTA_EX + "error, debe ingresar M o H" + Fore.RESET)
+            sexo = input (Fore.LIGHTMAGENTA_EX + "ingrese sexo de la mascota: M > macho / H > hembra " + Fore.RESET)
+            break
+        edad = int (input (Fore.LIGHTMAGENTA_EX +"Ingrese edad de la mascota: " + Fore.RESET))
+        peso = float (input(Fore.LIGHTMAGENTA_EX +"Ingrese peso de la mascota: " + Fore.RESET))
+
+        mascota = {"nombre Mascota": nomMascota, "tipo":tipo, "raza": raza,"sexo": sexo, "edad": edad,"peso":peso}
+        pacientes[dni]["mascotas"].append(mascota)
+>>>>>>> 8f90888 (Se actualiza el proyecto)
         print(f"{pacientes[dni]["mascotas"]}")
 
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
         if resp == "N":
             return
+<<<<<<< HEAD
         
         #Guardo el diccionario pero que aparezca la variable nomMascota como clave del dict macotas
         dueñoMascota[nomMascota] = mascota
@@ -220,6 +337,11 @@ def agregar_Pac(pacientes):
     #guardar_Pacientes()
 
     #return pacientes
+=======
+    return
+
+
+>>>>>>> 8f90888 (Se actualiza el proyecto)
     
 def menu():
     """
@@ -257,7 +379,7 @@ while bande:
     match op:
         case "a": #Nuevo Paciente
             print(colorama.Fore.GREEN + "\t\tUsted seleccionó Agregar" + colorama.Fore.RESET)
-            modificar = agregar_Pac(pacientes)
+            agregar_Pac(pacientes)
             print(("-"*70).center(100))
             print(colorama.Fore.RESET)
             input("\t\tPresione enter para continuar")
@@ -277,14 +399,14 @@ while bande:
             
         case "d": #Modificar Dato
             print(colorama.Fore.YELLOW + "\t\tUsted seleccionó Modificar" + colorama.Fore.RESET)
-            modificarD(modificar)
+            modificarD(pacientes)
             print(("-"*70).center(100))
             print(colorama.Fore.RESET)
             input("\t\tPresione enter para continuar")
 
         case "e": #Listar Paciente
             print(colorama.Fore.BLUE + "\t\tUsted seleccionó Listar" + colorama.Fore.RESET)
-            listar(modificar)
+            listar(pacientes)
             print(colorama.Fore.RESET)
             
         case "f":#Presupuestar
