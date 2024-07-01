@@ -5,7 +5,38 @@ VERSION: 1.0 """
 import json
 import os
 import colorama
-from colorama import Back,Fore,Style #dejo agregado esto x si usamos los estilos
+from colorama import Fore,Style #dejo agregado esto x si usamos los estilos
+
+def validar():
+    """ 
+    funcion que permite el ingreso con usuario y pass
+    com posibilidad de cambiarla y agregarla a una lista
+    de accesos validos
+    AUTOR: Brenda Sztryk
+    COLABORADORES: 
+    """
+    usuValidos = ["Brenda", "Leo", "Marina", "Ale"] # NOMBRES VALIDOS Y PASS PARA USO DEL SISTEMA...PUEDE SER CUALQUIER OTRO NOMBRE Y MENOS USUARIOS
+    passValido = "pet"
+    intentos = 3
+
+    while intentos > 0:
+        usuario = input ("ingrese su usuario para ingresar al sistema: ").lower()
+        contraseña = input ("ingrese su contraseña de acceso: ").lower()
+        for i in range (len(usuValidos)):
+            usuValidos[i] = usuValidos[i].lower() #pase usuValidos a minusc. p/ comparar en el if con usuario del input
+            if usuValidos[i] == usuario and passValido.lower() == contraseña:
+                print ()
+                print((Style.BRIGHT + "INGRESO EXITOSO!!").center(100))
+                intentos = 0
+                break
+        else:
+            intentos = intentos - 1
+            print(f"error! le quedan {intentos} intentos ")
+            if intentos == 0:
+                print("acceso BLOQUEADO!! ",end="")
+                print("comuniquese al: 1222-3334")
+                return 
+
 def cargar_Pacientes(): # lo que hace es leer el archivo y ponerlo en el dicc.
     """
     Función que lee un archivo y lo coloca en el diccionario base,
