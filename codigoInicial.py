@@ -91,6 +91,7 @@ def listar(lista):
     AUTOR: Leonardo Rios
     COLABORADORES: Marina Toledo, Ale Ante, Brenda Sztryk
     """
+<<<<<<< HEAD
     limpiar_Pantalla()
     while True:
         try:
@@ -121,11 +122,41 @@ def listar(lista):
                                 print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
                                 print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
                                 carti += 1
+=======
+    try:
+        bucaId = int(input("\t\tIngrese el DNI a buscar: "))
+        for nombre, valor in lista.items():
+            if bucaId == nombre:
+                print()
+                print("\t\tDatos del Paciente:".upper())
+>>>>>>> eca03d4 (Se actualiza la funcion agregar)
                 print(("=" * 70).center(100))
-                break
-        except:
-            print("Dato Invalido!")
-    
+                for itemPaci, valorPaci in valor.items():
+                    if itemPaci == "mascotas":
+                        continue
+                    print(f'\t\t{itemPaci}: {valorPaci}'.capitalize())
+                print()
+                print("\t\tMascotas:".upper())
+                print(("=" * 70).center(100))
+                for itemPaci, valorPaci in valor.items():
+                    if itemPaci == "mascotas":
+                        num = len(valorPaci)
+                        carti = 1
+                        while num > 0:
+                            num -= 1
+                            print(f'{("-" * 35)}{carti}{"-" * 35}'.center(100))
+                            print(f'\t\ta.Nombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
+                            print(f'\t\tb.Tipo de Mascota: {valorPaci[num]["tipo"]}')
+                            print(f'\t\tc.Raza de Mascota: {valorPaci[num]["raza"]}')
+                            print(f'\t\td.Sexo de la Masota: {valorPaci[num]["sexo"]}')
+                            print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
+                            print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
+                            carti += 1
+            print(("=" * 70).center(100))
+            break
+    except:
+        print("Dato Invalido!")
+
 
 def modificarD(lista):
     """ Función que permite eliminar.........
@@ -284,6 +315,7 @@ def agregar_Pac(pacientes):
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
         if resp == "N":
             return
+
 
     
 def menu():
