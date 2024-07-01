@@ -240,23 +240,22 @@ def buscar_Pac (pacientes):
     COLABORADORES:
     """
     limpiar_Pantalla()
+    
     dni = (input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)) # si convierto a entero no me funciona en la busqueda !!!
     if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
-        pacientes = pacientes[dni]
+        paci = pacientes[dni]
         print()
         print("="*30)
-        print(f"DNI: {dni}\n{pacientes['nombre']} {pacientes['Apellido']}")
+        print(f"DNI: {dni}\n{paci['nombre']} {paci['Apellido']}")
         print("="*30)
         
         # MASCOTAS
-        cont=1
-        while True: 
-            for elem in pacientes["mascotas"]: # elem son los diccionarios de la lista
-                print (f"{"Mascota"} {cont}")
-                cont = cont + 1
-                for c,v in elem.items():
-                    print (f"\t{c}: {v}")
-            return 
+        cont = 1
+        for elem in paci["mascotas"]: # elem son los diccionarios de la lista
+            print (f"{"Mascota"} {cont}")
+            cont = cont + 1
+            for c,v in elem.items():
+                print (f"\t{c}: {v}")
     else:
         print(f"DNI: {dni} no se encuentra registrado. \nDesea registrarlo ahora? " )
         resp= input("responda: S / N ").upper()
