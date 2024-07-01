@@ -275,6 +275,7 @@ def menu():
 
 #Programa Principal
 pacientes = cargar_Pacientes()
+#validar() #llama a la funcion antes que el menu para que acceda solo el usuario permitido (nombre con inicial mayusc / pass: pet)
 bande = True
 op = menu()
 while bande:
