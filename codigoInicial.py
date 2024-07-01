@@ -91,7 +91,6 @@ def listar(lista):
     AUTOR: Leonardo Rios
     COLABORADORES: Marina Toledo, Ale Ante, Brenda Sztryk
     """
-<<<<<<< HEAD
     limpiar_Pantalla()
     while True:
         try:
@@ -122,14 +121,12 @@ def listar(lista):
                                 print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
                                 print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
                                 carti += 1
-=======
     try:
         bucaId = int(input("\t\tIngrese el DNI a buscar: "))
         for nombre, valor in lista.items():
             if bucaId == nombre:
                 print()
                 print("\t\tDatos del Paciente:".upper())
->>>>>>> eca03d4 (Se actualiza la funcion agregar)
                 print(("=" * 70).center(100))
                 for itemPaci, valorPaci in valor.items():
                     if itemPaci == "mascotas":
@@ -159,10 +156,6 @@ def listar(lista):
 
 
 def modificarD(lista):
-    """ Función que permite eliminar.........
-    AUTOR:
-    COLABORADORES:
-    """
     limpiar_Pantalla()
     while True:
         try:
