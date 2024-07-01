@@ -6,7 +6,6 @@ import json
 import os
 import colorama
 from colorama import Back,Fore,Style #dejo agregado esto x si usamos los estilos
-<<<<<<< HEAD
 def cargar_Pacientes(): # lo que hace es leer el archivo y ponerlo en el dicc.
     """
     Función que lee un archivo y lo coloca en el diccionario base,
@@ -32,9 +31,6 @@ def guardar_Pacientes(): #esto deberia guardar lo que se incorporó al dicc
     with open("pacientes.json","w") as archivo:
         json.dump(pacientes,archivo,ident=4) #dump es volcar
         return
-
-=======
->>>>>>> 8f90888 (Se actualiza el proyecto)
 
 def limpiar_Pantalla():
     """ 
@@ -101,126 +97,6 @@ def listar(lista):
     
 
 def modificarD(lista):
-<<<<<<< HEAD
-    '''
-    Función que muestra la cantidad de datos guardados, enumera las cartillas y da la opción de 
-    que items se quiere cambiar. 
-    Parametros: 
-    Espera una lista e itera diccionario
-    Retorna: 
-    Lista modificada para la opcion "Listar"
-    Autor: Leonardo RIos
-    colaboradores: Marina Toledo, Ale Ante, Leo Rios, Brenda Sztryk
-    '''
-    print(lista)
-    bucaDNI = int(input("\t\tIngrese el número de de DNI a buscar:  "))
-    buscaMascota = input("Ingrese el nombre de la mascota:  ").upper()
-    if bucaDNI in lista:
-        print(f"\t\t1.Nombre: {lista[bucaDNI]['Dueño']['Nombre']}")
-        print(f"\t\t  Apellido: {lista[bucaDNI]['Dueño']['Apellido']}")
-        print(("="*70).center(100))
-        print(f"\t\t2.Mascota: {lista[bucaDNI]['Mascotas'][buscaMascota]['Nombre']}")
-        print(f"\t\tTipo: {lista[bucaDNI]['Mascotas'][buscaMascota]['Tipo']}")
-        print(f"\t\tRaza: {lista[bucaDNI]['Mascotas'][buscaMascota]['Raza']}")
-        print(f"\t\tSexo: {lista[bucaDNI]['Mascotas'][buscaMascota]['Sexo']}")
-        print(f"\t\tEdad: {lista[bucaDNI]['Mascotas'][buscaMascota]['Edad']} año")
-        print(f"\t\tPeso: {lista[bucaDNI]['Mascotas'][buscaMascota]['Peso']}kg")
-        numero = int(input("\t\tIngrese el número de items que desea modificar:  "))
-        match numero: 
-            case 1:
-                nombreDueño = input("\t\tIngrese nuevo Nombre del dueño:  ")
-                apelliDueño = input("\t\tIngrese nuevo Apellido del deuño:  ")
-                lista[bucaDNI]['Dueño']['Nombre']= nombreDueño
-                lista[bucaDNI]['Dueño']['Nombre']= apelliDueño
-            case 2:
-                nombreMascota = input("\t\tIngrese el nuevo nombre de la mascota:  ")
-                tipoMascota = input("\t\tIngrese el nuevo tipo de la mascota:  ")
-                razaMascota = input("\t\tIngrese la nueva raza de la mascota:  ")
-                sexoMascota = input("\t\tIngrese el sexo de la mascota:  ")
-                edadMascota = input("\t\tIngrese la edad de la mascota:  ")
-                pesoMascota = input("\t\tIngrese el nuevo peso de la mascota:  ")
-
-                lista[bucaDNI]['Mascotas'][buscaMascota]['Nombre']=nombreMascota
-                lista[bucaDNI]['Mascotas'][buscaMascota]['Tipo']=tipoMascota
-                lista[bucaDNI]['Mascotas'][buscaMascota]['Raza']=razaMascota
-                lista[bucaDNI]['Mascotas'][buscaMascota]['Sexo']=sexoMascota
-                lista[bucaDNI]['Mascotas'][buscaMascota]['Edad']=edadMascota
-                lista[bucaDNI]['Mascotas'][buscaMascota]['Peso']=pesoMascota
-    else: 
-        print("\t\tEL DNI no se encuentra en la lista")
-    
-    return lista
-
-def buscar_Pac (pacientes):
-    """ 
-    Función que filtra la busqueda de mascotas a través del dni del dueño.
-    Recibe un argumento en formato diccionario compuesto con otros elementos
-    y lista de mascotas x dueño. No retorna valor
-    AUTOR: Brenda Sztryk
-    COLABORADORES:
-    """
-
-    dni = (input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)) # si convierto a entero no me funciona en la busqueda !!!
-    if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
-        pacientes = pacientes[dni]
-        print()
-        print("="*30)
-        print(f"DNI: {dni}\n{pacientes['nombre']} {pacientes['Apellido']}")
-        print("="*30)
-        
-         # MASCOTAS
-        cont=1
-        while True: 
-            for elem in pacientes["mascotas"]: # elem son los diccionarios de la lista
-                print (f"{"Mascota"} {cont}")
-                cont = cont + 1
-                for c,v in elem.items():
-                    print (f"\t{c}: {v}")
-            return 
-    else:
-        print(f"DNI: {dni} no se encuentra registrado. \nDesea registrarlo ahora? " )
-        resp= input("responda: S / N ").upper()
-        if resp == "S":
-            agregar_Pac(pacientes)
-        else:    
-            return
-
-def agregar_Pac(pacientes):
-    dueñoMascota = {}
-
-    #Datos del dueño.
-    nomDueño = input("\t\tIngrese el nombre del dueño:  ".capitalize())
-    apellDueño = input("\t\tIngrese su apellido:  ".capitalize())
-    dniDueño = int(input("\t\tIngrese el dni:  "))
-    for numDni in pacientes:
-        if numDni == dni:
-            print(f"error!!, el dni {dni} ya se encuentra registrado")
-            return 
-    pacientes[dni] = {"nombre":nomDueño, "Apellido":apellDueño, "mascotas":[]}
-
-    #Datos de las mascotas: 
-    while True:
-        nomMascota = input("\t\tIngrese el nombre de la mascota:  ").upper()
-        tipo = input("\t\tIngrese el tipo de mascota:  ").upper()
-        raza = input("\t\tIngrese la raza de la macota:  ").upper()
-        sexo = input("\t\ttIngrese el sexo de la mascota H/M:  ").upper()
-        while sexo != "H" and sexo != "M":
-            print("\t\tError debe ingresar H o M")
-            sexo = input("\t\tIngrese el sexo de la mascota H/M:  ").upper()
-        edad = int(input("\t\tIngrese la edad de la mascota:  "))
-        peso = float(input("\t\tIngrese el peso de la mascota:  "))
-        #Creo un diccionario que va guardar los datos. 
-        mascota = {
-            "Nombre Mascota": nomMascota, 
-            "Tipo": tipo,
-            "Raza": raza,
-            "Sexo": sexo, 
-            "Edad": edad,
-            "Peso": peso,
-        }
-        pacientes[dni]["mascotas"].append(mascota)
-        guardar_Pacientes()
-=======
     while True:
         try:
             bucaId = int(input("\t\tIngrese el DNI a buscar: "))
@@ -291,9 +167,41 @@ def agregar_Pac(pacientes):
         except ValueError:
             print(colorama.Fore.RED + "\t\tDato Invalido!" + colorama.Fore.RESET)
         return lista
-
     
 
+def buscar_Pac (pacientes):
+    """ 
+    Función que filtra la busqueda de mascotas a través del dni del dueño.
+    Recibe un argumento en formato diccionario compuesto con otros elementos
+    y lista de mascotas x dueño. No retorna valor
+    AUTOR: Brenda Sztryk
+    COLABORADORES:
+    """
+
+    dni = (input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)) # si convierto a entero no me funciona en la busqueda !!!
+    if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
+        pacientes = pacientes[dni]
+        print()
+        print("="*30)
+        print(f"DNI: {dni}\n{pacientes['nombre']} {pacientes['Apellido']}")
+        print("="*30)
+        
+         # MASCOTAS
+        cont=1
+        while True: 
+            for elem in pacientes["mascotas"]: # elem son los diccionarios de la lista
+                print (f"{"Mascota"} {cont}")
+                cont = cont + 1
+                for c,v in elem.items():
+                    print (f"\t{c}: {v}")
+            return 
+    else:
+        print(f"DNI: {dni} no se encuentra registrado. \nDesea registrarlo ahora? " )
+        resp= input("responda: S / N ").upper()
+        if resp == "S":
+            agregar_Pac(pacientes)
+        else:    
+            return
     
 def agregar_Pac(pacientes):
        
@@ -319,13 +227,11 @@ def agregar_Pac(pacientes):
 
         mascota = {"nombre Mascota": nomMascota, "tipo":tipo, "raza": raza,"sexo": sexo, "edad": edad,"peso":peso}
         pacientes[dni]["mascotas"].append(mascota)
->>>>>>> 8f90888 (Se actualiza el proyecto)
         print(f"{pacientes[dni]["mascotas"]}")
 
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
         if resp == "N":
             return
-<<<<<<< HEAD
         
         #Guardo el diccionario pero que aparezca la variable nomMascota como clave del dict macotas
         dueñoMascota[nomMascota] = mascota
@@ -337,11 +243,7 @@ def agregar_Pac(pacientes):
     #guardar_Pacientes()
 
     #return pacientes
-=======
     return
-
-
->>>>>>> 8f90888 (Se actualiza el proyecto)
     
 def menu():
     """
