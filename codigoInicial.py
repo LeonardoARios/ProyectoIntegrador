@@ -325,7 +325,7 @@ while bande:
             print()
             print()
             print("\t\tUsted seleccionó Buscar Paciente")
-            #En Espera
+            buscar_Pac (pacientes)
             input("\t\tPresione enter para continuar")
 
         case "c": #Eliminar Paciente
