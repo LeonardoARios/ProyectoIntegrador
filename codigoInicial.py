@@ -15,6 +15,7 @@ def validar():
     AUTOR: Brenda Sztryk
     COLABORADORES: 
     """
+    limpiar_Pantalla()
     usuValidos = ["Brenda", "Leo", "Marina", "Ale"] # NOMBRES VALIDOS Y PASS PARA USO DEL SISTEMA...PUEDE SER CUALQUIER OTRO NOMBRE Y MENOS USUARIOS
     passValido = "pet"
     intentos = 3
@@ -90,6 +91,7 @@ def listar(lista):
     AUTOR: Leonardo Rios
     COLABORADORES: Marina Toledo, Ale Ante, Brenda Sztryk
     """
+    limpiar_Pantalla()
     while True:
         try:
             bucaId = int(input("\t\tIngrese el DNI a buscar: "))
@@ -126,6 +128,11 @@ def listar(lista):
     
 
 def modificarD(lista):
+    """ Función que permite eliminar.........
+    AUTOR:
+    COLABORADORES:
+    """
+    limpiar_Pantalla()
     while True:
         try:
             bucaId = int(input("\t\tIngrese el DNI a buscar: "))
@@ -208,7 +215,7 @@ def buscar_Pac (pacientes):
     AUTOR: Brenda Sztryk
     COLABORADORES:
     """
-
+    limpiar_Pantalla()
     dni = (input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)) # si convierto a entero no me funciona en la busqueda !!!
     if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
         pacientes = pacientes[dni]
@@ -217,7 +224,7 @@ def buscar_Pac (pacientes):
         print(f"DNI: {dni}\n{pacientes['nombre']} {pacientes['Apellido']}")
         print("="*30)
         
-         # MASCOTAS
+        # MASCOTAS
         cont=1
         while True: 
             for elem in pacientes["mascotas"]: # elem son los diccionarios de la lista
@@ -240,7 +247,7 @@ def agregar_Pac(pacientes):
     AUTOR: Brenda Sztryk
     COLABORADORES: Leo Rios
     """
-     
+    limpiar_Pantalla() 
     nomDueño = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre dueño mascota: " + Fore.RESET).upper()
     apellDueño = input(Fore.LIGHTMAGENTA_EX +"Ingrese el apellido: "+ Fore.RESET).upper()
     dni = int(input(Fore.LIGHTMAGENTA_EX +"Ingrese numero de DNI: "+ Fore.RESET))
