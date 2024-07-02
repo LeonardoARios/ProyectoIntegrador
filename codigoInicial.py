@@ -94,9 +94,9 @@ def listar(lista):
     limpiar_Pantalla()
     while True:
         try:
-            bucaId = int(input("\t\tIngrese el DNI a buscar: "))
-            for nombre, valor in lista.items():
-                if bucaId == nombre:
+            bucaId = input("\t\tIngrese el DNI a buscar: ")
+            if bucaId in lista.keys():
+                for nombre, valor in lista.items():
                     print()
                     print("\t\tDatos del Paciente:".upper())
                     print(("=" * 70).center(100))
@@ -121,47 +121,29 @@ def listar(lista):
                                 print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
                                 print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
                                 carti += 1
-            try:
-                bucaId = int(input("\t\tIngrese el DNI a buscar: "))
-                for nombre, valor in lista.items():
-                    if bucaId == nombre:
-                        print()
-                        print("\t\tDatos del Paciente:".upper())
-                        print(("=" * 70).center(100))
-                        for itemPaci, valorPaci in valor.items():
-                            if itemPaci == "mascotas":
-                                continue
-                            print(f'\t\t{itemPaci}: {valorPaci}'.capitalize())
-                        print()
-                        print("\t\tMascotas:".upper())
-                        print(("=" * 70).center(100))
-                        for itemPaci, valorPaci in valor.items():
-                            if itemPaci == "mascotas":
-                                num = len(valorPaci)
-                                carti = 1
-                                while num > 0:
-                                    num -= 1
-                                    print(f'{("-" * 35)}{carti}{"-" * 35}'.center(100))
-                                    print(f'\t\ta.Nombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
-                                    print(f'\t\tb.Tipo de Mascota: {valorPaci[num]["tipo"]}')
-                                    print(f'\t\tc.Raza de Mascota: {valorPaci[num]["raza"]}')
-                                    print(f'\t\td.Sexo de la Masota: {valorPaci[num]["sexo"]}')
-                                    print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
-                                    print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
-                                    carti += 1
-                    print(("=" * 70).center(100))
-                    break
-            except:
-                print("Dato Invalido!")
+                print(("=" * 70).center(100))
+                input("\t\tPresione Enter para continuar")
+                limpiar_Pantalla()
+                break
         except:
             print("Dato Invalido!")
         
 
 def modificarD(lista):
+    '''
+    Función que al ingrear el dni del paciente da como resultado el dato actual y por consiguiente
+    da la opción de modificar datos como año de la mascota y peso de la mascota referida al paciente. 
+    Parametros: 
+    Una lista de datos.
+    Retorna: 
+    Una lista modificada. 
+    Autor: Leonardo Rios
+    Colaboradores: Marina Toledo, Ale Ante, Brenda Sztryk
+    '''
     limpiar_Pantalla()
     while True:
         try:
-            bucaId = int(input("\t\tIngrese el DNI a buscar: "))
+            bucaId = input("\t\tIngrese el DNI a buscar: ")
             if bucaId in lista.keys():
                 for nombre, valor in lista.items():
                     print()
@@ -193,45 +175,49 @@ def modificarD(lista):
     
                 while True:
                     try:
-                        catillaCambiar = int(input("\t\tIngrese la cartilla que desea cambiar\n\t\t> ")) - 1
-                        limpiar_Pantalla()
-                        num = len(valorPaci)
-                        if catillaCambiar in range(0, len(valorPaci) + 1):
-                            num -= 1
-                            print(f'\t\tUsted decidió cambiar {valorPaci[num]["nombre Mascota"]}')
-                            while True:
-                                try:
-                                    datoACambiar = input("\t\tIngrese la letra referida al dato que desea cambiar\n\t\t>a.Edad\n\t\t>b.Peso?\n\t\t: ").lower()
-                                    match datoACambiar:
-                                        case "a":
-                                            print("\t\tDecidió cambiar Edad:")
-                                            nuevaEdad = int(input("\t\tIngrese la nueva edad de la mascota\n\t\t> "))
-                                            valorPaci[num]["edad"] = nuevaEdad
-                                            print("\t\tCambio realizado!")
-                                            guardar_Pacientes()
-                                            break
-                                        case "b":
-                                            print("\t\tDecidió cambiar Peso")
-                                            nuevoPeso = float(input("\t\tIngrese el nuevo peso de la mascota\n\t\t> "))
-                                            valorPaci[num]["peso"] = nuevoPeso
-                                            print("\t\tCambio realizado!")
-                                            guardar_Pacientes()
-                                            break
-                                        case _:
-                                            print(colorama.Fore.RED + "\t\tValor no válido!" + colorama.Fore.RESET)
-                                except ValueError:
-                                    print(colorama.Fore.RED + "\t\tDato Inválido!" + colorama.Fore.RESET)
+                        respo = input("\t\tDesea cambiar una cartilla S/N\n\t\t>  ").upper()
+                        if respo == "N":
                             break
+                        elif respo == "S": 
+                            catillaCambiar = int(input("\t\tIngrese la cartilla que desea cambiar\n\t\t> ")) - 1
+                            limpiar_Pantalla()
+                            num = len(valorPaci)
+                            if catillaCambiar in range(0, len(valorPaci) + 1):
+                                num -= 1
+                                print(f'\t\tUsted decidió cambiar {valorPaci[num]["nombre Mascota"]}')
+                                while True:
+                                    try:
+                                        datoACambiar = input("\t\tIngrese la letra referida al dato que desea cambiar\n\t\t>a.Edad\n\t\t>b.Peso?\n\t\t: ").lower()
+                                        match datoACambiar:
+                                            case "a":
+                                                print("\t\tDecidió cambiar Edad:")
+                                                nuevaEdad = int(input("\t\tIngrese la nueva edad de la mascota\n\t\t> "))
+                                                valorPaci[num]["edad"] = nuevaEdad
+                                                print("\t\tCambio realizado!")
+                                                guardar_Pacientes()
+                                                break
+                                            case "b":
+                                                print("\t\tDecidió cambiar Peso")
+                                                nuevoPeso = float(input("\t\tIngrese el nuevo peso de la mascota\n\t\t> "))
+                                                valorPaci[num]["peso"] = nuevoPeso
+                                                print("\t\tCambio realizado!")
+                                                guardar_Pacientes()
+                                                break
+                                            case _:
+                                                print(colorama.Fore.RED + "\t\tValor no válido!" + colorama.Fore.RESET)
+                                    except ValueError:
+                                        print(colorama.Fore.RED + "\t\tDato Inválido!" + colorama.Fore.RESET)
+                                break
+                            else: 
+                                print("Dato Invalido!")
                     except ValueError:
                         print(colorama.Fore.RED + "\t\tDato Inválido!" + colorama.Fore.RESET)
                 break
             else: 
                 print("\t\tDato Invalido")
-
         except ValueError:
             print(colorama.Fore.RED + "\t\tDato Invalido!" + colorama.Fore.RESET)
         return lista
-    
 
 def buscar_Pac (pacientes):
     """ 
