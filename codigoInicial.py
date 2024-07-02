@@ -79,7 +79,7 @@ def limpiar_Pantalla():
     if os =="nt":
        os.system("cls")
     else:
-       os.system("cls")
+       os.system("clear")
 
 def listar(lista):
     """
@@ -121,39 +121,41 @@ def listar(lista):
                                 print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
                                 print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
                                 carti += 1
-    try:
-        bucaId = int(input("\t\tIngrese el DNI a buscar: "))
-        for nombre, valor in lista.items():
-            if bucaId == nombre:
-                print()
-                print("\t\tDatos del Paciente:".upper())
-                print(("=" * 70).center(100))
-                for itemPaci, valorPaci in valor.items():
-                    if itemPaci == "mascotas":
-                        continue
-                    print(f'\t\t{itemPaci}: {valorPaci}'.capitalize())
-                print()
-                print("\t\tMascotas:".upper())
-                print(("=" * 70).center(100))
-                for itemPaci, valorPaci in valor.items():
-                    if itemPaci == "mascotas":
-                        num = len(valorPaci)
-                        carti = 1
-                        while num > 0:
-                            num -= 1
-                            print(f'{("-" * 35)}{carti}{"-" * 35}'.center(100))
-                            print(f'\t\ta.Nombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
-                            print(f'\t\tb.Tipo de Mascota: {valorPaci[num]["tipo"]}')
-                            print(f'\t\tc.Raza de Mascota: {valorPaci[num]["raza"]}')
-                            print(f'\t\td.Sexo de la Masota: {valorPaci[num]["sexo"]}')
-                            print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
-                            print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
-                            carti += 1
-            print(("=" * 70).center(100))
-            break
-    except:
-        print("Dato Invalido!")
-
+            try:
+                bucaId = int(input("\t\tIngrese el DNI a buscar: "))
+                for nombre, valor in lista.items():
+                    if bucaId == nombre:
+                        print()
+                        print("\t\tDatos del Paciente:".upper())
+                        print(("=" * 70).center(100))
+                        for itemPaci, valorPaci in valor.items():
+                            if itemPaci == "mascotas":
+                                continue
+                            print(f'\t\t{itemPaci}: {valorPaci}'.capitalize())
+                        print()
+                        print("\t\tMascotas:".upper())
+                        print(("=" * 70).center(100))
+                        for itemPaci, valorPaci in valor.items():
+                            if itemPaci == "mascotas":
+                                num = len(valorPaci)
+                                carti = 1
+                                while num > 0:
+                                    num -= 1
+                                    print(f'{("-" * 35)}{carti}{"-" * 35}'.center(100))
+                                    print(f'\t\ta.Nombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
+                                    print(f'\t\tb.Tipo de Mascota: {valorPaci[num]["tipo"]}')
+                                    print(f'\t\tc.Raza de Mascota: {valorPaci[num]["raza"]}')
+                                    print(f'\t\td.Sexo de la Masota: {valorPaci[num]["sexo"]}')
+                                    print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
+                                    print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
+                                    carti += 1
+                    print(("=" * 70).center(100))
+                    break
+            except:
+                print("Dato Invalido!")
+        except:
+            print("Dato Invalido!")
+        
 
 def modificarD(lista):
     limpiar_Pantalla()
