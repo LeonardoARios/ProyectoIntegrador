@@ -79,7 +79,7 @@ def limpiar_Pantalla():
     if os =="nt":
        os.system("cls")
     else:
-       os.system("clear")
+       os.system("clear") #este clear aparecia al ejecutarse el menu como algo no valido, cuando lo pase a cls dejo de hacerlo. 
 
 def listar(lista):
     """
