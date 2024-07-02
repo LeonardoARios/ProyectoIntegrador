@@ -80,6 +80,65 @@ def limpiar_Pantalla():
        os.system("cls")
     else:
        os.system("clear") #este clear aparecia al ejecutarse el menu como algo no valido, cuando lo pase a cls dejo de hacerlo. 
+def eliminar_Pac(pacientes):
+    """ 
+    Función que trabaja sobre un diccionario (base de datos), permite eliminar
+    un cliente o alguna de sus mascotas. Recibe 1 argumento. No retorna valor.
+    AUTOR:
+    COLABORADORES:
+    """
+
+    limpiar_Pantalla()
+    print("Usted seleccionó" + Fore.LIGHTMAGENTA_EX  + " ELIMINAR " + Style.RESET_ALL)
+    print()
+    print (Fore.LIGHTMAGENTA_EX + "A" + Fore.RESET + "- Dar de baja Dueño")
+    print (Fore.LIGHTMAGENTA_EX + "B" + Fore.RESET + "- Dar de baja Mascota" )
+    print()
+    op = input(Fore.LIGHTMAGENTA_EX + "Ingrese opción deseada: " + Fore.RESET).upper()
+    if op == "A":
+        dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET) # si convierto a entero no me funciona.
+        print()
+        if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
+            #paci = pacientes[dni]
+            print(f"DNI: {dni}\n{pacientes[dni]['nombre']} {pacientes[dni]['Apellido']}")
+            confirmar = input("Confirma eliminación: S / N: ").upper()
+            if confirmar == "S":
+                del pacientes[dni]
+                guardar_Pacientes()
+                print ("Cliente eliminado exitosamente")
+            else:
+                return
+                #print ("Usted ha cancelado la operación")
+        else:
+            print ("El DNI no se encuentra registrado")  
+
+    if op == "B":
+        dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)
+        print()
+        cont = 1
+        for elem in pacientes[dni]["mascotas"]: # elem son los diccionarios de la lista
+            paci = pacientes[dni]["mascotas"]
+            print (f"{"Mascota"} {cont}")
+            cont = cont + 1
+            mascota = cont
+            for c,v in elem.items():#con esto entré a la lista
+                print (f"\t{c}: {v}")
+        for mascotas in range(len(paci)):
+            opcion= int(input("Ingrese numero de la mascota que desea eliminar"))
+            if opcion in range(len(paci)):
+                print
+           
+            else:
+                print ("el numero ingresado esta fuera ")
+            return 
+
+
+
+
+
+
+
+
 
 def listar(lista):
     """
