@@ -127,7 +127,8 @@ def listar(lista):
                 break
         except:
             print("Dato Invalido!")
-        
+
+
 
 def modificarD(lista):
     '''
