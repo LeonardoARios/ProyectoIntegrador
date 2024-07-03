@@ -225,7 +225,7 @@ def modificarD(lista):
                             carti = 1
                             while num > 0:
                                 num -= 1
-                                print(colorama.Fore.YELLOW + f'{("-" * 34)}{carti}{"-" * 35}'.center(100))
+                                print(colorama.Fore.YELLOW + f'{("-" * 30)}Cartilla {carti}{"-" * 30}'.center(100))
                                 print(f'\t\tNombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
                                 print(f'\t\tTipo de Mascota: {valorPaci[num]["tipo"]}')
                                 print(f'\t\tRaza de Mascota: {valorPaci[num]["raza"]}')
@@ -242,7 +242,7 @@ def modificarD(lista):
                         if respo == "N":
                             break
                         elif respo == "S": 
-                            catillaCambiar = int(input("\t\tIngrese la cartilla que desea cambiar\n\t\t> " + colorama.Fore.RESET)) - 1
+                            catillaCambiar = int(input("\t\tIngrese el número de cartilla que desea cambiar\n\t\t> " + colorama.Fore.RESET)) - 1
                             limpiar_Pantalla()
                             num = len(valorPaci)
                             if catillaCambiar in range(0, len(valorPaci) + 1):
