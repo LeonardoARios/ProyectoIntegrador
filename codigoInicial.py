@@ -145,18 +145,20 @@ def listar(lista):
     AUTOR: Leonardo Rios
     COLABORADORES: Marina Toledo, Ale Ante, Brenda Sztryk
     """
+    print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tUsted seleccionó Listar" + colorama.Fore.RESET)
+    print(("-"*70).center(100))
     limpiar_Pantalla()
     for nombre, valor in lista.items():
         print()
-        print("\t\tDatos del Pacientes:".upper())
-        print(("=" * 70).center(100))
+        print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDatos del Pacientes:".upper())
+        print(("=" * 70).center(100) + colorama.Fore.RESET)
         for itemPaci, valorPaci in valor.items():
             if itemPaci == "mascotas":
                 continue
             print(f'\t\t{itemPaci}: {valorPaci}'.upper())
         print()
-        print("\t\tMascotas:".upper())
-        print(("=" * 70).center(100))
+        print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tMascotas:".upper())
+        print(("=" * 70).center(100)+ colorama.Fore.RESET)
         for itemPaci, valorPaci in valor.items():
             if itemPaci == "mascotas":
                 num = len(valorPaci)
@@ -171,7 +173,7 @@ def listar(lista):
                     print(f'\t\tEdad de la Mascota: {valorPaci[num]["edad"]} años')
                     print(f'\t\tPeso de la Mascota: {valorPaci[num]["peso"]}Kg')
                     carti += 1
-    print(("=" * 70).center(100))
+    print(colorama.Fore.LIGHTMAGENTA_EX + ("=" * 70).center(100)+ colorama.Fore.RESET)
     input("\t\tPresione Enter para continuar")
     limpiar_Pantalla()
 
@@ -189,30 +191,30 @@ def modificarD(lista):
     Colaboradores: Marina Toledo, Ale Ante, Brenda Sztryk
     '''
     limpiar_Pantalla()
-    print(colorama.Fore.YELLOW + "\t\tUsted seleccionó Modificar" + colorama.Fore.RESET)
+    print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tUsted seleccionó Modificar" + colorama.Fore.RESET)
     print(("-"*70).center(100))
     while True:
         try:
-            bucaId = input(colorama.Fore.YELLOW + "\t\tIngrese el DNI a buscar: " + colorama.Fore.RESET)
+            bucaId = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese el DNI a buscar: " + colorama.Fore.RESET)
             if bucaId in lista:
                 for nombre, valor in lista.items():
                     print()
-                    print(colorama.Fore.LIGHTBLUE_EX + "\t\tDatos del Paciente:".upper())
-                    print(("=" * 70).center(100))
+                    print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDatos del Paciente:".upper())
+                    print(("=" * 70).center(100)+ colorama.Fore.RESET)
                     for itemPaci, valorPaci in valor.items():
                         if itemPaci == "mascotas":
                             continue
-                        print(colorama.Fore.YELLOW + f'\t\t{itemPaci}: {valorPaci}'.upper() + colorama.Fore.RESET)
+                        print(f'\t\t{itemPaci}: {valorPaci}'.upper())
                     print()
-                    print(colorama.Fore.LIGHTBLUE_EX + "\t\tMascotas:".upper())
-                    print(("=" * 70).center(100) + colorama.Fore.RESET)
+                    print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tMascotas:".upper())
+                    print(("=" * 70).center(100)+ colorama.Fore.RESET)
                     for itemPaci, valorPaci in valor.items():
                         if itemPaci == "mascotas":
                             num = len(valorPaci)
                             carti = 1
                             while num > 0:
                                 num -= 1
-                                print(colorama.Fore.YELLOW + f'{("-" * 30)}Cartilla {carti}{"-" * 30}'.center(100))
+                                print(f'{("-" * 30)}Cartilla {carti}{"-" * 30}'.center(100))
                                 print(f'\t\tNombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
                                 print(f'\t\tTipo de Mascota: {valorPaci[num]["tipo"]}')
                                 print(f'\t\tRaza de Mascota: {valorPaci[num]["raza"]}')
@@ -221,52 +223,52 @@ def modificarD(lista):
                                 print(f'\t\tPeso de la Mascota: {valorPaci[num]["peso"]}Kg')
                                 carti += 1
                                 break
-                print(("=" * 70 + colorama.Fore.RESET).center(105))
+                print(colorama.Fore.LIGHTMAGENTA_EX + ("=" * 70 + colorama.Fore.RESET).center(105) + colorama.Fore.RESET)
         
     
                 while True:
                     try:
-                        respo = input(colorama.Fore.LIGHTBLUE_EX + "\t\tDesea cambiar una cartilla S/N\n\t\t>  ").upper()
+                        respo = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDesea cambiar una cartilla S/N\n\t\t>  " + colorama.Fore.RESET).upper()
                         if respo == "N":
                             limpiar_Pantalla()
                             break
                         elif respo == "S": 
-                            catillaCambiar = int(input("\t\tIngrese el número de cartilla que desea cambiar\n\t\t> " + colorama.Fore.RESET)) - 1
+                            catillaCambiar = int(input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese el número de cartilla que desea cambiar\n\t\t> " + colorama.Fore.RESET)) - 1
                             limpiar_Pantalla()
                             num = len(valorPaci)
                             if catillaCambiar in range(0, len(valorPaci) + 1):
                                 num -= 1
-                                print(colorama.Fore.LIGHTBLUE_EX +f'\t\tUsted decidió cambiar {valorPaci[num]["nombre Mascota"]}' + colorama.Fore.RESET)
+                                print(f'\t\tUsted decidió cambiar {valorPaci[num]["nombre Mascota"]}')
                                 while True:
                                     try:
-                                        datoACambiar = input(colorama.Fore.YELLOW + "\t\tIngrese la letra referida al dato que desea cambiar\n\t\t>a.Edad\n\t\t>b.Peso?\n\t\t: " + colorama.Fore.RESET).lower()
+                                        datoACambiar = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese la letra referida al dato que desea cambiar\n\t\t>a.Edad\n\t\t>b.Peso?\n\t\t: " + colorama.Fore.RESET).lower()
                                         match datoACambiar:
                                             case "a":
                                                 limpiar_Pantalla()
-                                                print("\t\tDecidió cambiar Edad:")
-                                                nuevaEdad = int(input("\t\tIngrese la nueva edad de la mascota\n\t\t> "))
+                                                print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDecidió cambiar Edad:")
+                                                nuevaEdad = int(input("\t\tIngrese la nueva edad de la mascota\n\t\t> "+ colorama.Fore.RESET))
                                                 valorPaci[num]["edad"] = nuevaEdad
-                                                print("\t\tCambio realizado!")
+                                                print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tCambio realizado!" + colorama.Fore.RESET)
                                                 guardar_Pacientes()
                                                 break
                                             case "b":
                                                 limpiar_Pantalla()
-                                                print("\t\tDecidió cambiar Peso")
-                                                nuevoPeso = float(input("\t\tIngrese el nuevo peso de la mascota\n\t\t> "))
+                                                print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDecidió cambiar Peso")
+                                                nuevoPeso = float(input("\t\tIngrese el nuevo peso de la mascota\n\t\t> " + colorama.Fore.RESET))
                                                 valorPaci[num]["peso"] = nuevoPeso
-                                                print("\t\tCambio realizado!")
+                                                print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tCambio realizado!" + colorama.Fore.RESET)
                                                 guardar_Pacientes()
                                                 break
                                             case _:
-                                                print(colorama.Fore.RED + "\t\tValor no válido!6" + colorama.Fore.RESET)
+                                                print(colorama.Fore.RED + "\t\tValor no válido!" + colorama.Fore.RESET)
                                     except ValueError:
-                                        print(colorama.Fore.RED + "\t\tDato Inválido!5" + colorama.Fore.RESET)
+                                        print(colorama.Fore.RED + "\t\tDato Inválido!" + colorama.Fore.RESET)
                             else: 
-                                print(colorama.Fore.RED + "\t\tDato Invalido!4" + colorama.Fore.RESET)
+                                print(colorama.Fore.RED + "\t\tDato Invalido!" + colorama.Fore.RESET)
                     except ValueError:
-                        print(colorama.Fore.RED + "\t\tDato Inválido!3" + colorama.Fore.RESET)
+                        print(colorama.Fore.RED + "\t\tDato Inválido!" + colorama.Fore.RESET)
         except ValueError:
-            print(colorama.Fore.RED + "\t\tDato Invalido!1" + colorama.Fore.RESET)
+            print(colorama.Fore.RED + "\t\tDato Invalido!" + colorama.Fore.RESET)
         return lista
 
 def buscar_Pac (pacientes):
