@@ -36,7 +36,7 @@ def validar():
             print(f"error! le quedan {intentos} intentos ")
             if intentos == 0:
                 print("acceso BLOQUEADO!! ",end="")
-                print("comuniquese al: 1222-3334")
+                print("comuniquese al: 📱 1222-3334")
                 return 
 
 def cargar_Pacientes(): # lo que hace es leer el archivo y ponerlo en el dicc.
