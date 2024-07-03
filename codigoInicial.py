@@ -1,5 +1,5 @@
 """ 
-APLICACION DE GESTION INTEGRAL PARA VETERINARIOS
+APLICACION DE GESTION DE PACIENTES PARA VETERINARIOS
 AUTORES: Marina Toledo, Ale Ante, Leo Rios, Brenda Sztryk
 FECHA: 2024
 VERSION: 1.0 
@@ -7,15 +7,20 @@ VERSION: 1.0
 import json
 import os
 import colorama
-from colorama import Fore,Style #dejo agregado esto x si usamos los estilos
+from colorama import Fore,Style
 
 def validar():
     """ 
-    Función que permite el ingreso a uso de la aplicación. 
-    Requiere usuario y pass con 3 intentos de acceso.
+    Función que permite el ingreso a la aplicación. Requiere usuarios
+    permitidos con pass de 3 intentos de acceso.
     AUTOR: Brenda Sztryk
     COLABORADORES: 
     """
+    # Cree una lista de usuarios que a futuro puede cambiar ya sea quitando
+    # empleados, agregando, o modificando, dependiendo de la rotación de los
+    # mismos
+    # LEO ESTE COMENTARIO SI TENES QUE MODIFICARLO EN BASE AL CAMBIO QUE PROPUSISTE, HACELO
+    
     limpiar_Pantalla()
     usuValidos = ["Brenda", "Leo", "Marina", "Ale"] # NOMBRES VALIDOS Y PASS PARA USO DEL SISTEMA...PUEDE SER CUALQUIER OTRO NOMBRE Y MENOS USUARIOS
     passValido = "pet"
@@ -39,27 +44,34 @@ def validar():
                 print("comuniquese al: 📱 1222-3334")
                 return 
 
-def cargar_Pacientes(): # lo que hace es leer el archivo y ponerlo en el dicc.
+def cargar_Pacientes(): # lee el archivo y lo pone en el dicc.
     """
     Función que lee un archivo y lo coloca en el diccionario base,
     no recibe argumento, retorna un diccionario vacío en caso de haber
     un error, seria la solucion a la continuidad del programa
-    AUTOR:
-    COLABORADORES:
+    AUTOR: Brenda Sztryk
+    COLABORADORES: Ale Ante
     """
+    # Tanto la función cargar como guardar me costó entenderlas, pero viendo las
+    # clases grabadas, otros videos, y recolectando informacion de apuntes
+    # logre armarlas, ahi comprendi la importancia de la persistencia.
+    # Inicialmente no sabía de donde tomar los datos para realizar las funciones
+    # (inventé un dicc, una lista, datos ficticios para trabajrlas) y una vez 
+    # vimos persistencia con json encontre de donde partir. En este punto
+    # logramos conectar el trabajo porque supimos desde donde manejarnos
+    
     try:
         with open("pacientes.json","r") as archivo:
             return json.load(archivo)
     except:
         return {}
 
-
 def guardar_Pacientes(): #esto deberia guardar lo que se incorporó al dicc
     '''
-    Función que guarda datos recolectados en la funcion agregar, no recibe argumentos,
-    no retorna valor
-    AUTOR:
-    COLABORADORES:
+    Función que guarda datos recolectados de la función que la ha llamado,
+    no recibe argumentos, no retorna valor
+    AUTOR: Brenda Sztryk
+    COLABORADORES: Ale Ante
     '''
     with open("pacientes.json","w") as archivo:
         json.dump(pacientes,archivo,indent=4) #dump es volcar
@@ -77,20 +89,23 @@ def limpiar_Pantalla():
     COLABORADORES:
     """
 
-    if os =="nt":
-       os.system("cls")
-    else:
-       os.system("clear") #este clear aparecia al ejecutarse el menu como algo no valido, cuando lo pase a cls dejo de hacerlo. 
+    os.system("cls")
 
 def eliminar_Pac(pacientes):
     """ 
     Función que trabaja sobre un diccionario (base de datos), permite eliminar
     un cliente o alguna de sus mascotas. Recibe 1 argumento. No retorna valor.
-    AUTOR:
+    AUTOR: Brenda Sztryk, Ale Ante
     COLABORADORES:
     """
-
+    # La idea es eliminar una mascota de un dni asociado. dado que las mascotas
+    # son diccionarios dentro de una lista, se nos complico poder acceder x indice
+    # para eliminar.
+    # Brenda: como desafio personal me propuse resolverlo.... (esta en proceso)..
+    # mientras, la eliminacion es del dueño con sus mascotas 🤯🤯
+    
     limpiar_Pantalla()
+
     print("Usted seleccionó" + Fore.LIGHTMAGENTA_EX  + " ELIMINAR " + Style.RESET_ALL)
     print()
     print (Fore.LIGHTMAGENTA_EX + "A" + Fore.RESET + "- Dar de baja Dueño")
@@ -103,38 +118,18 @@ def eliminar_Pac(pacientes):
         if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
             #paci = pacientes[dni]
             print(f"DNI: {dni}\n{pacientes[dni]['nombre']} {pacientes[dni]['Apellido']}")
-            confirmar = input("Confirma eliminación: S / N: ").upper()
+            print()
+            confirmar = input(Fore.LIGHTMAGENTA_EX + "Confirma eliminación: S / N: " + Fore.RESET).upper()
             if confirmar == "S":
                 del pacientes[dni]
                 guardar_Pacientes()
                 print ("Cliente eliminado exitosamente")
             else:
                 return
-                #print ("Usted ha cancelado la operación")
         else:
-            print ("El DNI no se encuentra registrado")  
+            print ("El DNI no se encuentra registrado") 
 
-    if op == "B":
-        dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)
-        print()
-        cont = 1
-        for elem in pacientes[dni]["mascotas"]: # elem son los diccionarios de la lista
-            paci = pacientes[dni]["mascotas"]
-            print (f"{"Mascota"} {cont}")
-            cont = cont + 1
-            mascota = cont
-            for c,v in elem.items():#con esto entré a la lista
-                print (f"\t{c}: {v}")
-        for mascotas in range(len(paci)):
-            opcion= int(input("Ingrese numero de la mascota que desea eliminar"))
-            if opcion in range(len(paci)):
-                print
-           
-            else:
-                print ("el numero ingresado esta fuera ")
-            return 
-
-
+    
 def listar(lista):
     """
     La Función da como retorno una un listado de los datos que se guardaron.
@@ -176,8 +171,6 @@ def listar(lista):
     print(colorama.Fore.LIGHTMAGENTA_EX + ("=" * 70).center(100)+ colorama.Fore.RESET)
     input("\t\tPresione Enter para continuar")
     limpiar_Pantalla()
-
-
 
 def modificarD(lista):
     '''
@@ -274,11 +267,17 @@ def modificarD(lista):
 def buscar_Pac (pacientes):
     """ 
     Función que filtra la busqueda de mascotas a través del dni del dueño.
-    Recibe un argumento en formato diccionario compuesto con otros elementos
-    y lista de mascotas x dueño. No retorna valor
+    Recibe un diccionario compuesto con otras estructuras de datos. 
+    No retorna valor
     AUTOR: Brenda Sztryk
     COLABORADORES:
     """
+    # No me resulto dificil, siempre viendo diferentes formas de escribir para acceder a 
+    # elementos, printeando para ver como quedaba el desarrollo y posibles errores y
+    # reacomodando todo para una mejor visual.
+    # Me gusto poder incorporar la llamada a otra funcion (agregar) lo que dio continuidad a
+    # la ejecucion del codigo 😀
+
     limpiar_Pantalla()
     
     dni = (input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)) # si convierto a entero no me funciona en la busqueda !!!
@@ -305,11 +304,20 @@ def buscar_Pac (pacientes):
             return
     
 def agregar_Pac(pacientes):
-    """ Función que recibe un argumento (dicc. pacientes), 
-    la base de datos global de la aplicacion ,  no retorna valor.
+    """
+    Función que recibe un argumento (dicc. de pacientes), 
+    la base de datos global de la aplicacion, no retorna valor.
     AUTOR: Brenda Sztryk
     COLABORADORES: Leo Rios
     """
+    # Tuvimos problemas para poder hacer un diccionario de mascotas (diccionario dentro de otro)
+    # porque las mascotas debian individualizarce con sus datos, hubo intentos pero quedaban 
+    # repetidos ciertos elementos del diccionario en el exterior del mismo, la informacion no 
+    # quedaba como se necesitaba,tras varias pruebas, los datos quedaron ordenados y a partir 
+    # de ahi avanzamos mas a profundidad en las funciones de cada 1.
+    # Brenda: particularmente esta funcion la noto visualmente desordenada. Quiza sea porque hay
+    # otra forma de escribirla o de plantearla.
+    
     limpiar_Pantalla() 
     nomDueño = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre dueño mascota: " + Fore.RESET).upper()
     apellDueño = input(Fore.LIGHTMAGENTA_EX +"Ingrese el apellido: "+ Fore.RESET).upper()
@@ -371,14 +379,13 @@ def menu():
     print((Fore.LIGHTMAGENTA_EX + "\t G" " - SALIR").center(90))
     print()
     print((Fore.RESET + "*" * 40).center(100))
-    #print(Style.RESET_ALL)
     op_elegida = input("\t\t\t\tIngrese letra seleccionada: ").lower()
     limpiar_Pantalla()
     return op_elegida
 
 #Programa Principal
 pacientes = cargar_Pacientes()
-#validar() #llama a la funcion antes que el menu para que acceda solo el usuario permitido (nombre con inicial mayusc / pass: pet)
+validar() #llama a la funcion antes que el menu para que acceda solo el usuario permitido (nombre con inicial mayusc / pass: pet)
 bande = True
 op = menu()
 while bande:
