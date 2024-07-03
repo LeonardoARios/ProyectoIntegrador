@@ -54,7 +54,7 @@ def cargar_Pacientes(): # lo que hace es leer el archivo y ponerlo en el dicc.
         return {}
 
 
-def guardar_Pacientes(): #esto deberia guardar lo que se incorporó al dicc
+def guardar_Pacientes(pacientes): #esto deberia guardar lo que se incorporó al dicc
     '''
     Función que guarda datos recolectados en la funcion agregar, no recibe argumentos,
     no retorna valor
@@ -81,6 +81,7 @@ def limpiar_Pantalla():
        os.system("cls")
     else:
        os.system("clear") #este clear aparecia al ejecutarse el menu como algo no valido, cuando lo pase a cls dejo de hacerlo. 
+
 def eliminar_Pac(pacientes):
     """ 
     Función que trabaja sobre un diccionario (base de datos), permite eliminar
@@ -132,13 +133,6 @@ def eliminar_Pac(pacientes):
             else:
                 print ("el numero ingresado esta fuera ")
             return 
-
-
-
-
-
-
-
 
 
 def listar(lista):
@@ -204,11 +198,10 @@ def modificarD(lista):
     limpiar_Pantalla()
     print(colorama.Fore.YELLOW + "\t\tUsted seleccionó Modificar" + colorama.Fore.RESET)
     print(("-"*70).center(100))
-    limpiar_Pantalla()
     while True:
         try:
             bucaId = input(colorama.Fore.YELLOW + "\t\tIngrese el DNI a buscar: " + colorama.Fore.RESET)
-            if bucaId in lista.keys():
+            if bucaId in lista:
                 for nombre, valor in lista.items():
                     print()
                     print(colorama.Fore.LIGHTBLUE_EX + "\t\tDatos del Paciente:".upper())
@@ -241,6 +234,7 @@ def modificarD(lista):
                     try:
                         respo = input(colorama.Fore.LIGHTBLUE_EX + "\t\tDesea cambiar una cartilla S/N\n\t\t>  ").upper()
                         if respo == "N":
+                            limpiar_Pantalla()
                             break
                         elif respo == "S": 
                             catillaCambiar = int(input("\t\tIngrese el número de cartilla que desea cambiar\n\t\t> " + colorama.Fore.RESET)) - 1
@@ -270,19 +264,15 @@ def modificarD(lista):
                                                 guardar_Pacientes()
                                                 break
                                             case _:
-                                                print(colorama.Fore.RED + "\t\tValor no válido!" + colorama.Fore.RESET)
+                                                print(colorama.Fore.RED + "\t\tValor no válido!6" + colorama.Fore.RESET)
                                     except ValueError:
-                                        print(colorama.Fore.RED + "\t\tDato Inválido!" + colorama.Fore.RESET)
-                                break
+                                        print(colorama.Fore.RED + "\t\tDato Inválido!5" + colorama.Fore.RESET)
                             else: 
-                                print(colorama.Fore.RED + "\t\tDato Invalido!" + colorama.Fore.RESET)
+                                print(colorama.Fore.RED + "\t\tDato Invalido!4" + colorama.Fore.RESET)
                     except ValueError:
-                        print(colorama.Fore.RED + "\t\tDato Inválido!" + colorama.Fore.RESET)
-                break
-            else: 
-                print(colorama.Fore.RED + "\t\tDato Invalido"+ colorama.Fore.RESET)
+                        print(colorama.Fore.RED + "\t\tDato Inválido!3" + colorama.Fore.RESET)
         except ValueError:
-            print(colorama.Fore.RED + "\t\tDato Invalido!" + colorama.Fore.RESET)
+            print(colorama.Fore.RED + "\t\tDato Invalido!1" + colorama.Fore.RESET)
         return lista
 
 def buscar_Pac (pacientes):
@@ -355,15 +345,13 @@ def agregar_Pac(pacientes):
                    "edad": edad,
                    "peso":peso}
         pacientes[dni]["mascotas"].append(mascota)
-        guardar_Pacientes()
+        guardar_Pacientes(pacientes)
         #print(f"{pacientes[dni]["mascotas"]}") #solo para corroborar
         print(Style.BRIGHT + "La mascota se registró exitosamente" + Style.RESET_ALL)
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
         if resp == "N":
             return
 
-
-    
 def menu():
     """
     La funcion da opciones a seleccionar x el usuario
