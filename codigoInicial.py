@@ -1,7 +1,9 @@
-""" APLICACION DE GESTION INTEGRAL PARA VETERINARIOS
+""" 
+APLICACION DE GESTION INTEGRAL PARA VETERINARIOS
 AUTORES: Marina Toledo, Ale Ante, Leo Rios, Brenda Sztryk
 FECHA: 2024
-VERSION: 1.0 """
+VERSION: 1.0 
+"""
 import json
 import os
 import colorama
@@ -9,9 +11,8 @@ from colorama import Fore,Style #dejo agregado esto x si usamos los estilos
 
 def validar():
     """ 
-    funcion que permite el ingreso con usuario y pass
-    com posibilidad de cambiarla y agregarla a una lista
-    de accesos validos
+    Función que permite el ingreso a uso de la aplicación. 
+    Requiere usuario y pass con 3 intentos de acceso.
     AUTOR: Brenda Sztryk
     COLABORADORES: 
     """
