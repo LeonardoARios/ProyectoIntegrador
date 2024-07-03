@@ -54,7 +54,7 @@ def cargar_Pacientes(): # lo que hace es leer el archivo y ponerlo en el dicc.
         return {}
 
 
-def guardar_Pacientes(pacientes): #esto deberia guardar lo que se incorporó al dicc
+def guardar_Pacientes(): #esto deberia guardar lo que se incorporó al dicc
     '''
     Función que guarda datos recolectados en la funcion agregar, no recibe argumentos,
     no retorna valor
@@ -146,41 +146,34 @@ def listar(lista):
     COLABORADORES: Marina Toledo, Ale Ante, Brenda Sztryk
     """
     limpiar_Pantalla()
-    while True:
-        try:
-            bucaId = input("\t\tIngrese el DNI a buscar: ")
-            if bucaId in lista.keys():
-                for nombre, valor in lista.items():
-                    print()
-                    print("\t\tDatos del Paciente:".upper())
-                    print(("=" * 70).center(100))
-                    for itemPaci, valorPaci in valor.items():
-                        if itemPaci == "mascotas":
-                            continue
-                        print(f'\t\t{itemPaci}: {valorPaci}'.capitalize())
-                    print()
-                    print("\t\tMascotas:".upper())
-                    print(("=" * 70).center(100))
-                    for itemPaci, valorPaci in valor.items():
-                        if itemPaci == "mascotas":
-                            num = len(valorPaci)
-                            carti = 1
-                            while num > 0:
-                                num -= 1
-                                print(f'{("-" * 35)}{carti}{"-" * 35}'.center(100))
-                                print(f'\t\ta.Nombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
-                                print(f'\t\tb.Tipo de Mascota: {valorPaci[num]["tipo"]}')
-                                print(f'\t\tc.Raza de Mascota: {valorPaci[num]["raza"]}')
-                                print(f'\t\td.Sexo de la Masota: {valorPaci[num]["sexo"]}')
-                                print(f'\t\te.Edad de la Mascota: {valorPaci[num]["edad"]} años')
-                                print(f'\t\tf.Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
-                                carti += 1
-                print(("=" * 70).center(100))
-                input("\t\tPresione Enter para continuar")
-                limpiar_Pantalla()
-                break
-        except:
-            print("Dato Invalido!")
+    for nombre, valor in lista.items():
+        print()
+        print("\t\tDatos del Pacientes:".upper())
+        print(("=" * 70).center(100))
+        for itemPaci, valorPaci in valor.items():
+            if itemPaci == "mascotas":
+                continue
+            print(f'\t\t{itemPaci}: {valorPaci}'.upper())
+        print()
+        print("\t\tMascotas:".upper())
+        print(("=" * 70).center(100))
+        for itemPaci, valorPaci in valor.items():
+            if itemPaci == "mascotas":
+                num = len(valorPaci)
+                carti = 1
+                while num > 0:
+                    num -= 1
+                    print(f'{("-" * 35)}{carti}{"-" * 35}'.center(100))
+                    print(f'\t\tNombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
+                    print(f'\t\tTipo de Mascota: {valorPaci[num]["tipo"]}')
+                    print(f'\t\tRaza de Mascota: {valorPaci[num]["raza"]}')
+                    print(f'\t\tSexo de la Masota: {valorPaci[num]["sexo"]}')
+                    print(f'\t\tEdad de la Mascota: {valorPaci[num]["edad"]} años')
+                    print(f'\t\tPeso de la Mascota: {valorPaci[num]["peso"]}Kg')
+                    carti += 1
+    print(("=" * 70).center(100))
+    input("\t\tPresione Enter para continuar")
+    limpiar_Pantalla()
 
 
 
@@ -227,6 +220,7 @@ def modificarD(lista):
                                 print(f'\t\tEdad de la Mascota: {valorPaci[num]["edad"]} años')
                                 print(f'\t\tPeso de la Mascota: {valorPaci[num]["peso"]}Kg')
                                 carti += 1
+                                break
                 print(("=" * 70 + colorama.Fore.RESET).center(105))
         
     
@@ -345,7 +339,7 @@ def agregar_Pac(pacientes):
                    "edad": edad,
                    "peso":peso}
         pacientes[dni]["mascotas"].append(mascota)
-        guardar_Pacientes(pacientes)
+        guardar_Pacientes()
         #print(f"{pacientes[dni]["mascotas"]}") #solo para corroborar
         print(Style.BRIGHT + "La mascota se registró exitosamente" + Style.RESET_ALL)
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
