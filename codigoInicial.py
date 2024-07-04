@@ -291,10 +291,11 @@ def buscar_Pac (pacientes):
         # MASCOTAS
         cont = 1
         for elem in paci["mascotas"]: # elem son los diccionarios de la lista
-            print (f"{"Mascota"} {cont}")
+            print (Fore.LIGHTMAGENTA_EX + Style.BRIGHT+ f"{"Mascota"} {cont}" + Style.RESET_ALL)
             cont = cont + 1
             for c,v in elem.items():
                 print (f"\t{c}: {v}")
+            print()
     else:
         print(f"DNI: {dni} no se encuentra registrado. \nDesea registrarlo ahora? " )
         resp= input("responda: S / N ").upper()
