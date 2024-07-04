@@ -339,8 +339,8 @@ def agregar_Pac(pacientes):
         sexo = input (Fore.LIGHTMAGENTA_EX + "Ingrese sexo de la mascota: M > macho / H > hembra " + Fore.RESET).upper()
         while sexo != "M".upper() and sexo != "H".upper(): #este while es por si tipea otra letra que no sea H o M
             print (Fore.LIGHTMAGENTA_EX + "error, debe ingresar M o H" + Fore.RESET)
-            sexo = input (Fore.LIGHTMAGENTA_EX + "ingrese sexo de la mascota: M > macho / H > hembra: " + Fore.RESET)
-            break
+            sexo = input (Fore.LIGHTMAGENTA_EX + "ingrese sexo de la mascota: M > macho / H > hembra: " + Fore.RESET).upper()
+            #break
         edad = int (input (Fore.LIGHTMAGENTA_EX + "Ingrese edad de la mascota: " + Fore.RESET))
         peso = float (input(Fore.LIGHTMAGENTA_EX + "Ingrese peso de la mascota en Kg: " + Fore.RESET))
         mascota = {"nombre Mascota": nomMascota,
