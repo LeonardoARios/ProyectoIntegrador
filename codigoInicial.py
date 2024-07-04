@@ -158,7 +158,7 @@ def limpiar_Pantalla():
     COLABORADORES:
     """
 
-    os.system("clear") #os.system("cls")
+    os.system("cls")
 
 def eliminar_Pac(pacientes):
     """ 
@@ -262,7 +262,7 @@ def modificarD(lista):
             if bucaId in lista.keys():
                 print()
                 print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDatos del Paciente".upper())
-                print("="*70 + colorama.Fore.RESET)
+                print(("="*70 + colorama.Fore.RESET).center(100))
                 for nombre, valor in lista[bucaId].items():
                     if nombre == 'mascotas':
                         mascota = nombre
@@ -277,7 +277,7 @@ def modificarD(lista):
                         carti = 1
                         while num >0:
                             num -= 1
-                            print(f'{("-" * 35)}Cartilla {carti}{"-" * 35}'.center(100))
+                            print(f'{("-" * 25)}Cartilla {carti}{"-" *35}'.center(100))
                             print(f'\t\tNombre de Mascotas: {valor2[num]["nombre Mascota"]}')
                             print(f'\t\tTipo de Mascota: {valor2[num]["tipo"]}')
                             print(f'\t\tRaza de la Mascota: {valor2[num]["raza"]}')
