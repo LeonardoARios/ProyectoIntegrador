@@ -319,7 +319,7 @@ def agregar_Pac(pacientes):
     # Brenda: particularmente esta funcion la noto visualmente desordenada. Quiza sea porque hay
     # otra forma de escribirla o de plantearla.
     
-    limpiar_Pantalla() 
+    #limpiar_Pantalla() 
     nomDueño = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre dueño mascota: " + Fore.RESET).upper()
     apellDueño = input(Fore.LIGHTMAGENTA_EX +"Ingrese el apellido: "+ Fore.RESET).upper()
     dni = int(input(Fore.LIGHTMAGENTA_EX +"Ingrese numero de DNI: "+ Fore.RESET))
