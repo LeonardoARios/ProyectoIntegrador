@@ -1,26 +1,26 @@
 # APLICACION DE GESTION INTEGRAL PARA VETERINARIOS
 # Descripcion:
-El proyecto es una aplicación de consola. Permite a veterinarios controlar integralmente
+Aplicación de consola. Permite a veterinarios controlar integralmente
 el estado de salud/bienestar de animales domesticos a traves de parametrizaciones de distintos
 items a evaluar.
 
 
 # OBJETIVO
-El objetivo es facilitar la tarea del veterinario en cada consulta, pudiendo ingresar nuevos datos, consultar y modificar existentes, eliminar, buscar y listar segun necesidad, proporcionando asi la persistencia de datos mediante el uso de archivos de texto. Un menu principal deriva a realizar estas tareas en el area correpondiente.
+Facilitar la tarea del veterinario en cada consulta, pudiendo ingresar nuevos pacientes, sus datos, consultar y modificar existentes, eliminar, buscar y listar segun necesidad, y adicionalmente presupuestar servicios ofreecidos. Se proporciona persistencia de datos mediante el uso de archivos de texto.
 
 
 # PUBLICO OBJETIVO
 Dirigido a profesionales del area Veterinaria en sus puestos de trabajo.
 
 
-# REQUERIMIENTO FUNCIONAL (VER)
+# REQUERIMIENTO FUNCIONAL
 1. Funcionalidades Básicas
-    - buscar ficha del paciente: permite busqueda x identificacion de la mascota
-    - agregar: permite agregar datos sobre la evaluacion del paciente
-    - Modificar: permite modificar datos ya cargados
-    - Eliminar: permite quitar datos (hay que ver cuales)
-    - Listar:permite mostrar opciones de tratamientos (VER) 
-    - calcular: permite que el profesional calcular peso, altura, cant.de comida sugerida, cant de hs de movilidad, etc
+    - Buscar datos de la mascota (paciente) asociados a al DNI de su dueño.
+    - Agregar: permite agregar mascotas a la base de datos.
+    - Modificar: permite modificar datos ya cargados relacionados a la mascota o su dueño
+    - Eliminar: permite dar de baja una mascota o el dueño y sus mascotas.
+    - Listar: muestra un listado de mascotas de la base de datos
+    - Presupuestar: permite que el profesional obtener un presupuesto de los servicios que ofrece la veterinaria
 
 
 2. Persistencia de Datos
@@ -32,20 +32,20 @@ Dirigido a profesionales del area Veterinaria en sus puestos de trabajo.
     de archivos de texto.
 
 
-4.  - Un menu principal deriva a realizar estas tareas en el area correpondiente.
-    - Interfaz de Consola: el usuario puede interactuar introduciendo o eligiendo informacion
-5.  - Menú Principal: desde el cual el usuario pueda seleccionar las diferentes funcionalidades (Agregar,   Buscar, Modificar, Eliminar, Listar, calcular).
+4.  - Un menu principal permite seleccionar que tarea relizar.
+    - Interfaz de Consola: el usuario puede interactuar introduciendo o eligiendo informacion a la cual acceder
+5.  - Menú Principal: desde el cual el usuario pueda seleccionar las diferentes funcionalidades (Agregar,   Buscar, Modificar, Eliminar,       Listar, presupuestar).
 
 
 4.  Validaciones de Datos
-    - Entrada de Usuario: validar ingreso del usuario
-    - Gestión de Errores:
+    - Entrada de Usuario: Se valida el ingreso de usuario con password
+    - Gestión de Errores: tratamiento de gestion de errores posibles en el funcionamiento del programa
 
 
 5.  Estructura del Código
-    - Modularidad: Organizar el código en funciones y, si es necesario, en clases, para mejorar la legibilidad y mantenibilidad.
+    - Modularidad: Organiza el código en funciones y, si es necesario, en clases, para mejorar la legibilidad y mantenibilidad.
     - Funciones Principales: Crear funciones específicas para agregar, buscar, modificar, eliminar y listar términos.
     - Manejo de Archivos: Crear funciones para leer y escribir en los archivos de texto.
 6.  Documentación
     - Comentarios en el Código: Incluir comentarios en el código para explicar el propósito y funcionamiento de las diferentes partes.
-    - Archivo README: Proporcionar un archivo README que describa el propósito del proyecto, cómo ejecutarlo y cómo utilizar las diferentes funcionalidades.
+    - Archivo README: Proporcionar un archivo README que describa el propósito del proyecto, cómo ejecutarlo y cómo utilizar las               diferentes funcionalidades.
