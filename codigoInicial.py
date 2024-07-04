@@ -356,6 +356,8 @@ def agregar_Pac(pacientes):
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
         if resp == "N":
             return
+    else:
+        return
 
 def menu():
     """
