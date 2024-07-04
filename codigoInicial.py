@@ -351,7 +351,7 @@ def agregar_Pac(pacientes):
                    "peso":peso}
         pacientes[dni]["mascotas"].append(mascota)
         guardar_Pacientes()
-        #print(f"{pacientes[dni]["mascotas"]}") #solo para corroborar
+        print()
         print(Style.BRIGHT + "La mascota se registró exitosamente" + Style.RESET_ALL)
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
         if resp == "N":
