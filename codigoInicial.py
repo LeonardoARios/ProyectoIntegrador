@@ -61,7 +61,7 @@ def validar(listaUsuario):
     
     while True:
         try:
-            respo = input(colorama.Fore.LIGHTMAGENTA_EX + "Quiere registrar un nuevo Usuario?S/N\n>  " + colorama.Fore.RESET).upper()
+            respo = input(colorama.Fore.LIGHTMAGENTA_EX + "Quiere registrar un nuevo Usuario? S/N\n>  " + colorama.Fore.RESET).upper()
             if respo == "S":
                 inUsuario = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese el nombre de usuario a registrar\n>  ")
                 inPass = input("Ingrese la contraseña a registrar\n>  " + colorama.Fore.RESET)
@@ -69,11 +69,11 @@ def validar(listaUsuario):
                 guardarValidar(listaUsuario)
                 return listaUsuario
             else:
-                input(colorama.Fore.LIGHTMAGENTA_EX + "Presine Enter para continuar" + colorama.Fore.RESET)
+                input(colorama.Fore.LIGHTMAGENTA_EX + "Presione Enter para continuar" + colorama.Fore.RESET)
                 limpiar_Pantalla()
                 break
         except:
-            print(colorama.Fore.RED + "Validacion Incorrecta" + colorama.Fore.RESET)
+            print(colorama.Fore.RED + "Validación Incorrecta" + colorama.Fore.RESET)
 
     while True:
         try:
@@ -91,23 +91,23 @@ def validar(listaUsuario):
                     print(colorama.Fore.RED + "Password Incorrecto!" + colorama.Fore.RESET)
                     
         except:
-            print("Dato no valido")
+            print("Dato no válido")
 
 def cargar_Pacientes(): # lee el archivo y lo pone en el dicc.
     """
     Función que lee un archivo y lo coloca en el diccionario base,
     no recibe argumento, retorna un diccionario vacío en caso de haber
-    un error, seria la solucion a la continuidad del programa
+    un error, seria la solución a la continuidad del programa
     AUTOR: Brenda Sztryk
     COLABORADORES: Ale Ante
     """
     # Tanto la función cargar como guardar me costó entenderlas, pero viendo las
     # clases grabadas, otros videos, y recolectando informacion de apuntes
-    # logre armarlas, ahi comprendi la importancia de la persistencia.
+    # logre armarlas, ahi comprendí la importancia de la persistencia.
     # Inicialmente no sabía de donde tomar los datos para realizar las funciones
-    # (inventé un dicc, una lista, datos ficticios para trabajrlas) y una vez 
+    # (inventé un dicc, una lista, datos ficticios para trabajarlas) y una vez 
     # vimos persistencia con json encontre de donde partir. En este punto
-    # logramos conectar el trabajo porque supimos desde donde manejarnos
+    # logramos conectar el trabajo porque supimos desde donde manejarnos.
     
     try:
         with open("pacientes.json","r") as archivo:
@@ -128,7 +128,7 @@ def guardar_Pacientes(): #esto deberia guardar lo que se incorporó al dicc
 
 def limpiar_Pantalla():
     """ 
-    La funcion limpia la pantalla 
+    La función limpia la pantalla 
     Realiza un limpiado de caracteres en la terminal al invocar
     Parametros: 
     No espera
@@ -143,20 +143,22 @@ def limpiar_Pantalla():
 def eliminar_Pac(pacientes):
     """ 
     Función que trabaja sobre un diccionario (base de datos), permite eliminar
-    un cliente o alguna de sus mascotas. Recibe 1 argumento. No retorna valor.
+    un cliente y sus mascotas o alguna de sus mascotas. Si se llego al punto
+    # que no hay mascotas asociadas, se pueden incorporar nuevas.
+    Recibe 1 argumento. No retorna valor.
     AUTOR: Brenda Sztryk, Ale Ante
     COLABORADORES:
     """
     # La idea es eliminar una mascota de un dni asociado. Dado que las mascotas
-    # son diccionarios dentro de una lista, se nos complico poder acceder x indice
+    # son diccionarios dentro de una lista, se nos complicó poder acceder x índice
     # y luego de muchos intentos optamos solo x eliminar al dueño y sus mascotas.
-    # Brenda: como desafio personal me propuse resolverlo.... (probé mil maneras):
-    # con len, con rango, despues quise asociar una enumeracion para ver si era mas
-    # facil eliminar unicamente a la mascota ingresando ese identificador numerico, 
-    # busque informacion al respecto, di con el "enumerate", y aca surgio que si
+    # Brenda: como desafío personal me propuse resolverlo.... (probé mil maneras):
+    # con len, con rango, despues quise asociar una enumeración para ver si era mas
+    # facil eliminar únicamente a la mascota ingresando ese identificador numérico, 
+    # busque informacion al respecto, llegué al "enumerate", y aca surgió que si
     # enumeraba desde 1 luego deberia restar 1 para que los datos quedaran vinculados 
-    # con los indices de la lista.Tambien probe la converion de lista a diccionario
-    # pero igualmente el "tipo" era lista... esto quedó finalmente 🤯🤯
+    # con los índices de la lista.Tambien probe la conversión de lista a diccionario
+    # pero igualmente el "tipo" era lista... esto quedó finalmente.. la listaaa 🤯🤯🤯
     
     limpiar_Pantalla()
 
@@ -202,7 +204,7 @@ def eliminar_Pac(pacientes):
                         print()
                         print (Fore.LIGHTGREEN_EX + f"La Mascota {mascota['nombre Mascota']} se dio de baja EXITOSAMENTE" + Fore.RESET)
                 else:
-                    print(Fore.LIGHTMAGENTA_EX + "ERROR, ingrese un numero correcto" + Fore.RESET)
+                    print(Fore.LIGHTMAGENTA_EX + "ERROR" + Fore.RESET + "ingrese un número correcto" )
                     return
             elif len(paci) == 0: # si es cero, no hay mascotas
                 print (f"NO existen mascotas asociadas a {pacientes[dni]['nombre']}")
@@ -269,7 +271,7 @@ def listar(lista):
 def modificarD(lista):
     '''
     Función que al ingrear el dni del paciente da como resultado el dato actual y por consiguiente
-    da la opción de modificar datos como año de la mascota y peso de la mascota referida al paciente. 
+    da la opción de modificar datos como edad de la mascota y peso de la mascota referida al paciente. 
     Parametros: 
     Una lista de datos.
     Retorna: 
@@ -314,7 +316,7 @@ def modificarD(lista):
                     try:
                         respo2 = input(colorama.Fore.LIGHTMAGENTA_EX + "Desea cambiar datos de la cartilla S/N\n>  " + colorama.Fore.RESET).upper()
                         if respo2 == "S":
-                            catillaCambiar = int(input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese el numero de cartilla que desea cambiar\n>  "+ colorama.Fore.RESET)) -1
+                            catillaCambiar = int(input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese el número de cartilla que desea cambiar\n>  "+ colorama.Fore.RESET)) -1
                             limpiar_Pantalla()
                             num = len(valor2)
                             if catillaCambiar in range(0, len(valor2) + 1):
@@ -345,23 +347,23 @@ def modificarD(lista):
                                                 limpiar_Pantalla()
                                                 print(colorama.Fore.RED + "Valor no válido!" + colorama.Fore.RESET)
                                     except:
-                                        print(colorama.Fore.RED + "Valor Invalido!" + colorama.Fore.RESET)
+                                        print(colorama.Fore.RED + "Valor Inválido!" + colorama.Fore.RESET)
                         else:
                             limpiar_Pantalla()
                             break
                     except:
-                        print(colorama.Fore.RED + "Valor Invalido!" + colorama.Fore.RESET)
+                        print(colorama.Fore.RED + "Valor Inválido!" + colorama.Fore.RESET)
             else:
                 print(colorama.Fore.RED + "No se ecuentra DNI" + colorama.Fore.RESET)
         except:
-            print(colorama.Fore.RED + "Valor Invalido" + colorama.Fore.RESET)
+            print(colorama.Fore.RED + "Valor Inválido" + colorama.Fore.RESET)
         break
     return lista
     
 
 def buscar_Pac (pacientes):
     """ 
-    Función que filtra la busqueda de mascotas a través del dni del dueño.
+    Función que filtra la búsqueda de mascotas a través del dni del dueño.
     Recibe un diccionario compuesto con otras estructuras de datos. 
     No retorna valor
     AUTOR: Brenda Sztryk
@@ -370,8 +372,8 @@ def buscar_Pac (pacientes):
     # No me resulto dificil, siempre viendo diferentes formas de escribir para acceder a 
     # elementos, printeando para ver como quedaba el desarrollo y posibles errores y
     # reacomodando todo para una mejor visual.
-    # Me gusto poder incorporar la llamada a otra funcion (agregar) lo que dio continuidad a
-    # la ejecucion del codigo 😀
+    # Me gustó poder incorporar la llamada a otra función (agregar) lo que dió continuidad a
+    # la ejecucion del código 😀
 
     limpiar_Pantalla()
     
@@ -392,7 +394,7 @@ def buscar_Pac (pacientes):
                 print (f"{c}: {v}")
             print()
     else:
-        print(f"DNI: {dni} no se encuentra registrado. \nDesea registrarlo ahora? " )
+        print(f"DNI: {dni} NO se encuentra registrado. \nDesea registrarlo ahora? " )
         resp= input("responda: S / N ").upper()
         if resp == "S":
             agregar_Pac(pacientes)
@@ -402,17 +404,17 @@ def buscar_Pac (pacientes):
 def agregar_Pac(pacientes):
     """
     Función que recibe un argumento (dicc. de pacientes), 
-    la base de datos global de la aplicacion, no retorna valor.
+    la base de datos global de la aplicación, no retorna valor.
     AUTOR: Brenda Sztryk
     COLABORADORES: Leo Rios
     """
     # Tuvimos problemas para poder hacer un diccionario de mascotas (diccionario dentro de otro)
     # porque las mascotas debian individualizarce con sus datos, hubo intentos pero quedaban 
-    # repetidos ciertos elementos del diccionario en el exterior del mismo, la informacion no 
-    # quedaba como se necesitaba,tras varias pruebas, los datos quedaron ordenados y a partir 
-    # de ahi avanzamos mas a profundidad en las funciones de cada 1.
-    # Brenda: particularmente esta funcion la noto visualmente desordenada. Quiza sea porque hay
-    # otra forma de escribirla o de plantearla.
+    # repetidos ciertos elementos del diccionario en el exterior del mismo, la información no 
+    # quedaba como se necesitaba, tras varias pruebas, los datos quedaron ordenados y a partir 
+    # de ahí avanzamos más a profundidad en las funciones de cada uno.
+    # Brenda: particularmente esta función la noto visualmente desordenada. Quizá porque hay
+    # otra forma de escribirla o de plantearl o acomodarla.
     
     #limpiar_Pantalla() 
     nomDueño = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre dueño mascota: " + Fore.RESET).upper()
@@ -420,7 +422,7 @@ def agregar_Pac(pacientes):
     dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese numero de DNI: "+ Fore.RESET)
     for numDni in pacientes:
         if numDni == dni:
-            print(f"error!!, el dni {dni} ya se encuentra registrado")
+            print(f"ERROR!!, el dni {dni} ya se encuentra registrado")
             return 
     pacientes[dni] = {"nombre":nomDueño,
                       "Apellido":apellDueño,
@@ -433,7 +435,7 @@ def agregar_Pac(pacientes):
         raza = input (Fore.LIGHTMAGENTA_EX + "Ingrese raza de la mascota: " + Fore.RESET).upper()
         sexo = input (Fore.LIGHTMAGENTA_EX + "Ingrese sexo de la mascota: M > macho / H > hembra " + Fore.RESET).upper()
         while sexo != "M".upper() and sexo != "H".upper(): #este while es por si tipea otra letra que no sea H o M
-            print (Fore.LIGHTMAGENTA_EX + "error, debe ingresar M o H" + Fore.RESET)
+            print (Fore.LIGHTMAGENTA_EX + "ERROR, debe ingresar M o H" + Fore.RESET)
             sexo = input (Fore.LIGHTMAGENTA_EX + "ingrese sexo de la mascota: M > macho / H > hembra: " + Fore.RESET).upper()
             #break
         edad = int (input (Fore.LIGHTMAGENTA_EX + "Ingrese edad de la mascota: " + Fore.RESET))
@@ -447,7 +449,7 @@ def agregar_Pac(pacientes):
         pacientes[dni]["mascotas"].append(mascota)
         guardar_Pacientes()
         print()
-        print(Style.BRIGHT + "La mascota se registró exitosamente" + Style.RESET_ALL)
+        print(Style.BRIGHT + "La mascota se registró EXITOSAMENTE" + Style.RESET_ALL)
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
         if resp == "N":
             return
@@ -456,8 +458,8 @@ def agregar_Pac(pacientes):
 
 def menu():
     """
-    La funcion da opciones a seleccionar x el usuario
-    no espera argumentos y retorna la opcion elegida x usuario.
+    La función propone opciones a seleccionar x el usuario
+    no espera argumentos y retorna la opción elegida.
     AUTOR: Brenda Sztryk
     COLABORADORES: Marina Toledo, Ale Ante, Leo Rios
     """
