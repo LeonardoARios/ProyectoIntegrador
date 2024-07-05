@@ -395,9 +395,10 @@ def buscar_Pac (pacientes):
                 print (f"{c}: {v}")
             print()
     else:
-        print(f"DNI: {dni} NO se encuentra registrado. \nDesea registrarlo ahora? " )
-        resp= input("responda: S / N ").upper()
+        print()
+        resp = input(Fore.LIGHTMAGENTA_EX +f"DNI: {dni}{Fore.RESET} NO se encuentra registrado. \nDesea registrarlo ahora? S / N: " ).upper()
         if resp == "S":
+            print()
             agregar_Pac(pacientes)
         else:    
             return
