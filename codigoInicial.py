@@ -161,7 +161,7 @@ def eliminar_Pac(pacientes):
     # con los índices de la lista.Tambien probe la conversión de lista a diccionario
     # pero igualmente el "tipo" era lista... esto quedó finalmente.. la listaaa 🤯🤯🤯
     
-        limpiar_Pantalla()
+    limpiar_Pantalla()
 
     print("Usted seleccionó" + Fore.LIGHTMAGENTA_EX  + " ELIMINAR " + Style.RESET_ALL)
     print()
