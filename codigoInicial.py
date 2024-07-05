@@ -1,6 +1,6 @@
 """ 
 APLICACION DE GESTION DE PACIENTES PARA VETERINARIOS
-AUTORES: Marina Toledo, Ale Ante, Leo Rios, Brenda Sztryk
+AUTORES: Marina Toledo, Alejandro Ante, Leonardo Rios, Brenda Sztryk
 FECHA: 2024
 VERSION: 1.0 
 """
@@ -10,12 +10,33 @@ import colorama
 from colorama import Fore,Style
 
 def guardarValidar(listaValidacion):
+    '''
+    Función que guarda, en formato .json la lista de usuarios para ser utilizados como forma de 
+    validación
+    Parametros:
+    Un diccionarios
+    Retorna: 
+    Ninguno
+    Autor: Leonardo Rios
+    Colaboradores: Marina Toledo, Ale Ante, Brenda Sztryk
+    '''
 
     with open("validacion.json", "w") as file:
         json.dump(listaValidacion,file,indent=4)
     return
 
 def cargaValidar():
+    '''
+    Funcion que carga los datos de los usuarios que están registrados para utilizar la 
+    aplicación.
+    Parametro: 
+    Ninguno
+    Retorna: 
+    Un diccionario vacio
+    Autor: Leonardo Rios
+    Colaboradores: Marina Toledo, Ale Ante, Brenda Sztryk
+
+    '''
 
     try:
         with open("validacion.json", "r") as file: 
@@ -31,7 +52,7 @@ def validar(listaUsuario):
     empleados, agregando, o modificando, dependiendo de la rotación de los
     mismos
     AUTOR: Brenda Sztryk
-    COLABORADORES: 
+    COLABORADORES: Leonardo Rios, Alejandro Ante, Marina Toledo
     '''
 
     print((Style.BRIGHT + "*" * 20).center(100) )
@@ -40,7 +61,7 @@ def validar(listaUsuario):
     
     while True:
         try:
-            respo = input(colorama.Fore.LIGHTMAGENTA_EX + "iere registrar un nuevo Usuario?S/N\n>  " + colorama.Fore.RESET).upper().center(100)
+            respo = input(colorama.Fore.LIGHTMAGENTA_EX + "Quiere registrar un nuevo Usuario?S/N\n>  " + colorama.Fore.RESET).upper()
             if respo == "S":
                 inUsuario = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese el nombre de usuario a registrar\n>  ")
                 inPass = input("Ingrese la contraseña a registrar\n>  " + colorama.Fore.RESET)
@@ -54,10 +75,10 @@ def validar(listaUsuario):
         except:
             print(colorama.Fore.RED + "Validacion Incorrecta" + colorama.Fore.RESET)
 
-    intentos = 3
-    while intentos > 0:
+    while True:
         try:
             ingUsuario = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese su Usuario:  " + colorama.Fore.RESET)
+            limpiar_Pantalla()
             if ingUsuario in listaUsuario:
                 ingPassword = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese su contraseña:  " + colorama.Fore.RESET)
                 if ingPassword in listaUsuario.values():
@@ -68,26 +89,7 @@ def validar(listaUsuario):
                     break
                 else:
                     print(colorama.Fore.RED + "Password Incorrecto!" + colorama.Fore.RESET)
-                    intentos = intentos - 1
-                    if intentos == 1:
-                        print(colorama.Fore.RED + "Le queda un intento mas"+ colorama.Fore.RESET.upper())
-            else:
-                while True:
-                    try:
-                        print(colorama.Fore.RED + "Usuario No registrado!" + colorama.Fore.RESET)
-                        respo2 = input(colorama.Fore.LIGHTMAGENTA_EX + "Quiere registrar al Usuario? S/N\n>  " + colorama.Fore.RESET).upper()
-                        if respo2 == "S":
-                            inUsuario = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese el nombre de usuario a registrar\n>  " +colorama.Fore.RESET)
-                            inPass = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese la contraseña a registrar\n>  " + colorama.Fore.RESET)
-                            listaUsuario[inUsuario]=inPass
-                            guardarValidar(listaUsuario)
-                            return listaUsuario
-                        else:
-                            input(colorama.Fore.LIGHTMAGENTA_EX + "Presione Enter para Continuar" + colorama.Fore.RESET)
-                            limpiar_Pantalla()
-                            break
-                    except(ValueError):
-                        print("Caracter No Valido!".upper())
+                    
         except:
             print("Dato no valido")
 
@@ -528,8 +530,8 @@ while bande:
             input("\t\tPresione enter para continuar")
 
         case "g": #Salir
-            print(("-"*70).center(100))
-            print("\t\tUsted seleccionó Salir")
+            print(colorama.Fore.LIGHTMAGENTA_EX +("-"*70).center(100) + colorama.Fore.RESET)
+            print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tUsted seleccionó Salir" + colorama.Fore.RESET)
             break
         case _:
             print("\t\tValor invalido")
