@@ -252,7 +252,6 @@ def modificarD(lista):
     Autor: Leonardo Rios
     Colaboradores: Marina Toledo, Ale Ante, Brenda Sztryk
     '''
-    lista = cargar_Pacientes()
     limpiar_Pantalla()
     print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tUsted seleccionó Modificar" + colorama.Fore.RESET)
     print(("-"*70).center(100))
@@ -286,6 +285,7 @@ def modificarD(lista):
                             print(f'\t\tPeso de la Mascota: {valor2[num]["peso"]} kg')
                             carti += 1
                 print((colorama.Fore.LIGHTMAGENTA_EX + "="*70 + colorama.Fore.RESET).center(100))
+                print(valor2[num]['edad'])
                 while True:
                     try:
                         respo2 = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDesea cambiar datos de la cartilla S/N\n\t\t>  " + colorama.Fore.RESET).upper()
@@ -304,15 +304,16 @@ def modificarD(lista):
                                                 limpiar_Pantalla()
                                                 print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDecidió cambiar Edad:")
                                                 nuevaEdad = int(input("\t\tIngrese la nueva edad de la mascota\n\t\t> " + colorama.Fore.RESET))
-                                                valor2[num]["edad"] = nuevaEdad
+                                                valor2[num]['edad'] = nuevaEdad
                                                 print(colorama.Fore.LIGHTGREEN_EX + "\t\tCambio realizado!" + colorama.Fore.RESET)
+                                                print(valor2[num]['edad'])
                                                 guardar_Pacientes()
                                                 break
                                             case "b":
                                                 limpiar_Pantalla()
                                                 print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDecidió cambiar Peso")
                                                 nuevoPeso = float(input("\t\tIngrese el nuevo peso de la mascota\n\t\t> " + colorama.Fore.RESET))
-                                                valor2[num]["peso"] = nuevoPeso
+                                                valor2[num]['peso'] = nuevoPeso
                                                 print(colorama.Fore.LIGHTGREEN_EX + "\t\tCambio realizado!"+ colorama.Fore.RESET)
                                                 guardar_Pacientes()
                                                 break
@@ -331,6 +332,7 @@ def modificarD(lista):
         except:
             print(colorama.Fore.RED + "Valor Invalido" + colorama.Fore.RESET)
         break
+    return lista
     
 
 def buscar_Pac (pacientes):
