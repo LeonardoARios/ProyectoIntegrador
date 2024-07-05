@@ -58,6 +58,7 @@ def validar(listaUsuario):
     print((Style.BRIGHT + "*" * 20).center(100) )
     print ("Gestion Integral para Veterinarios".center(95))
     print((Style.BRIGHT + "*" * 40).center(100) )
+    print ()
     
     while True:
         try:
@@ -138,7 +139,7 @@ def limpiar_Pantalla():
     COLABORADORES:
     """
 
-    os.system("clear")
+    os.system("clear") # tener en cuenta el CLS para windows
 
 def eliminar_Pac(pacientes):
     """ 
