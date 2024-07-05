@@ -161,7 +161,7 @@ def eliminar_Pac(pacientes):
     # con los índices de la lista.Tambien probe la conversión de lista a diccionario
     # pero igualmente el "tipo" era lista... esto quedó finalmente.. la listaaa 🤯🤯🤯
     
-    limpiar_Pantalla()
+        limpiar_Pantalla()
 
     print("Usted seleccionó" + Fore.LIGHTMAGENTA_EX  + " ELIMINAR " + Style.RESET_ALL)
     print()
@@ -174,13 +174,16 @@ def eliminar_Pac(pacientes):
         print()
         if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
             #paci = pacientes[dni]
+            print("="*30)
             print(f"DNI: {dni}\n{pacientes[dni]['nombre']} {pacientes[dni]['Apellido']}")
+            print("="*30)
             print()
             confirmar = input(Fore.LIGHTMAGENTA_EX + "Confirma eliminación: S / N: " + Fore.RESET).upper()
             if confirmar == "S":
                 del pacientes[dni]
                 guardar_Pacientes()
-                print ("Cliente eliminado exitosamente")
+                print()
+                print (Fore.LIGHTGREEN_EX + "Cliente eliminado exitosamente" + Fore.RESET)
             else:
                 return
         else:
@@ -194,8 +197,8 @@ def eliminar_Pac(pacientes):
                 print (f"{pacientes[dni]['nombre']} {pacientes[dni]['Apellido']}")
                 print("="*30)
                 for num,mascota in enumerate(paci):
-                    print (f"Mascota {num + 1}: {mascota['nombre Mascota']} - {mascota['tipo']}") #sumo 1 p/ numerar desde 1
-                    print("-"*30)
+                    print (Fore.LIGHTMAGENTA_EX + f"Mascota {num + 1}: {Fore.RESET} {mascota['nombre Mascota']} - {mascota['tipo']}") #sumo 1 p/ numerar desde 1
+                print()
                 eliminar = int(input(Fore.LIGHTMAGENTA_EX + "Ingrese NUMERO de mascota a dar de baja: "  + Fore.RESET))
                 indice = eliminar - 1 # resto 1 xq los indices de la lista arrancan en cero. Restando coincidiria: el numero a eliminar con el indice
                 if indice >= 0:
@@ -209,7 +212,7 @@ def eliminar_Pac(pacientes):
                     print(Fore.LIGHTMAGENTA_EX + "ERROR" + Fore.RESET + "ingrese un número correcto" )
                     return
             elif len(paci) == 0: # si es cero, no hay mascotas
-                print (f"NO existen mascotas asociadas a {pacientes[dni]['nombre']}")
+                print (f"NO existen mascotas asociadas a {Fore.LIGHTMAGENTA_EX} {pacientes[dni]['nombre']}")
                 darBaja = input("Desea dar de baja este DNI: S / N: ").upper()
                 if darBaja == "S":
                     del pacientes[dni]
@@ -218,13 +221,13 @@ def eliminar_Pac(pacientes):
                     print()
                     incorporar = input("Desea incorporar una mascota: S / N ").upper()
                     if incorporar == "S":
-                        nomMascota=input("ingrese nombre: ")
+                        nomMascota=input("ingrese nombre mascota: ")
                         nuevaMascota = {"nueva Mascota": nomMascota}
                         paci.append(nuevaMascota)
                         guardar_Pacientes()
                         return
         else:
-            print("El DNI no existe en la base de datos")
+            print(f"El DNI {Fore.LIGHTMAGENTA_EX} NO {Fore.RESET} existe en la base de datos")
             return
 
     
