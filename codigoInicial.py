@@ -247,7 +247,7 @@ def listar(lista):
     for nombre, valor in lista.items():
         print()
         print(colorama.Fore.LIGHTMAGENTA_EX + "Datos del Pacientes:".upper())
-        print(("=" * 70).center(100) + colorama.Fore.RESET)
+        print(("=" * 70) + colorama.Fore.RESET)
         for itemPaci, valorPaci in valor.items():
             if itemPaci == "mascotas":
                 continue
