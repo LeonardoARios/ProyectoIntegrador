@@ -145,11 +145,16 @@ def eliminar_Pac(pacientes):
     AUTOR: Brenda Sztryk, Ale Ante
     COLABORADORES:
     """
-    # La idea es eliminar una mascota de un dni asociado. dado que las mascotas
+    # La idea es eliminar una mascota de un dni asociado. Dado que las mascotas
     # son diccionarios dentro de una lista, se nos complico poder acceder x indice
-    # para eliminar.
-    # Brenda: como desafio personal me propuse resolverlo.... (esta en proceso)..
-    # mientras, la eliminacion es del dueño con sus mascotas 🤯🤯
+    # y luego de muchos intentos optamos solo x eliminar al dueño y sus mascotas.
+    # Brenda: como desafio personal me propuse resolverlo.... (probé mil maneras):
+    # con len, con rango, despues quise asociar una enumeracion para ver si era mas
+    # facil eliminar unicamente a la mascota ingresando ese identificador numerico, 
+    # busque informacion al respecto, di con el "enumerate", y aca surgio que si
+    # enumeraba desde 1 luego deberia restar 1 para que los datos quedaran vinculados 
+    # con los indices de la lista.Tambien probe la converion de lista a diccionario
+    # pero igualmente el "tipo" era lista... esto quedó finalmente 🤯🤯
     
     limpiar_Pantalla()
 
@@ -160,7 +165,6 @@ def eliminar_Pac(pacientes):
     print()
     op = input(Fore.LIGHTMAGENTA_EX + "Ingrese opción deseada: " + Fore.RESET).upper()
     if op == "A":
-        dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET) # si convierto a entero no me funciona.
         print()
         if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
             #paci = pacientes[dni]
@@ -175,6 +179,47 @@ def eliminar_Pac(pacientes):
                 return
         else:
             print ("El DNI no se encuentra registrado") 
+    if op == "B":
+        dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)
+        print()
+        paci = pacientes[dni]["mascotas"] # lista con diccionarios de mascotas
+        if dni in pacientes:
+            if len(paci) > 0: # si es > a 0: hay mascotas
+                print (f"{pacientes[dni]['nombre']} {pacientes[dni]['Apellido']}")
+                print("="*30)
+                for num,mascota in enumerate(paci):
+                    print (f"Mascota {num + 1}: {mascota['nombre Mascota']} - {mascota['tipo']}") #sumo 1 p/ numerar desde 1
+                    print("-"*30)
+                eliminar = int(input(Fore.LIGHTMAGENTA_EX + "Ingrese NUMERO de mascota a dar de baja: "  + Fore.RESET))
+                indice = eliminar - 1 # resto 1 xq los indices de la lista arrancan en cero. Restando coincidiria: el numero a eliminar con el indice
+                if indice >= 0:
+                    del paci[indice]
+                    opcion = input ("Confirma la baja de la mascota? S / N: ").upper()
+                    if opcion == "S":
+                        guardar_Pacientes()
+                        print()
+                        print (Fore.LIGHTGREEN_EX + f"La Mascota {mascota['nombre Mascota']} se dio de baja EXITOSAMENTE" + Fore.RESET)
+                else:
+                    print(Fore.LIGHTMAGENTA_EX + "ERROR, ingrese un numero correcto" + Fore.RESET)
+                    return
+            elif len(paci) == 0: # si es cero, no hay mascotas
+                print (f"NO existen mascotas asociadas a {pacientes[dni]['nombre']}")
+                darBaja = input("Desea dar de baja este DNI: S / N: ").upper()
+                if darBaja == "S":
+                    del pacientes[dni]
+                    guardar_Pacientes()
+                else:
+                    print()
+                    incorporar = input("Desea incorporar una mascota: S / N ").upper()
+                    if incorporar == "S":
+                        nomMascota=input("ingrese nombre: ")
+                        nuevaMascota = {"nueva Mascota": nomMascota}
+                        paci.append(nuevaMascota)
+                        guardar_Pacientes()
+                        return
+        else:
+            print("El DNI no existe en la base de datos")
+            return
 
     
 def listar(lista):
