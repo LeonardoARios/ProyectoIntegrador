@@ -24,94 +24,72 @@ def cargaValidar():
         return {}
 
 def validar(listaUsuario):
+    '''
+    Función que permite el ingreso a la aplicación. Requiere usuarios
+    permitidos con pass de 3 intentos de acceso.
+    Cree una lista de usuarios que a futuro puede cambiar ya sea quitando
+    empleados, agregando, o modificando, dependiendo de la rotación de los
+    mismos
+    AUTOR: Brenda Sztryk
+    COLABORADORES: 
+    '''
 
+    print((Style.BRIGHT + "*" * 20).center(100) )
+    print ("Gestion Integral para Veterinarios".center(95))
+    print((Style.BRIGHT + "*" * 40).center(100) )
+    
     while True:
         try:
-            respo = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tQuiere registrar un nuevo Usuario?S/N\n\t\t>  " + colorama.Fore.RESET).upper().center(100)
+            respo = input(colorama.Fore.LIGHTMAGENTA_EX + "iere registrar un nuevo Usuario?S/N\n>  " + colorama.Fore.RESET).upper().center(100)
             if respo == "S":
-                inUsuario = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese el nombre de usuario a registrar\n\t\t>  ")
-                inPass = input("\t\tIngrese la contraseña a registrar\n\t\t>  " + colorama.Fore.RESET)
+                inUsuario = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese el nombre de usuario a registrar\n>  ")
+                inPass = input("Ingrese la contraseña a registrar\n>  " + colorama.Fore.RESET)
                 listaUsuario[inUsuario]=inPass
                 guardarValidar(listaUsuario)
                 return listaUsuario
             else:
-                input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tPresine Enter para continuar" + colorama.Fore.RESET)
+                input(colorama.Fore.LIGHTMAGENTA_EX + "Presine Enter para continuar" + colorama.Fore.RESET)
                 limpiar_Pantalla()
                 break
         except:
-            print(colorama.Fore.RED + "\t\tValidacion Incorrecta" + colorama.Fore.RESET)
+            print(colorama.Fore.RED + "Validacion Incorrecta" + colorama.Fore.RESET)
 
     intentos = 3
     while intentos > 0:
         try:
-            ingUsuario = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese su Usuario:  " + colorama.Fore.RESET)
+            ingUsuario = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese su Usuario:  " + colorama.Fore.RESET)
             if ingUsuario in listaUsuario:
-                ingPassword = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese su contraseña:  " + colorama.Fore.RESET)
+                ingPassword = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese su contraseña:  " + colorama.Fore.RESET)
                 if ingPassword in listaUsuario.values():
                     limpiar_Pantalla()
-                    print(colorama.Fore.LIGHTGREEN_EX + "\t\tIngreso Correcto\n\t\tBienvenido!" + colorama.Fore.RESET)
-                    input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tPresione Enter para Continuar" + colorama.Fore.RESET)
+                    print(colorama.Fore.LIGHTGREEN_EX + "Ingreso Correcto\nBienvenido!" + colorama.Fore.RESET)
+                    input(colorama.Fore.LIGHTMAGENTA_EX + "Presione Enter para Continuar" + colorama.Fore.RESET)
                     limpiar_Pantalla()
                     break
                 else:
-                    print(colorama.Fore.RED + "\t\tPassword Incorrecto!" + colorama.Fore.RESET)
+                    print(colorama.Fore.RED + "Password Incorrecto!" + colorama.Fore.RESET)
                     intentos = intentos - 1
                     if intentos == 1:
-                        print(colorama.Fore.RED + "\t\tLe queda un intento mas"+ colorama.Fore.RESET.upper())
+                        print(colorama.Fore.RED + "Le queda un intento mas"+ colorama.Fore.RESET.upper())
             else:
                 while True:
                     try:
-                        print(colorama.Fore.RED + "\t\tUsuario No registrado!" + colorama.Fore.RESET)
-                        respo2 = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tQuiere registrar al Usuario? S/N\n\t\t>  " + colorama.Fore.RESET).upper()
+                        print(colorama.Fore.RED + "Usuario No registrado!" + colorama.Fore.RESET)
+                        respo2 = input(colorama.Fore.LIGHTMAGENTA_EX + "Quiere registrar al Usuario? S/N\n>  " + colorama.Fore.RESET).upper()
                         if respo2 == "S":
-                            inUsuario = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese el nombre de usuario a registrar\n\t\t>  " +colorama.Fore.RESET)
-                            inPass = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese la contraseña a registrar\n\t\t>  " + colorama.Fore.RESET)
+                            inUsuario = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese el nombre de usuario a registrar\n>  " +colorama.Fore.RESET)
+                            inPass = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese la contraseña a registrar\n>  " + colorama.Fore.RESET)
                             listaUsuario[inUsuario]=inPass
                             guardarValidar(listaUsuario)
                             return listaUsuario
                         else:
-                            input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tPresione Enter para Continuar" + colorama.Fore.RESET)
+                            input(colorama.Fore.LIGHTMAGENTA_EX + "Presione Enter para Continuar" + colorama.Fore.RESET)
+                            limpiar_Pantalla()
                             break
                     except(ValueError):
-                        print("\t\tCaracter No Valido!".upper())
+                        print("Caracter No Valido!".upper())
         except:
-            print("\t\tDato no valido")
-'''
-def validar():
-    """ 
-    Función que permite el ingreso a la aplicación. Requiere usuarios
-    permitidos con pass de 3 intentos de acceso.
-    AUTOR: Brenda Sztryk
-    COLABORADORES: 
-    """
-    # Cree una lista de usuarios que a futuro puede cambiar ya sea quitando
-    # empleados, agregando, o modificando, dependiendo de la rotación de los
-    # mismos
-    # LEO ESTE COMENTARIO SI TENES QUE MODIFICARLO EN BASE AL CAMBIO QUE PROPUSISTE, HACELO
-    
-    limpiar_Pantalla()
-    usuValidos = ["Brenda", "Leo", "Marina", "Ale"] # NOMBRES VALIDOS Y PASS PARA USO DEL SISTEMA...PUEDE SER CUALQUIER OTRO NOMBRE Y MENOS USUARIOS
-    passValido = "pet"
-    intentos = 3
-
-    while intentos > 0:
-        usuario = input ("ingrese su usuario para ingresar al sistema: ").lower()
-        contraseña = input ("ingrese su contraseña de acceso: ").lower()
-        for i in range (len(usuValidos)):
-            usuValidos[i] = usuValidos[i].lower() #pase usuValidos a minusc. p/ comparar en el if con usuario del input
-            if usuValidos[i] == usuario and passValido.lower() == contraseña:
-                print ()
-                print((Style.BRIGHT + "INGRESO EXITOSO!!").center(100))
-                intentos = 0
-                break
-        else:
-            intentos = intentos - 1
-            print(f"error! le quedan {intentos} intentos ")
-            if intentos == 0:
-                print("acceso BLOQUEADO!! ",end="")
-                print("comuniquese al: 📱 1222-3334")
-                return
-''' 
+            print("Dato no valido")
 
 def cargar_Pacientes(): # lee el archivo y lo pone en el dicc.
     """
@@ -158,7 +136,7 @@ def limpiar_Pantalla():
     COLABORADORES:
     """
 
-    os.system("cls")
+    os.system("clear")
 
 def eliminar_Pac(pacientes):
     """ 
@@ -209,35 +187,35 @@ def listar(lista):
     AUTOR: Leonardo Rios
     COLABORADORES: Marina Toledo, Ale Ante, Brenda Sztryk
     """
-    print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tUsted seleccionó Listar" + colorama.Fore.RESET)
-    print(("-"*70).center(100))
+    print(colorama.Fore.LIGHTMAGENTA_EX + "Usted seleccionó Listar" + colorama.Fore.RESET)
+    print(("-"*70))
     limpiar_Pantalla()
     for nombre, valor in lista.items():
         print()
-        print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDatos del Pacientes:".upper())
+        print(colorama.Fore.LIGHTMAGENTA_EX + "Datos del Pacientes:".upper())
         print(("=" * 70).center(100) + colorama.Fore.RESET)
         for itemPaci, valorPaci in valor.items():
             if itemPaci == "mascotas":
                 continue
-            print(f'\t\t{itemPaci}: {valorPaci}'.upper())
+            print(f'{itemPaci}: {valorPaci}'.upper())
         print()
-        print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tMascotas:".upper())
-        print(("=" * 70).center(100)+ colorama.Fore.RESET)
+        print(colorama.Fore.LIGHTMAGENTA_EX + "Mascotas:".upper())
+        print(("=" * 70)+ colorama.Fore.RESET)
         for itemPaci, valorPaci in valor.items():
             if itemPaci == "mascotas":
                 num = len(valorPaci)
                 carti = 1
                 while num > 0:
                     num -= 1
-                    print(f'{("-" * 35)}{carti}{"-" * 35}'.center(100))
-                    print(f'\t\tNombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
-                    print(f'\t\tTipo de Mascota: {valorPaci[num]["tipo"]}')
-                    print(f'\t\tRaza de Mascota: {valorPaci[num]["raza"]}')
-                    print(f'\t\tSexo de la Masota: {valorPaci[num]["sexo"]}')
-                    print(f'\t\tEdad de la Mascota: {valorPaci[num]["edad"]} años')
-                    print(f'\t\tPeso de la Mascota: {valorPaci[num]["peso"]}Kg')
+                    print(f'{("-" * 30)}Cartilla {carti}{"-" * 30}')
+                    print(f'Nombre de Mascota: {valorPaci[num]["nombre Mascota"]}')
+                    print(f'Tipo de Mascota: {valorPaci[num]["tipo"]}')
+                    print(f'Raza de Mascota: {valorPaci[num]["raza"]}')
+                    print(f'Sexo de la Masota: {valorPaci[num]["sexo"]}')
+                    print(f'Edad de la Mascota: {valorPaci[num]["edad"]} años')
+                    print(f'Peso de la Mascota: {valorPaci[num]["peso"]}Kg')
                     carti += 1
-    print(colorama.Fore.LIGHTMAGENTA_EX + ("=" * 70).center(100)+ colorama.Fore.RESET)
+    print(colorama.Fore.LIGHTMAGENTA_EX + ("=" * 70)+ colorama.Fore.RESET)
     input("\t\tPresione Enter para continuar")
     limpiar_Pantalla()
 
@@ -253,73 +231,72 @@ def modificarD(lista):
     Colaboradores: Marina Toledo, Ale Ante, Brenda Sztryk
     '''
     limpiar_Pantalla()
-    print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tUsted seleccionó Modificar" + colorama.Fore.RESET)
-    print(("-"*70).center(100))
+    print(colorama.Fore.LIGHTMAGENTA_EX + "Usted seleccionó Modificar" + colorama.Fore.RESET)
+    print(("-"*70))
     while True:
         try:
-            bucaId = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese el DNI a buscar: " + colorama.Fore.RESET)
+            bucaId = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese el DNI a buscar: " + colorama.Fore.RESET)
             if bucaId in lista.keys():
                 print()
-                print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDatos del Paciente".upper())
-                print(("="*70 + colorama.Fore.RESET).center(100))
+                print(colorama.Fore.LIGHTMAGENTA_EX + "Datos del Paciente".upper())
+                print(("="*70 + colorama.Fore.RESET))
                 for nombre, valor in lista[bucaId].items():
                     if nombre == 'mascotas':
                         mascota = nombre
                         continue
-                    print(f'\t\t{nombre}: {valor}')
+                    print(f'{nombre}: {valor}')
                 print()
-                print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDatos de Mascotas".upper())
-                print(("="*70 + colorama.Fore.RESET).center(100))
+                print(colorama.Fore.LIGHTMAGENTA_EX + "Datos de Mascotas".upper())
+                print(("="*70 + colorama.Fore.RESET))
                 for masco, valor2 in lista[bucaId].items():
                     if masco == 'mascotas':
                         num = len(valor2)
                         carti = 1
                         while num >0:
                             num -= 1
-                            print(f'{("-" * 25)}Cartilla {carti}{"-" *35}'.center(100))
-                            print(f'\t\tNombre de Mascotas: {valor2[num]["nombre Mascota"]}')
-                            print(f'\t\tTipo de Mascota: {valor2[num]["tipo"]}')
-                            print(f'\t\tRaza de la Mascota: {valor2[num]["raza"]}')
-                            print(f'\t\tSexo de la Mascota: {valor2[num]["sexo"]}')
-                            print(f'\t\tEdad de la Mascota: {valor2[num]["edad"]} años')
-                            print(f'\t\tPeso de la Mascota: {valor2[num]["peso"]} kg')
+                            print(f'{("-" * 25)}Cartilla {carti}{"-" *35}')
+                            print(f'Nombre de Mascotas: {valor2[num]["nombre Mascota"]}')
+                            print(f'Tipo de Mascota: {valor2[num]["tipo"]}')
+                            print(f'Raza de la Mascota: {valor2[num]["raza"]}')
+                            print(f'Sexo de la Mascota: {valor2[num]["sexo"]}')
+                            print(f'Edad de la Mascota: {valor2[num]["edad"]} años')
+                            print(f'Peso de la Mascota: {valor2[num]["peso"]} kg')
                             carti += 1
-                print((colorama.Fore.LIGHTMAGENTA_EX + "="*70 + colorama.Fore.RESET).center(100))
-                print(valor2[num]['edad'])
+                print((colorama.Fore.LIGHTMAGENTA_EX + "="*70 + colorama.Fore.RESET))
                 while True:
                     try:
-                        respo2 = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDesea cambiar datos de la cartilla S/N\n\t\t>  " + colorama.Fore.RESET).upper()
+                        respo2 = input(colorama.Fore.LIGHTMAGENTA_EX + "Desea cambiar datos de la cartilla S/N\n>  " + colorama.Fore.RESET).upper()
                         if respo2 == "S":
-                            catillaCambiar = int(input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese el numero de cartilla que desea cambiar\n\t\t>  "+ colorama.Fore.RESET)) -1
+                            catillaCambiar = int(input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese el numero de cartilla que desea cambiar\n>  "+ colorama.Fore.RESET)) -1
                             limpiar_Pantalla()
                             num = len(valor2)
                             if catillaCambiar in range(0, len(valor2) + 1):
                                 num -= 1
-                                print(colorama.Fore.LIGHTMAGENTA_EX + f'\t\tDecidió cambiar {valor2[num]["nombre Mascota"]}' + colorama.Fore.RESET)
+                                print(colorama.Fore.LIGHTMAGENTA_EX + f'Decidió cambiar {valor2[num]["nombre Mascota"]}' + colorama.Fore.RESET)
                                 while True:
                                     try:
-                                        datoACambiar = input(colorama.Fore.LIGHTMAGENTA_EX + "\t\tIngrese la letra referida al dato que desea cambiar\n\t\ta.Edad\n\t\tb.Peso\n\t\t>  "+ colorama.Fore.RESET).lower()
+                                        datoACambiar = input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese la letra referida al dato que desea cambiar\na.Edad\nb.Peso\n>  "+ colorama.Fore.RESET).lower()
                                         match datoACambiar:
                                             case "a":
                                                 limpiar_Pantalla()
-                                                print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDecidió cambiar Edad:")
-                                                nuevaEdad = int(input("\t\tIngrese la nueva edad de la mascota\n\t\t> " + colorama.Fore.RESET))
+                                                print(colorama.Fore.LIGHTMAGENTA_EX + "Decidió cambiar Edad:")
+                                                nuevaEdad = int(input("Ingrese la nueva edad de la mascota\n> " + colorama.Fore.RESET))
                                                 valor2[num]['edad'] = nuevaEdad
-                                                print(colorama.Fore.LIGHTGREEN_EX + "\t\tCambio realizado!" + colorama.Fore.RESET)
+                                                print(colorama.Fore.LIGHTGREEN_EX + "Cambio realizado!" + colorama.Fore.RESET)
                                                 print(valor2[num]['edad'])
                                                 guardar_Pacientes()
                                                 break
                                             case "b":
                                                 limpiar_Pantalla()
-                                                print(colorama.Fore.LIGHTMAGENTA_EX + "\t\tDecidió cambiar Peso")
-                                                nuevoPeso = float(input("\t\tIngrese el nuevo peso de la mascota\n\t\t> " + colorama.Fore.RESET))
+                                                print(colorama.Fore.LIGHTMAGENTA_EX + "Decidió cambiar Peso")
+                                                nuevoPeso = float(input("Ingrese el nuevo peso de la mascota\n> " + colorama.Fore.RESET))
                                                 valor2[num]['peso'] = nuevoPeso
-                                                print(colorama.Fore.LIGHTGREEN_EX + "\t\tCambio realizado!"+ colorama.Fore.RESET)
+                                                print(colorama.Fore.LIGHTGREEN_EX + "Cambio realizado!"+ colorama.Fore.RESET)
                                                 guardar_Pacientes()
                                                 break
                                             case _:
                                                 limpiar_Pantalla()
-                                                print(colorama.Fore.RED + "\t\tValor no válido!" + colorama.Fore.RESET)
+                                                print(colorama.Fore.RED + "Valor no válido!" + colorama.Fore.RESET)
                                     except:
                                         print(colorama.Fore.RED + "Valor Invalido!" + colorama.Fore.RESET)
                         else:
@@ -365,7 +342,7 @@ def buscar_Pac (pacientes):
             print (Fore.LIGHTMAGENTA_EX + Style.BRIGHT+ f"{"Mascota"} {cont}" + Style.RESET_ALL)
             cont = cont + 1
             for c,v in elem.items():
-                print (f"\t{c}: {v}")
+                print (f"{c}: {v}")
             print()
     else:
         print(f"DNI: {dni} no se encuentra registrado. \nDesea registrarlo ahora? " )
