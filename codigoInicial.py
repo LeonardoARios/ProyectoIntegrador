@@ -68,6 +68,7 @@ def validar(listaUsuario):
                 inPass = input("Ingrese la contraseña a registrar\n>  " + colorama.Fore.RESET)
                 listaUsuario[inUsuario]=inPass
                 guardarValidar(listaUsuario)
+                limpiar_Pantalla()
                 return listaUsuario
             else:
                 input(colorama.Fore.LIGHTMAGENTA_EX + "Presione Enter para continuar" + colorama.Fore.RESET)
@@ -187,48 +188,53 @@ def eliminar_Pac(pacientes):
             else:
                 return
         else:
-            print ("El DNI no se encuentra registrado") 
+            print (colorama.Fore.LIGHTMAGENTA_EX + "El DNI no se encuentra registrado" + colorama.Fore.RESET) 
     if op == "B":
-        dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)
-        print()
-        paci = pacientes[dni]["mascotas"] # lista con diccionarios de mascotas
-        if dni in pacientes:
-            if len(paci) > 0: # si es > a 0: hay mascotas
-                print (f"{pacientes[dni]['nombre']} {pacientes[dni]['Apellido']}")
-                print("="*30)
-                for num,mascota in enumerate(paci):
-                    print (Fore.LIGHTMAGENTA_EX + f"Mascota {num + 1}: {Fore.RESET} {mascota['nombre Mascota']} - {mascota['tipo']}") #sumo 1 p/ numerar desde 1
+        while True:
+            try:
+                dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)
                 print()
-                eliminar = int(input(Fore.LIGHTMAGENTA_EX + "Ingrese NUMERO de mascota a dar de baja: "  + Fore.RESET))
-                indice = eliminar - 1 # resto 1 xq los indices de la lista arrancan en cero. Restando coincidiria: el numero a eliminar con el indice
-                if indice >= 0:
-                    del paci[indice]
-                    opcion = input ("Confirma la baja de la mascota? S / N: ").upper()
-                    if opcion == "S":
-                        guardar_Pacientes()
+                paci = pacientes[dni]["mascotas"] # lista con diccionarios de mascotas
+                if dni in pacientes:
+                    if len(paci) > 0: # si es > a 0: hay mascotas
+                        print (f"{pacientes[dni]['nombre']} {pacientes[dni]['Apellido']}")
+                        print("="*30)
+                        for num,mascota in enumerate(paci):
+                            print (Fore.LIGHTMAGENTA_EX + f"Mascota {num + 1}: {Fore.RESET} {mascota['nombre Mascota']} - {mascota['tipo']}") #sumo 1 p/ numerar desde 1
                         print()
-                        print (Fore.LIGHTGREEN_EX + f"La Mascota {mascota['nombre Mascota']} se dio de baja EXITOSAMENTE" + Fore.RESET)
+                        eliminar = int(input(Fore.LIGHTMAGENTA_EX + "Ingrese NUMERO de mascota a dar de baja: "  + Fore.RESET))
+                        indice = eliminar - 1 # resto 1 xq los indices de la lista arrancan en cero. Restando coincidiria: el numero a eliminar con el indice
+                        if indice >= 0:
+                            del paci[indice]
+                            opcion = input ("Confirma la baja de la mascota? S / N: ").upper()
+                            if opcion == "S":
+                                guardar_Pacientes()
+                                print()
+                                print (Fore.LIGHTGREEN_EX + f"La Mascota {mascota['nombre Mascota']} se dio de baja EXITOSAMENTE" + Fore.RESET)
+                        else:
+                            print(Fore.LIGHTMAGENTA_EX + "ERROR" + Fore.RESET + "ingrese un número correcto" )
+                            return
+                    elif len(paci) == 0: # si es cero, no hay mascotas
+                        print (f"NO existen mascotas asociadas a {Fore.LIGHTMAGENTA_EX} {pacientes[dni]['nombre']}")
+                        darBaja = input("Desea dar de baja este DNI: S / N: ").upper()
+                        if darBaja == "S":
+                            del pacientes[dni]
+                            guardar_Pacientes()
+                        else:
+                            print()
+                            incorporar = input("Desea incorporar una mascota: S / N ").upper()
+                            if incorporar == "S":
+                                nomMascota=input("ingrese nombre mascota: ")
+                                nuevaMascota = {"nueva Mascota": nomMascota}
+                                paci.append(nuevaMascota)
+                                guardar_Pacientes()
+                                return
+                    break
                 else:
-                    print(Fore.LIGHTMAGENTA_EX + "ERROR" + Fore.RESET + "ingrese un número correcto" )
+                    print(f"El DNI {Fore.LIGHTMAGENTA_EX} NO {Fore.RESET} existe en la base de datos")
                     return
-            elif len(paci) == 0: # si es cero, no hay mascotas
-                print (f"NO existen mascotas asociadas a {Fore.LIGHTMAGENTA_EX} {pacientes[dni]['nombre']}")
-                darBaja = input("Desea dar de baja este DNI: S / N: ").upper()
-                if darBaja == "S":
-                    del pacientes[dni]
-                    guardar_Pacientes()
-                else:
-                    print()
-                    incorporar = input("Desea incorporar una mascota: S / N ").upper()
-                    if incorporar == "S":
-                        nomMascota=input("ingrese nombre mascota: ")
-                        nuevaMascota = {"nueva Mascota": nomMascota}
-                        paci.append(nuevaMascota)
-                        guardar_Pacientes()
-                        return
-        else:
-            print(f"El DNI {Fore.LIGHTMAGENTA_EX} NO {Fore.RESET} existe en la base de datos")
-            return
+            except(KeyError,ValueError):
+                print(colorama.Fore.LIGHTMAGENTA_EX + "El DNI no esta registrado" + colorama.Fore.RESET)
 
     
 def listar(lista):
