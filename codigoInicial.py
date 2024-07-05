@@ -170,6 +170,7 @@ def eliminar_Pac(pacientes):
     print()
     op = input(Fore.LIGHTMAGENTA_EX + "Ingrese opción deseada: " + Fore.RESET).upper()
     if op == "A":
+        dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)
         print()
         if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
             #paci = pacientes[dni]
