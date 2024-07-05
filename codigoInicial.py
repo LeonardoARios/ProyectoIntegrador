@@ -462,6 +462,45 @@ def agregar_Pac(pacientes):
     else:
         return
 
+
+def facturar():
+     
+    """
+    Función que muestra en la consola la lista de precios actualizada de los servicios
+    que brinda la veterinaria. Los servicios y sus valores se encuentran en un diccionario
+    que puede ser modificado por el programador.
+    No recibe argumentos
+    No retorna nada
+    """
+    serv = {'Consulta':6000,'Vacuna':3000,'Castración':7000,'Análisis':4000,'Radiografía':5000,'Ecografía':6000}
+    fecha = '05/07/2024'    #la fecha se carga automaticamente
+    print('='*100)
+    print()
+    print(Style.BRIGHT + ' SYS PETS '.center(100)) #Back. color de fondo
+    print(Style.RESET_ALL)
+    print('='*100)
+    print()
+    print(f'\tFecha: {fecha}'.rjust(90).center(100))
+    print()
+    print((" * " * 30).center(100))
+    print()
+    print (" Lista de precios ".center(40).center(100))
+    print()
+    print((" * " * 30).center(100) )
+    print()
+    print(f'\t Servicio \t  Precio ')
+    print()
+    cont = 1
+    for s, v in serv.items():
+       print(f'\t {s} \t  $ {v}')
+       cont = cont + 1
+    print('='*100)
+    print()
+    print('Precios válido por 3 días')
+    print()
+    print('='*100)
+    print()
+
 def menu():
     """
     La función propone opciones a seleccionar x el usuario
