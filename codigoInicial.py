@@ -178,7 +178,6 @@ def eliminar_Pac(pacientes):
         dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)
         print()
         if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
-            #paci = pacientes[dni]
             print("="*30)
             print(f"DNI: {dni}\n{pacientes[dni]['nombre']} {pacientes[dni]['Apellido']}")
             print("="*30)
@@ -192,7 +191,7 @@ def eliminar_Pac(pacientes):
             else:
                 return
         else:
-            print (colorama.Fore.LIGHTMAGENTA_EX + "El DNI no se encuentra registrado" + colorama.Fore.RESET) 
+            print (colorama.Fore.LIGHTMAGENTA_EX + "El DNI no se encuentra registrado" + Fore.RESET) 
     if op == "B":
         while True:
             try:
