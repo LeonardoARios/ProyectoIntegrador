@@ -140,7 +140,7 @@ def limpiar_Pantalla():
     COLABORADORES:
     """
 
-    os.system("clear") # tener en cuenta el CLS para windows
+    os.system("cls")
 
 def eliminar_Pac(pacientes):
     """ 
@@ -151,16 +151,16 @@ def eliminar_Pac(pacientes):
     AUTOR: Brenda Sztryk, Ale Ante
     COLABORADORES:
     """
-    # La idea es eliminar una mascota de un dni asociado. Dado que las mascotas
+    # La idea es eliminar una mascota asociada a un dni. Dado que las mascotas
     # son diccionarios dentro de una lista, se nos complicó poder acceder x índice
     # y luego de muchos intentos optamos solo x eliminar al dueño y sus mascotas.
     # Brenda: como desafío personal me propuse resolverlo.... (probé mil maneras):
-    # con len, con rango, despues quise asociar una enumeración para ver si era mas
-    # facil eliminar únicamente a la mascota ingresando ese identificador numérico, 
-    # busque informacion al respecto, llegué al "enumerate", y aca surgió que si
-    # enumeraba desde 1 luego deberia restar 1 para que los datos quedaran vinculados 
-    # con los índices de la lista.Tambien probe la conversión de lista a diccionario
-    # pero igualmente el "tipo" era lista... esto quedó finalmente.. la listaaa 🤯🤯🤯
+    # con len, con rango, despues quise enumerar para ver si era mas facil eliminar 
+    # únicamente a la mascota ingresando ese identificador numérico, busque informacion 
+    # al respecto, llegué al "enumerate", y aca surgió que si enumeraba desde 1 luego 
+    # deberia restar 1 para que los datos quedaran vinculados con los índices de la lista.
+    # Tambien probe la conversión de lista a diccionario pero igualmente el "tipo" era lista... 
+    # esto quedó finalmente.. la listaaa 🤯🤯🤯
     
     limpiar_Pantalla()
 
@@ -526,7 +526,6 @@ limpiar_Pantalla()
 pacientes = cargar_Pacientes()
 listaValidacion = cargaValidar()
 validar(listaValidacion)
-#validar() #llama a la funcion antes que el menu para que acceda solo el usuario permitido (nombre con inicial mayusc / pass: pet)
 bande = True
 op = menu()
 while bande:
