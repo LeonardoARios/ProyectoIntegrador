@@ -191,7 +191,7 @@ def eliminar_Pac(pacientes):
             else:
                 return
         else:
-            print (colorama.Fore.LIGHTMAGENTA_EX + "El DNI no se encuentra registrado" + Fore.RESET) 
+            print (Fore.LIGHTMAGENTA_EX + "El DNI no se encuentra registrado" + Fore.RESET) 
     if op == "B":
         while True:
             try:
