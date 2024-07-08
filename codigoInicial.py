@@ -151,16 +151,20 @@ def eliminar_Pac(pacientes):
     AUTOR: Brenda Sztryk, Ale Ante
     COLABORADORES:
     """
-    # La idea es eliminar una mascota asociada a un dni. Dado que las mascotas
-    # son diccionarios dentro de una lista, se nos complicó poder acceder x índice
-    # y luego de muchos intentos optamos solo x eliminar al dueño y sus mascotas.
-    # Brenda: como desafío personal me propuse resolverlo.... (probé mil maneras):
-    # con len, con rango, despues quise enumerar para ver si era mas facil eliminar 
-    # únicamente a la mascota ingresando ese identificador numérico, busque informacion 
-    # al respecto, llegué al "enumerate", y aca surgió que si enumeraba desde 1 luego 
-    # deberia restar 1 para que los datos quedaran vinculados con los índices de la lista.
-    # Tambien probe la conversión de lista a diccionario pero igualmente el "tipo" era lista... 
-    # esto quedó finalmente.. la listaaa 🤯🤯🤯
+    # La idea inicial fue eliminar x mascota. Dado que las mascotas son diccionarios 
+    # dentro de una lista, se nos complicó poder acceder x índice aún entendiendo el 
+    # tema de índices, luego de muchos intentos optamos x la eliminación del dueño y 
+    # sus mascotas asociadas, cumpliendo con la funcion de eliminar.
+    # Brenda: como desafío personal me propuse resolverlo.... (probé,probé,probé):
+    # con len, con rango, quise asociar una enumeración para facilitar eliminación
+    # únicamente de la mascota ingresando ese identificador numérico, busque información
+    # al respecto, llegué al "enumerate", y aca surgió que: si enumeraba desde 1, luego 
+    # deberia restar 1 para que los elementos quedaran vinculados con los índices de la
+    # lista.Tambien probé la conversión de lista a diccionario pero igualmente el "tipo" 
+    # seguia siendo lista... esto quedó finalmente.. la LISTAAA 🤯🤯🤯
+    # Para la entrega final incorporé al código: que si el DNI no registra mascotas
+    # se ofrezca el registro de una o varias o ninguna, tambien preguntar si
+    # el dueño de la mascota desea darse de baja o no.
     
     limpiar_Pantalla()
 
