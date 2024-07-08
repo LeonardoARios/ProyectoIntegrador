@@ -8,6 +8,7 @@ import json
 import os
 import colorama
 from colorama import Fore,Style
+from funcionesEmergencia import presupuestar
 
 def guardarValidar(listaValidacion):
     '''
@@ -533,7 +534,7 @@ def menu():
     """
     print()
     print((Style.BRIGHT + "*" * 40).center(100) )
-    print (" MENU ".center(20).center(100))
+    print (" MENU ".center(0).center(95))
     print((Style.BRIGHT + "*" * 40).center(100) )
     print(Style.RESET_ALL) #RESETEA LOS EFECTOS VISUALES DE ACA HACIA ABAJO, HASTA VOLVER A APLICARLO
     print(("SELECCIONE LETRA PARA OPCION DESEADA").center(40).center(100))
@@ -594,7 +595,7 @@ while bande:
         case "f":#Presupuestar
             print()
             print("\t\tUsted seleccionó Presupuestar")
-            #En Espera
+            presupuestar(pacientes)
             input("\t\tPresione enter para continuar")
 
         case "g": #Salir
