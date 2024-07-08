@@ -327,7 +327,7 @@ def modificarD(lista):
                 print((colorama.Fore.LIGHTMAGENTA_EX + "="*70 + colorama.Fore.RESET))
                 while True:
                     try:
-                        respo2 = input(colorama.Fore.LIGHTMAGENTA_EX + "Desea cambiar datos de la cartilla S/N\n>  " + colorama.Fore.RESET).upper()
+                        respo2 = input(colorama.Fore.LIGHTMAGENTA_EX + "Desea cambiar datos de la cartilla S/N\nO 'A' si Quiere ingresar una nueva mascota\n>  " + colorama.Fore.RESET).upper()
                         if respo2 == "S":
                             catillaCambiar = int(input(colorama.Fore.LIGHTMAGENTA_EX + "Ingrese el número de cartilla que desea cambiar\n>  "+ colorama.Fore.RESET)) -1
                             limpiar_Pantalla()
@@ -361,6 +361,26 @@ def modificarD(lista):
                                                 print(colorama.Fore.RED + "Valor no válido!" + colorama.Fore.RESET)
                                     except:
                                         print(colorama.Fore.RED + "Valor Inválido!" + colorama.Fore.RESET)
+                        elif respo2 == "A":
+                            nomMascota = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre de la mascota: " + Fore.RESET).upper()
+                            tipo = input (Fore.LIGHTMAGENTA_EX + "Ingrese tipo de mascota: " + Fore.RESET).upper()
+                            raza = input (Fore.LIGHTMAGENTA_EX + "Ingrese raza de la mascota: " + Fore.RESET).upper()
+                            sexo = input (Fore.LIGHTMAGENTA_EX + "Ingrese sexo de la mascota: M > macho / H > hembra " + Fore.RESET).upper()
+                            while sexo != "M".upper() and sexo != "H".upper(): #este while es por si tipea otra letra que no sea H o M
+                                print (Fore.LIGHTMAGENTA_EX + "ERROR, debe ingresar M o H" + Fore.RESET)
+                                sexo = input (Fore.LIGHTMAGENTA_EX + "ingrese sexo de la mascota: M > macho / H > hembra: " + Fore.RESET).upper()
+                            edad = int (input (Fore.LIGHTMAGENTA_EX + "Ingrese edad de la mascota: " + Fore.RESET))
+                            peso = float (input(Fore.LIGHTMAGENTA_EX + "Ingrese peso de la mascota en Kg: " + Fore.RESET))
+                            mascota = {"nombre Mascota": nomMascota,
+                                       "tipo":tipo,
+                                       "raza": raza,
+                                       "sexo": sexo,
+                                       "edad": edad,
+                                       "peso":peso}
+                            lista[bucaId]["mascotas"].append(mascota)
+                            print(lista[bucaId]["mascotas"])
+                            guardar_Pacientes()
+                            break
                         else:
                             limpiar_Pantalla()
                             break
@@ -473,45 +493,6 @@ def agregar_Pac(pacientes):
             return
     else:
         return
-
-
-def facturar():
-     
-    """
-    Función que muestra en la consola la lista de precios actualizada de los servicios
-    que brinda la veterinaria. Los servicios y sus valores se encuentran en un diccionario
-    que puede ser modificado por el programador.
-    No recibe argumentos
-    No retorna nada
-    """
-    serv = {'Consulta':6000,'Vacuna':3000,'Castración':7000,'Análisis':4000,'Radiografía':5000,'Ecografía':6000}
-    fecha = '05/07/2024'    #la fecha se carga automaticamente
-    print('='*100)
-    print()
-    print(Style.BRIGHT + ' SYS PETS '.center(100)) #Back. color de fondo
-    print(Style.RESET_ALL)
-    print('='*100)
-    print()
-    print(f'\tFecha: {fecha}'.rjust(90).center(100))
-    print()
-    print((" * " * 30).center(100))
-    print()
-    print (" Lista de precios ".center(40).center(100))
-    print()
-    print((" * " * 30).center(100) )
-    print()
-    print(f'\t Servicio \t  Precio ')
-    print()
-    cont = 1
-    for s, v in serv.items():
-       print(f'\t {s} \t  $ {v}')
-       cont = cont + 1
-    print('='*100)
-    print()
-    print('Precios válido por 3 días')
-    print()
-    print('='*100)
-    print()
 
 def menu():
     """
