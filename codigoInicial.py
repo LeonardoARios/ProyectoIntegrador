@@ -164,8 +164,8 @@ def eliminar_Pac(pacientes):
     
     limpiar_Pantalla()
 
-    print("Usted seleccionó" + Fore.LIGHTMAGENTA_EX  + " ELIMINAR " + Style.RESET_ALL)
-    print()
+    print(Fore.LIGHTMAGENTA_EX + "Usted seleccionó"  + " ELIMINAR " + Style.RESET_ALL)
+    print(("-"*70))
     print (Fore.LIGHTMAGENTA_EX + "A" + Fore.RESET + "- Dar de baja Dueño")
     print (Fore.LIGHTMAGENTA_EX + "B" + Fore.RESET + "- Dar de baja Mascota" )
     print()
@@ -258,6 +258,7 @@ def listar(lista):
             if itemPaci == "mascotas":
                 continue
             print(f'{itemPaci}: {valorPaci}'.upper())
+        print(f'DNI: {nombre}')
         print()
         print(colorama.Fore.LIGHTMAGENTA_EX + "Mascotas:".upper())
         print(("=" * 70)+ colorama.Fore.RESET)
@@ -305,6 +306,7 @@ def modificarD(lista):
                         mascota = nombre
                         continue
                     print(f'{nombre}: {valor}')
+                print(f'DNI: {bucaId}')
                 print()
                 print(colorama.Fore.LIGHTMAGENTA_EX + "Datos de Mascotas".upper())
                 print(("="*70 + colorama.Fore.RESET))
@@ -387,6 +389,8 @@ def buscar_Pac (pacientes):
     # la ejecucion del código 😀
 
     limpiar_Pantalla()
+    print(colorama.Fore.LIGHTMAGENTA_EX + "Usted seleccionó Buscar" + colorama.Fore.RESET)
+    print(("-"*70))
     
     dni = (input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)) # si convierto a entero no me funciona en la busqueda !!!
     if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
@@ -428,7 +432,9 @@ def agregar_Pac(pacientes):
     # Brenda: particularmente esta función la noto visualmente desordenada. Quizá porque hay
     # otra forma de escribirla o de plantearl o acomodarla.
     
-    #limpiar_Pantalla() 
+    #limpiar_Pantalla()
+    print(colorama.Fore.LIGHTMAGENTA_EX + "Usted seleccionó Agregar" + colorama.Fore.RESET)
+    print(("-"*70))
     nomDueño = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre dueño mascota: " + Fore.RESET).upper()
     apellDueño = input(Fore.LIGHTMAGENTA_EX +"Ingrese el apellido: "+ Fore.RESET).upper()
     dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese numero de DNI: "+ Fore.RESET)
@@ -545,7 +551,6 @@ op = menu()
 while bande:
     match op:
         case "a": #Nuevo Paciente
-            print(colorama.Fore.GREEN + "\t\tUsted seleccionó Agregar" + colorama.Fore.RESET)
             agregar_Pac(pacientes)
             print(("-"*70).center(100))
             print(colorama.Fore.RESET)
