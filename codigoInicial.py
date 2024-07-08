@@ -403,14 +403,19 @@ def buscar_Pac (pacientes):
     COLABORADORES:
     """
     # No me resulto dificil, siempre viendo diferentes formas de escribir para acceder a 
-    # elementos, printeando para ver como quedaba el desarrollo y posibles errores y
-    # reacomodando todo para una mejor visual.
-    # Me gustó poder incorporar la llamada a otra función (agregar) lo que dió continuidad a
-    # la ejecucion del código 😀
+    # elementos, printeando para ver como quedaba el desarrollo, mejorando las salidas y
+    # reordenando para una mejor visual. Me gustó poder incorporar la llamada a otra
+    # función (agregar), lo que dió continuidad a la ejecución del código 😀
+    # Para la entrega final icorporé la opcion "agregar mascotas" a un DNI, tenga o no
+    # mascotas asociadas, lo que posibilita hacerlo sin recurrir al menu inicial.
+    # Si bien el hecho de no recurrir almenu se puede presentar en varias oportunidades, 
+    # y funciones, no lo apliqué para no ser repetitiva con las lineas de codigo y 
+    # procesos de carga de datos.
+    # x ejemplo, acá en el buscar se puede agregar mascota pero tambien podria añadir
+    # opcion "eliminar" si es que en ese momento se quiere dar de baja una mascota. 
+    # Voy notando que se presentan varias salidas en las respuestas x SI o x NO en el código
 
     limpiar_Pantalla()
-    print(colorama.Fore.LIGHTMAGENTA_EX + "Usted seleccionó Buscar" + colorama.Fore.RESET)
-    print(("-"*70))
     
     dni = (input(Fore.LIGHTMAGENTA_EX +"Ingrese DNI a buscar, sin puntos ni comas: " + Fore.RESET)) # si convierto a entero no me funciona en la busqueda !!!
     if dni in pacientes: #si dni esta en pacientes imprime dato dueño y mascotas
@@ -426,8 +431,33 @@ def buscar_Pac (pacientes):
             print (Fore.LIGHTMAGENTA_EX + Style.BRIGHT+ f"{"Mascota"} {cont}" + Style.RESET_ALL)
             cont = cont + 1
             for c,v in elem.items():
-                print (f"{c}: {v}")
+                print (f"\t{c}: {v}")
             print()
+        incorporar = input("Desea incorporar mascotas? S / N: " ).upper()
+        while incorporar == "S".upper():
+                nomMascota = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre de la mascota: " + Fore.RESET).upper()
+                tipo = input (Fore.LIGHTMAGENTA_EX + "Ingrese tipo de mascota: " + Fore.RESET).upper()
+                raza = input (Fore.LIGHTMAGENTA_EX + "Ingrese raza de la mascota: " + Fore.RESET).upper()
+                sexo = input (Fore.LIGHTMAGENTA_EX + "Ingrese sexo de la mascota: M > macho / H > hembra " + Fore.RESET).upper()
+                while sexo != "M".upper() and sexo != "H".upper(): #este while es por si tipea otra letra que no sea H o M
+                    print (Fore.LIGHTMAGENTA_EX + "ERROR, debe ingresar M o H" + Fore.RESET)
+                    sexo = input (Fore.LIGHTMAGENTA_EX + "ingrese sexo de la mascota: M > macho / H > hembra: " + Fore.RESET).upper()
+                edad = int (input (Fore.LIGHTMAGENTA_EX + "Ingrese edad de la mascota: " + Fore.RESET))
+                peso = float (input(Fore.LIGHTMAGENTA_EX + "Ingrese peso de la mascota en Kg: " + Fore.RESET))
+                mascota = {"nombre Mascota": nomMascota,
+                           "tipo":tipo,
+                           "raza": raza,
+                           "sexo": sexo,
+                           "edad": edad,
+                           "peso":peso}
+                pacientes[dni]['mascotas'].append(mascota)
+                guardar_Pacientes()
+                print(Style.BRIGHT + f"La mascota {nomMascota} se registró EXITOSAMENTE" + Style.RESET_ALL)
+                resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
+                if resp == "N":
+                     return
+        else:
+            return
     else:
         print()
         resp = input(Fore.LIGHTMAGENTA_EX +f"DNI: {dni}{Fore.RESET} NO se encuentra registrado. \nDesea registrarlo ahora? S / N: " ).upper()
@@ -444,17 +474,14 @@ def agregar_Pac(pacientes):
     AUTOR: Brenda Sztryk
     COLABORADORES: Leo Rios
     """
-    # Tuvimos problemas para poder hacer un diccionario de mascotas (diccionario dentro de otro)
-    # porque las mascotas debian individualizarce con sus datos, hubo intentos pero quedaban 
-    # repetidos ciertos elementos del diccionario en el exterior del mismo, la información no 
-    # quedaba como se necesitaba, tras varias pruebas, los datos quedaron ordenados y a partir 
-    # de ahí avanzamos más a profundidad en las funciones de cada uno.
+    # Tuvimos problemas para poder hacer un diccionario dentro de otro para la cant. de mascotas x dueño, 
+    # o sea que cada mascota individualizada en diccionarios no logramos colocarlas dentro de otro en
+    # vez dentro de una lista. Como funcionó con esta última lo dejamos así... aunque realizamos intentos 
+    # para trabajar con diccionarios. Finalmente con la lista pudimos avanzar en las funciones de cada uno.
     # Brenda: particularmente esta función la noto visualmente desordenada. Quizá porque hay
-    # otra forma de escribirla o de plantearl o acomodarla.
+    # otra forma de escribirla, de plantear o acomodar las líneas de código.
     
-    #limpiar_Pantalla()
-    print(colorama.Fore.LIGHTMAGENTA_EX + "Usted seleccionó Agregar" + colorama.Fore.RESET)
-    print(("-"*70))
+    limpiar_Pantalla() 
     nomDueño = input(Fore.LIGHTMAGENTA_EX + "Ingrese nombre dueño mascota: " + Fore.RESET).upper()
     apellDueño = input(Fore.LIGHTMAGENTA_EX +"Ingrese el apellido: "+ Fore.RESET).upper()
     dni = input(Fore.LIGHTMAGENTA_EX +"Ingrese numero de DNI: "+ Fore.RESET)
@@ -487,7 +514,7 @@ def agregar_Pac(pacientes):
         pacientes[dni]["mascotas"].append(mascota)
         guardar_Pacientes()
         print()
-        print(Style.BRIGHT + "La mascota se registró EXITOSAMENTE" + Style.RESET_ALL)
+        print(Style.BRIGHT + f"La mascota {nomMascota} se registró EXITOSAMENTE" + Style.RESET_ALL)
         resp=input (Fore.LIGHTMAGENTA_EX +"Desea registrar otra mascota?: S /N: "+ Fore.RESET).upper()
         if resp == "N":
             return
