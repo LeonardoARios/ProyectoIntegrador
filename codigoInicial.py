@@ -187,7 +187,7 @@ def eliminar_Pac(pacientes):
     
     limpiar_Pantalla()
 
-        print(Fore.LIGHTMAGENTA_EX + "Usted seleccionó"  + " ELIMINAR " + Style.RESET_ALL)
+    print(Fore.LIGHTMAGENTA_EX + "Usted seleccionó"  + " ELIMINAR " + Style.RESET_ALL)
     print(("-"*70))
     print (Fore.LIGHTMAGENTA_EX + "A" + Fore.RESET + "- Dar de baja Dueño")
     print (Fore.LIGHTMAGENTA_EX + "B" + Fore.RESET + "- Dar de baja Mascota" )
