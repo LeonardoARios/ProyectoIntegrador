@@ -4,16 +4,21 @@ AUTORES: Marina Toledo, Alejandro Ante, Leonardo Rios, Brenda Sztryk
 FECHA: 2024
 VERSION: 1.0 
 """
-# Pensamos en una aplicacion que gestiona pacientes mascotas para una veterinaria, desde
-# su ingreso hasta su baja/eliminación, pasando x una búsqueda filtrada x DNI del dueño de
-# la mascota, un listado de la base de datos y opción de modificación de los mismos. Cuenta 
+# Pensamos una aplicacion que gestiona pacientes mascotas para una veterinaria, desde su 
+# ingreso hasta su baja/eliminación, pasando x búsqueda filtrada x DNI del dueño de la
+# mascota, un listado de la base de datos y opción de modificación de los mismos. Cuenta 
 # también con un facturador de servicios. Inicialmente la idea fue pensada como aplicacion 
 # real de celular, y nos dimos cuenta que se abrian muchas ramas de conexiones, asi que 
-# comenzamos a acotar con lo que queriamos mostrar teniendo en cuenta los items a cumplir 
-# (agregar, eliminar, listar, buscar, modificar, etc), asimismo es posible generar conexiones 
-# entre las funciones creadas y mostrar respuestas/acciones tanto x el SI como por el NO en el codigo.
-# Pasamos por diferentes dificultades, esto es prueba y error para corregir y modificar/mejorar.
-# Supimos estar en contacto y exponer nuestras ideas para definir la mas acorde y encaminar el TP.
+# empezamos a acotar a lo que queriamos mostrar teniendo en cuenta los items a cumplir 
+# (agregar, eliminar, listar, buscar, modificar, etc), asimismo es posible generar relación 
+# entre las funciones creadas y mostrar respuestas/acciones tanto x el SI como por el NO en 
+# el codigo. Pasamos por diferentes dificultades, como no saber de donde tomar los datos para 
+# nuestars funciones, hasta que apareció JSON y fue lo que nos faltaba para ir cerrando ideas, 
+# esto es prueba y error para corregir, modificar y mejorar. Supimos estar en contacto y exponer 
+# nuestras ideas para definir las mas acordes y encaminar el TP.
+# Como detalle de las funciones, los input para DNI los dejamos como string dado que no realizariamos
+# a posteriori cálculos matemáticos, los fuimos trabajando com INT y en una funcion comenzó a dar 
+# fallas al funcionamiento de la funcion, asi es que decidimos quitarlo en todas.
 
 import json
 import os
