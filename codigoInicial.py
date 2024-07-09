@@ -4,6 +4,17 @@ AUTORES: Marina Toledo, Alejandro Ante, Leonardo Rios, Brenda Sztryk
 FECHA: 2024
 VERSION: 1.0 
 """
+# Pensamos en una aplicacion que gestiona pacientes mascotas para una veterinaria, desde
+# su ingreso hasta su baja/eliminación, pasando x una búsqueda filtrada x DNI del dueño de
+# la mascota, un listado de la base de datos y opción de modificación de los mismos. Cuenta 
+# también con un facturador de servicios. Inicialmente la idea fue pensada como aplicacion 
+# real de celular, y nos dimos cuenta que se abrian muchas ramas de conexiones, asi que 
+# comenzamos a acotar con lo que queriamos mostrar teniendo en cuenta los items a cumplir 
+# (agregar, eliminar, listar, buscar, modificar, etc), asimismo es posible generar conexiones 
+# entre las funciones creadas y mostrar respuestas/acciones tanto x el SI como por el NO en el codigo.
+# Pasamos por diferentes dificultades, esto es prueba y error para corregir y modificar/mejorar.
+# Supimos estar en contacto y exponer nuestras ideas para definir la mas acorde y encaminar el TP.
+
 import json
 import os
 import colorama
