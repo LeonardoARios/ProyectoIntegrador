@@ -1,30 +1,29 @@
 # APLICACION DE GESTION INTEGRAL PARA VETERINARIOS
 # Descripcion:
-Aplicación de consola. Permite a veterinarios controlar integralmente
-el estado de salud/bienestar de animales domesticos a traves de parametrizaciones de distintos
-items a evaluar.
+Aplicación de consola. Permite a veterinarios gestionar el funcionamiento de la veterinaria teniendo en cuenta los ingresos, egresos y loque ello conlleva.
+Permite evaluar el estado de salud/bienestar de animales domesticos a traves de parametrizaciones de distintos items a evaluar (a desarrollar en la futura versión del código)
 
 
 # OBJETIVO
-Facilitar la tarea del veterinario en cada consulta, pudiendo ingresar nuevos pacientes, sus datos, consultar y modificar existentes, eliminar, buscar y listar segun necesidad, y adicionalmente presupuestar servicios ofreecidos. Se proporciona persistencia de datos mediante el uso de archivos de texto.
+Facilitar la tarea del veterinario en cada consulta, pudiendo ingresar nuevos pacientes, sus datos, consultar y modificar existentes, eliminar, buscar y listar segun necesidad, y adicionalmente presupuestar servicios ofrecidos. Se proporciona persistencia de datos mediante el uso de archivos de texto.
 
 
 # PUBLICO OBJETIVO
-Dirigido a profesionales del area Veterinaria en sus puestos de trabajo.
+Dirigido a profesionales del área Veterinaria en sus puestos de trabajo.
 
 
 # REQUERIMIENTO FUNCIONAL
 1. Funcionalidades Básicas
-    - Buscar datos de la mascota (paciente) asociados a al DNI de su dueño.
+    - Buscar datos de la mascota asociados a al DNI de su dueño.
     - Agregar: permite agregar mascotas a la base de datos.
     - Modificar: permite modificar datos ya cargados relacionados a la mascota o su dueño
-    - Eliminar: permite dar de baja una mascota o el dueño y sus mascotas.
+    - Eliminar: permite dar de baja una mascota, su dueño, o el dueño y sus mascotas.
     - Listar: muestra un listado de mascotas de la base de datos
-    - Presupuestar: permite que el profesional obtener un presupuesto de los servicios que ofrece la veterinaria
+    - Presupuestar: permite al profesional opresupuestar los servicios que ofrece en la veterinaria
 
 
 2. Persistencia de Datos
-    - Almacenamiento en Archivos de Texto: Utilizar archivos de texto para guardar y recuperar todo dato ingresado
+    - Almacenamiento en Archivos de Texto: Utilizar archivos de texto para guardar y recuperar datos ingresado (JSON)
    
 3. Interfaz de Usuario
     Los datos obtenidos se cargan al programa, pudiendo luego buscar, modificar,
@@ -48,4 +47,4 @@ Dirigido a profesionales del area Veterinaria en sus puestos de trabajo.
     - Manejo de Archivos: Crear funciones para leer y escribir en los archivos de texto.
 6.  Documentación
     - Comentarios en el Código: Incluir comentarios en el código para explicar el propósito y funcionamiento de las diferentes partes.
-    - Archivo README: Proporcionar un archivo README que describa el propósito del proyecto, cómo ejecutarlo y cómo utilizar las               diferentes funcionalidades.
+    - Archivo README: Proporcionar un archivo README que describa el propósito del proyecto, cómo ejecutarlo y cómo utilizar las diferentes funcionalidades.
