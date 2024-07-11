@@ -4,24 +4,27 @@ AUTORES: Marina Toledo, Alejandro Ante, Leonardo Rios, Brenda Sztryk
 FECHA: 2024
 VERSION: 1.0 
 """
-# Pensamos una aplicacion que gestiona pacientes mascotas para una veterinaria, desde su 
-# ingreso hasta su baja/eliminación, pasando x búsqueda filtrada x DNI del dueño de la
-# mascota, un listado de la base de datos y opción de modificación de los mismos. Cuenta 
-# también con un facturador/presupuestador de servicios. Adicional un README, LICENSE.
+# Pensamos una aplicacion que gestiona mascotas/dueño mascota para una veterinaria, desde su 
+# ingreso hasta su baja/eliminación, pasando x búsqueda filtrada x DNI del dueño, un listado 
+# de la base de datos y opción de modificación de los mismos. Cuenta también con un facturador/
+# presupuestador de servicios. Adicional un README y LICENSE.
 # Inicialmente fue pensada como aplicacion real de celular, y nos dimos cuenta que se abria 
 # a muchas ramas de conexiones, asi que empezamos a acotar a lo que queriamos mostrar teniendo 
 # en cuenta los items a cumplir (agregar, eliminar, listar, buscar, modificar, etc), asimismo es
 # posible generar relación entre las funciones creadas y mostrar respuestas/acciones tanto x el SI 
 # como por el NO en el código. Pasamos por diferentes dificultades, como no saber de donde tomar 
-# los datos para nuestras funciones ya que no teniamos persistencia, fuimos inventandolos para 
-# realizarlas hasta que apareció JSON el salvador! y el permitió ir cerrando ideas, esto es prueba 
+# los datos para nuestras funciones x no haber persistencia, fuimos inventando datos para 
+# realizarlas hasta que apareció JSON el salvador! y así fuimos cerrando ideas, esto es prueba 
 # y error para corregir, modificar y mejorar. Supimos estar en contacto y exponer nuestras ideas 
 # para tomar las mas acordes y encaminar el TP. Como detalle de las funciones, los input para DNI los
 # dejamos como string dado que no realizariamos a posteriori cálculos matemáticos, de inicio los trabajamos
-# como INT y en una funcion nos trajo problemas y comenzó a dar fallas al funcionamiento de la misma,
+# como INT y en alguna funcion nos trajo problemas comenzando a dar fallas al funcionamiento de la misma,
 # decidimos quitarlo en todas. Tambien aclaramos que algunas de las funciones, cuando hay que realizar 
 # una eleccion de respuesta a una pregunta, tienen la opcion de agregar mascotas sin la necesidad de ir 
 # al menu principal, esto aparece en el eliminar, buscar y modificar. 
+# Brenda: mis funciones no tienen tratamiento de errores, no llegue a aplicarlas si bien entiendo que hay
+# que tratar la linea de codigo que pueda dar error y colocar la excepcion a ese error. Quiesiera practicarlo 
+# y prefiero que no se rompar el código.
 
 import json
 import os
