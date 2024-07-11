@@ -6,7 +6,7 @@ VERSION: 1.0
 """
 # Pensamos una aplicacion que gestiona mascotas/dueño mascota para una veterinaria, desde su 
 # ingreso hasta su baja/eliminación, pasando x búsqueda filtrada x DNI del dueño, un listado 
-# de la base de datos y opción de modificación de los mismos. Cuenta también con un facturador/
+# de la base de datos y opción de modificar los mismos. Cuenta también con un facturador/
 # presupuestador de servicios. Adicional un README y LICENSE.
 # Inicialmente fue pensada como aplicacion real de celular, y nos dimos cuenta que se abria 
 # a muchas ramas de conexiones, asi que empezamos a acotar a lo que queriamos mostrar teniendo 
@@ -30,7 +30,8 @@ import json
 import os
 import colorama
 from colorama import Fore,Style
-from funcionesEmergencia import presupuestar
+#from funcionesEmergencia import presupuestar
+import datetime
 
 def guardarValidar(listaValidacion):
     '''
@@ -74,8 +75,8 @@ def validar(listaUsuario):
     Cree una lista de usuarios que a futuro puede cambiar ya sea quitando
     empleados, agregando, o modificando, dependiendo de la rotación de los
     mismos
-    AUTOR: Brenda Sztryk
-    COLABORADORES: Leonardo Rios, Alejandro Ante, Marina Toledo
+    AUTOR: Brenda Sztryk, Leo Rios
+    COLABORADORES: Alejandro Ante, Marina Toledo
     '''
 
     print((Style.BRIGHT + "*" * 20).center(100) )
@@ -126,7 +127,7 @@ def cargar_Pacientes(): # lee el archivo y lo pone en el dicc.
     AUTOR: Brenda Sztryk
     COLABORADORES: Ale Ante
     """
-    # Tanto la función cargar como guardar me costó entenderlas, pero viendo las
+    # Tanto la función cargar como guardar me costó entenderlas (Brenda), pero viendo las
     # clases grabadas, otros videos, y recolectando informacion de apuntes
     # logre armarlas, ahi comprendí la importancia de la persistencia.
     # Inicialmente no sabía de donde tomar los datos para realizar las funciones
@@ -263,6 +264,88 @@ def eliminar_Pac(pacientes):
         else:
             print(Fore.LIGHTMAGENTA_EX +f"DNI: {dni}{Fore.RESET} NO se encuentra registrado en la base de datos")
             return
+
+def presupuestar(pacientes):
+    """
+    Función que genera un presupuesto/ticket a un DNI de la base de datos,
+    global (pacientes) la cual recibe como argumento.
+    No retorna valor
+    AUTOR: Leo Rios, Brenda Sztryk
+    COLABORAORES: Ale Ante, Marina Toledo
+    """
+    # Si bien al ticket le faltan detalles para hacerlo mas real, ejemplo datetime, concluimos 
+    # que tiene un buen desarrollo y funciona 👏👏👏
+    # Comenzamos con servicios ofrecidos formato diccionario y luego, como también sucedió a lo 
+    # largo del trabajo, uno va escribiendo el código y se enfrenta a ciertas trabas, las cuales
+    # se sortean con las pruebas de ejecución, debug y moviendo lineas de codigo.
+    # No hicimos Json para esta función (la lista que almacena precios de servicios a traves de
+    # un append, x mas que no los muestra, salvo al printearlos, quedan en memoria para
+    # posterior cálculo, en este caso suma). Para la version futura se podría presupuestar en base 
+    # a mascotas seleccionadas de la lista que arroja x DNI.
+    
+       
+    print() 
+    dni = input(f"Ingrese{Fore.LIGHTMAGENTA_EX} DNI{Fore.RESET} del cliente para presupuestar: ")
+    print()
+    if dni in pacientes: # DUEÑO
+        paci = pacientes[dni]['mascotas']
+        print()
+        print("TICKET".center(50))
+        print("NO VALIDO COMO FACTURA".center(50))
+        print("="*50)
+
+        fechaHoy= datetime.date.today()
+        hora = datetime.time(10,20,35)
+        print(Fore.LIGHTMAGENTA_EX + f"SYS PETS.SRL {Fore.RESET}  \t\t\t {fechaHoy}")
+        print(f"Gaona 125,CABA. (1427) \t\t {hora}")
+        print("Tel: 4200-5000")
+        print("="*50)
+        print()
+        for nombre,dato in pacientes[dni].items():
+            if nombre == 'mascotas':
+                continue
+            print(f'{nombre}: {dato}')
+        print("="*50)
+
+        for mascotas,datos in pacientes[dni].items(): # CANTIDAD MASCOTAS
+            if mascotas == 'mascotas':
+                print(f'Cant. Mascotas Registradas: {len(datos)}')
+                print("-"*50)
+
+        for num,mascot in enumerate(paci,1): # NUMERADO MASCOTAS
+            print (Fore.LIGHTMAGENTA_EX + f"Mascota {num}: {Fore.RESET}{mascot['nombre Mascota']} - {mascot['tipo']}") #sumo 1 p/ numerar desde 1
+        print()
+        print(Style.BRIGHT + f"SERVICIOS OFRECIDOS:{Style.RESET_ALL} ")
+        print("="*50)
+        
+        servicios = [("Vacuna",3000),("Consulta",6000),("Castración",7000),("Análisis",4000),("Radiografía",5000),("Ecografía",6000)]
+        
+        for enum, (item, precio) in enumerate(servicios,1): #enumero dsd 1 para elegir opcion
+            print(Fore.LIGHTMAGENTA_EX + f"\t{enum} {Fore.RESET}- {item}")
+        print()
+        print(Style.BRIGHT+ f"SERVICIOS SELECCIONADOS PARA 1 MASCOTA {Style.RESET_ALL}")
+        print("="*50)   
+            
+        suma = []
+        while True:
+            elegir = int(input("Elija NUMERO, o (cero) 0 para finalizar:"))
+            print()
+            indice = elegir - 1 #resto 1 para que coincida con los indices de lista 
+            if indice < 0:
+                print(Fore.LIGHTMAGENTA_EX + f"\t\t\tTOTAL: ${sum(suma) * 1.21}{Fore.RESET} ")
+                break
+            elif indice >= 0 and indice < len(servicios):
+                print(f"Seleccionó {elegir} \t{Fore.LIGHTMAGENTA_EX} \t{servicios[indice][0]}: ${servicios[indice][1]} {Fore.RESET}") # accedo x indice a la tupla de la lista
+                suma.append(servicios[indice][1]) # el indice 1 es el precio
+            else:
+                print (f"NUMERO {Fore.LIGHTMAGENTA_EX} INCORRECTO {Fore.RESET}")
+        return
+    else:   
+       print (f" El DNI: {dni} {Fore.LIGHTMAGENTA_EX} NO se encuentra registrado {Fore.RESET} ") 
+       return
+       # ACA SE ABRE POSIBILIDAD DE REGISTRAR CON OPCION "A"
+       # DEL MENU LLAMANDO A LA FUNCION "AGREGAR".
+
 
     
 def listar(lista):
