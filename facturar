@@ -1,0 +1,123 @@
+import os
+from colorama import Fore
+#Diccionario servicios - precios que brinda la empresa 
+serv={'Consulta':6000,'Vacuna':3000,'Castración':7000,'Análisis':4000,'Radiografía':5000,'Ecografía':6000}
+#Lista de los servicios
+servL=['Consulta','Vacuna','Castración','Análisis','Radiografía','Ecografía']
+#Lista vacía en la que se agregan los servicios y la cantidad para cada factura
+servF = {}
+def clear():
+    '''
+    Función que limpia la pantalla
+    '''
+    os.system('cls' if os.name=='nt' else 'clear')
+
+def elejirServ():
+    '''
+    Muestra un menú con los servicios que ofrece la empresa para que el usuario elija 
+    el que quiere incluir en la factura desde un diccionario: serv, en el cual clave: servicio - Valor: precio
+    Retorna: la variable servE con el índice del servicio a facturar
+    '''
+    clear()
+    print('='*45)
+    print('Servicios'.center(45))
+    print('='*45)
+    cont = 1
+    for s in serv.keys():
+       print(Fore.LIGHTMAGENTA_EX , cont,  Fore.RESET , '.', s)
+       cont = cont + 1
+    print('='*45)
+
+    while True:
+        try:
+            servi = int(input('Ingrese el número del servicio a facturar: '))
+            #servi debe estar entre 1 y len(serv)
+            if 0 < servi <= len(serv):
+                servE = servi - 1
+                return servE
+            else:
+                print(f'{Fore.RED} \t\t¡Dato Invalido! {Fore.RESET} Ingrese un número entre 1 y {len(serv)} : ')
+                continue
+        except ValueError:
+            print(Fore.RED + "\t\t¡Dato Invalido!" + Fore.RESET + 'Ingrese un número: ')
+def elejirCant():
+    '''
+    función que pide la cantidad del serviio a facturar (un número mayor a cero)
+    Recibe: No recibe nada
+    Retorna: la variable cant con la cantidad del servicio a facturar
+    '''
+    while True:
+        try:
+            cant = int(input('Ingrese la Cantidad: '))              
+            #cant debe ser > 0
+            if cant > 0:
+                return cant
+            else:
+                print(Fore.RED + "\t\t¡Dato Invalido!" + Fore.RESET )
+                continue
+        except ValueError:
+            print(Fore.RED + "\t\t¡Dato Invalido!" + Fore.RESET + 'Ingrese un número: ')
+
+def menuServ():
+    '''
+    Función que muestra los servicios de la veteninaria para que el usuario elija el servicio
+    y la cantidad a facturar
+    No recibe parámetros
+    Retorna: un diccionario servF con clave: servicio - valor: cantidad
+    '''
+    while True:
+        resp = input('¿Desea agregar un servicio? \n\tsi:\tS \n\tno:\tcualquier caracter: ').upper()
+        if resp == 'S':
+            u = elejirServ()
+            sF = servL[u]
+            servF[sF] = elejirCant()
+            print(servF)
+        else:
+            return servF
+    
+def imprimirFactura():
+    '''
+    Función que muestra en pantalla la factura de pago de los servicios de la veterinaria
+    Recibe: dni, nombre y apellido
+    '''
+    menuServ()
+    fecha = '05/07/2024'    #la fecha se carga automaticamente
+    #quería extraer la información del diccionario pacientes, hasta que lo haga inicializo las 
+    #variables para que se pueda ver la factura
+    dni = '3' 
+    nom = 'N' 
+    apel = 'N' 
+    clear()
+    print()
+    print('-'* 100)
+    print()
+    print(' SYS PETS '.center(100)) #Back. color de fondo
+    print()
+    print('-'* 100)
+    print('Factura A'.center( 100,))
+    print()
+    print('-'* 100)
+    print()
+    print(f'\tFecha: {fecha}'.rjust(90).center(100))
+    print()
+    print(f'\tNombre y apellido: {nom} {apel}')
+    print(f'\tDNI: {dni}')
+    print()
+    print('-'* 100)
+    print("\tdetalles de la compra:".upper().center( 100))
+    print('-'* 100)
+    print('\tCant'.ljust(10,' ') + '\tDescripción'.ljust(25," ") + '\tP.U.'.ljust(10,' ') + '\t\tTotal'.ljust(15,' '))
+    tot = 0
+    for s,v in serv.items(): #iterar en los servicios - precios del dicc servF
+        for ser,c in servF.items():
+            if s == ser:
+                subTot = v*c
+                print('\t', str(c).ljust(10,' '),'\t ',str(s).ljust(25,' '),'\t',str(v).ljust(10,' '),'\t\t',str(subTot).ljust(15,' '))
+                tot = tot + subTot
+    print()
+    print('-'*100)
+    print(f'\tTotal a pagar \t $ {tot}')
+    print()
+    print('-'*60)
+
+imprimirFactura()
